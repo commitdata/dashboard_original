@@ -1,1 +1,0 @@
-declare var kendo: any;
