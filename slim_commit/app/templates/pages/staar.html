@@ -1,0 +1,36 @@
+﻿<style>
+    .campusList {
+        max-height: 577px;
+        height: 577px;
+        overflow: auto;
+        margin-left: 5px;
+        padding: 5px;
+        width: 100%;
+    }
+</style>
+<button ng-click="downloadReport()">download report</button>
+<div class="row">
+    <div class="col-lg-3">
+        <div class="panel">
+            <div style="margin:5px;">
+                <input type="text" data-ng-model="campFilter" class="form-control" placeholder="Type to filter..." />
+            </div>
+            <div class="campusList" id="campusList">
+                <div data-ng-repeat="item in campusList | filter:campFilter">
+                    <input type="checkbox" data-ng-value="item.campus" name="campus" data-ng-click="refreshGrid()" /> <span data-ng-bind="item.campname"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-9">
+        <div class="panel panel-default">
+            <div class="panel-heading"><strong><i class="ti-list-ol"></i>    Spreadsheet</strong></div>
+            <div class="panel-body">
+                <div id="schoolsGrid"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="page-splash" ng-class="{'page-splash-active':spinner}">
+    <div class="page-splash-message page-splash-message-subtle">Loading...</div>
+</div>

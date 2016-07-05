@@ -1,0 +1,27 @@
+﻿<div class="row print-item">
+
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading"><strong><i class="ti-list-ol"></i>   Campus College-Ready Graduates, College & Career Ready, CTE-Coherent Sequence</strong></div>
+            <div class="panel-body panel-body-buttons">
+                <div class="col-md-6">
+                    <label> <input type="checkbox" ng-model="ccReadyArtsState">  English Language Arts</label>
+                    <label> <input type="checkbox" ng-model="ccReadyMathState">  Mathematics</label>
+                    <label> <input type="checkbox" ng-model="ccReadyBothState">   Both Subjects</label>
+                    <label> <input type="checkbox" ng-model="ccReadyCareerState">   College & Career Ready</label>
+                    <label> <input type="checkbox" ng-model="ccReadyCTEState">  CTE-Coherent Sequence</label>
+                </div>
+                <div class="col-md-6 icon-panel">
+                    <a href="#" download="ccReady.png" class="imageExport" data-chart="ccReady">
+                        <i class="fa fa-file-image-o fa-lg"></i>
+                    </a>
+                    <a class="csvExport" data-chart="ccReady"><i class="fa fa-download fa-lg"></i></a>
+                    <a><i kendo-tooltip="" k-options="tooltipOptions" data-chart="ccReady" class="fa fa-question-circle fa-lg"></i></a>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div id="ccReady"></div>
+            </div>
+        </div>
+    </div>
+</div>

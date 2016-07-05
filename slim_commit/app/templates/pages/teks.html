@@ -1,0 +1,106 @@
+﻿<style>
+    .boxer {
+        overflow: hidden;
+        background-color: white;
+        padding : 0 5px;
+    }
+
+        .boxer img {
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .boxer.active {
+            border: 5px solid #626262;
+        }
+        .boxer.active .category{
+            height:90px;
+        }
+        .boxer .category {
+            background-color: #fafafa;
+            border: 1px solid #dadada;
+            cursor: pointer;
+            font-size: 24px;
+            height: 100px;
+            line-height: 90px;
+            text-align: center;
+        }
+
+    .accordion-toggle {
+        display: block;
+        cursor: pointer;
+    }
+
+        .accordion-toggle:hover {
+            text-decoration: none;
+        }
+</style>
+<div>
+    <div>
+        <section id="header" class="top-header"></section>
+
+        <aside id="nav-container">
+            <div id="nav-wrapper">
+
+            </div>
+        </aside>
+    </div>
+
+    <div class="view-container">
+
+        <div class="page-splash" ng-class="{'page-splash-active':spinner}">
+            <div class="page-splash-message page-splash-message-subtle">Loading...</div>
+
+            <!--<img src="../../../images/commit_logo.png" />-->
+        </div>
+
+        <section id="content" class="animate-fade-up" style="padding:25px">
+
+
+
+            <div class="row">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> <span data-i18n="TEKS"></span></strong></div>
+                    <div class="col-lg-1 boxer" ng-class="{active : item == selectedSubject}" ng-repeat="item in subjects" ng-click="subjectSelected(item);">
+                        <img kendo-tooltip="" k-options="{content:item.Name}" src="/images/teks/{{item.image}}" alt="{{item.Name}}" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> <span data-i18n="Category"></span></strong></div>
+                    <div class="col-lg-4 boxer" ng-class="{active : item == selectedCategory}" ng-repeat="item in categories" ng-click="categorySelected(item);">
+                        <div class="category">
+                            {{item.Name}}
+                        </div>
+                    </div>
+                    <div style="clear:both"></div>
+                </div>
+            </div>
+
+            <br />
+            <div class="row">
+                <div class="panel panel-default">
+                    <select kendo-drop-down-list="ddList" k-data-source="grades" k-data-value-field="'GradeId'" k-data-text-field="'Name'" style="width:100%;" k-ng-model="selectedGrade"></select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="panel panel-default" ng-show="itemSubjects">
+                    <div class="panel-body">
+                        <accordion close-others="false">
+                            <accordion-group ng-repeat="item in itemSubjects" is-open="true">
+                                <accordion-heading>
+                                    {{item[0].ItemName}}
+                                </accordion-heading>
+                                <ul>
+                                    <li ng-repeat="subject in item">{{subject.SubjectName}}</li>
+                                </ul>
+                            </accordion-group>
+                        </accordion>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

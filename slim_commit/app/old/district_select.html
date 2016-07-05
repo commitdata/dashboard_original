@@ -1,0 +1,156 @@
+﻿<div class="page page-dashboard">
+
+    <div class="panel panel-default">
+
+        <div class="panel-heading">
+            <h1 class="panel-title">District Current</h1>
+        </div>
+        <div class="panel-body">
+
+            <div class="panel panel-default">
+                <select kendo-multi-select k-options="districtOptions" k-ng-model="selectedDistricts" k-ng-delay="districtOptions.dataSource.data"></select>
+            </div>
+
+
+            <!-- Stats -->
+            <div class="row text-center">
+                <div class="col-lg-3 col-xsm-6">
+                    <div class="panel mini-box">
+                        <span class="btn-icon btn-icon-round btn-icon-lg-alt" style="background-color:#c3151c; color:white">
+                            <span class="ti-car"></span>
+                        </span>
+                        <div class="box-info">
+                            <p class="size-h2">{{average("DPEMALLP", selectedDistricts)}}<span class="size-h4">%</span></p>
+                            <p class="text-muted"><span>{{fields['DPEMALLP'].replace("of Student Count","")}}</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-xsm-6">
+                    <div class="panel mini-box">
+                        <span class="btn-icon btn-icon-round btn-icon-lg-alt" style="background-color:#003662; color:white">
+                            <i class="ti-user"></i>
+                        </span>
+                        <div class="box-info">
+                            <p class="size-h2">{{sum("DPETALLC", selectedDistricts)}}<span class="size-h4"></span></p>
+                            <p class="text-muted"><span>{{fields['DPETALLC']}}</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-xsm-6">
+                    <div class="panel mini-box">
+                        <span class="btn-icon btn-icon-round btn-icon-lg-alt" style="background-color:#91c63d; color:white">
+                            <i class="ti-money"></i>
+                        </span>
+                        <div class="box-info">
+                            <p class="size-h2">{{average("DPETECOP", selectedDistricts)}}<span class="size-h4">%</span></p>
+                            <p class="text-muted"><span>{{fields['DPETECOP'].replace("of Student Count","")}}</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-xsm-6">
+                    <div class="panel mini-box">
+                        <span class="btn-icon btn-icon-round btn-icon-lg-alt" style="background-color:#ef5727; color:white">
+                            <i class="ti-microphone"></i>
+                        </span>
+                        <div class="box-info">
+                            <p class="size-h2">{{average("DPETLEPP", selectedDistricts)}}<span class="size-h4">%</span></p>
+                            <p class="text-muted"><span>{{fields['DPETLEPP'].replace("of Student Count","")}}</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end stats -->
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><strong><i class="ti-list-ol"></i>    Spreadsheet</strong></div>
+                        <div class="panel-body">
+                            <div kendo-grid k-options="kGridOptions" k-data-source="selectedDistricts"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="panel panel-default">
+
+        <div class="panel-heading">
+            <h1 class="panel-title">District Longitudinal</h1>
+        </div>
+        <div class="panel-body">
+
+            <div class="panel panel-default">
+                <select kendo-multi-select k-options="longDistrictOptions" k-ng-model="selectedLongDistricts" k-ng-delay="longDistrictOptions.dataSource.data" k-on-change="onSelectionChange()"></select>
+            </div>
+
+
+            <!-- Stats -->
+            <div class="row text-center">
+                <div class="col-lg-3 col-xsm-6">
+                    <div class="panel mini-box">
+                        <span class="btn-icon btn-icon-round btn-icon-lg-alt" style="background-color:#c3151c; color:white">
+                            <span class="ti-car"></span>
+                        </span>
+                        <div class="box-info">
+                            <p class="size-h2">{{average("DPETHISP", selectedLongDistricts)}}<span class="size-h4">%</span></p>
+                            <p class="text-muted"><span> {{fields['DPETHISP'].replace("of Student Count","")}}</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-xsm-6">
+                    <div class="panel mini-box">
+                        <span class="btn-icon btn-icon-round btn-icon-lg-alt" style="background-color:#003662; color:white">
+                            <i class="ti-user"></i>
+                        </span>
+                        <div class="box-info">
+                            <p class="size-h2">{{sum("DPETALLC", selectedLongDistricts)}}<span class="size-h4"></span></p>
+                            <p class="text-muted"><span>{{fields['DPETALLC']}}</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-xsm-6">
+                    <div class="panel mini-box">
+                        <span class="btn-icon btn-icon-round btn-icon-lg-alt" style="background-color:#91c63d; color:white">
+                            <i class="ti-money"></i>
+                        </span>
+                        <div class="box-info">
+                            <p class="size-h2">{{average("DPETECOP", selectedLongDistricts)}}<span class="size-h4">%</span></p>
+                            <p class="text-muted"><span>{{fields['DPETECOP'].replace("of Student Count","")}}</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-xsm-6">
+                    <div class="panel mini-box">
+                        <span class="btn-icon btn-icon-round btn-icon-lg-alt" style="background-color:#ef5727; color:white">
+                            <i class="ti-microphone"></i>
+                        </span>
+                        <div class="box-info">
+                            <p class="size-h2">{{average("DPETLEPP", selectedLongDistricts)}}<span class="size-h4">%</span></p>
+                            <p class="text-muted"><span>{{fields['DPETLEPP'].replace("of Student Count","")}}</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end stats -->
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><strong><i class="ti-list-ol"></i>    Spreadsheet</strong></div>
+                        <div class="panel-body">
+                            <div kendo-grid k-options="kLongGridOptions" k-data-source="kLongGridOptions.dataSource"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+

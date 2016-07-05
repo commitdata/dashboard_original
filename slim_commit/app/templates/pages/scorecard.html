@@ -1,0 +1,83 @@
+﻿<div class="scorecard-container">
+    <div>
+        <div class="menu-container" id="scorecard-menu-container">
+            <div class="nav-container bg-dark nav-vertical">
+                <ul class="nav">
+                    <li ng-repeat="navOption in navOptions" ng-class="{active : navOption == currentNavOption}">
+                        <a ng-hide="navOption.SubMenus" href="#/scorecard/{{navOption.ID}}">{{navOption.Name}} </a>
+                        <a ng-show="navOption.SubMenus" href="" ng-click="navOption.active = !navOption.active">{{navOption.Name}} <span class="pull-right" ng-if="navOption.SubMenus"> >> </span></a>
+                        <ul ng-if="navOption.SubMenus" class="nav" ng-show="navOption.active">
+                            <li ng-repeat="subMenu in navOption.SubMenus" ng-class="{active : subMenu == currentSubMenuOption}">
+                                <a href="#/scorecard/{{navOption.ID}}/{{subMenu.ID}}"> > &nbsp; {{subMenu.Name}}</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!--<div ng-repeat="navOption in navOptions" class="card-item">
+                <a href="#/scorecard/{{navOption.ID}}"> Scorecard {{navOption.ID}}</a>
+            </div>-->
+        </div>
+        <div class="content-container">
+            <div id="scorecardPage" style="text-align:center;"></div>
+            <div class="page-splash" ng-class="{'page-splash-active':spinner}">
+                <div class="page-splash-message">
+                    <div class="page-splash-message-subtle">Loading...</div>
+                </div>
+            </div>
+        </div>
+        <div style="clear:both;"></div>
+    </div>
+
+</div>
+
+<style>
+    .scorecard-container {
+        width: 100%;
+    }
+
+        .scorecard-container .nav-container {
+            width: 100%;
+            margin-right: 0;
+        }
+
+        .scorecard-container .menu-container {
+            float: left;
+            width: 230px;
+        }
+
+            .scorecard-container .menu-container .nav-container .nav > li > a {
+                padding: 12px;
+            }
+
+        .scorecard-container .content-container {
+            float: left;
+            width: -moz-calc(100% - 230px);
+            width: -webkit-calc(100% - 230px);
+            width: calc(100% - 230px);
+            position: relative;
+        }
+
+            .scorecard-container .content-container .page-splash {
+                position: absolute;
+            }
+
+        /* Sub menu */
+        .scorecard-container .nav-container .nav li ul {
+            /* position: absolute;
+            left: 225px;
+            width: 100%;
+            top: 0; */
+            padding-left: 20px;
+            background-color: #1c2b36;
+            z-index: 999;
+        }
+
+            .scorecard-container .nav-container .nav li ul a {
+                padding: 15px;
+            }
+
+            .scorecard-container .nav-container .nav li:hover ul, .scorecard-container .nav-container .nav li ul {
+                display: block;
+            }
+</style>

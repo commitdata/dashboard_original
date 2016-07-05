@@ -1,0 +1,85 @@
+﻿<style>
+    .boxer {
+        overflow: hidden;
+        background-color: white;
+        padding: 0 5px;
+    }
+
+        .boxer img {
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .boxer.active {
+            border: 5px solid #626262;
+        }
+
+            .boxer.active .category {
+                height: 90px;
+            }
+
+        .boxer .category {
+            background-color: #fafafa;
+            border: 1px solid #dadada;
+            cursor: pointer;
+            font-size: 24px;
+            height: 100px;
+            line-height: 90px;
+            text-align: center;
+        }
+
+    .accordion-toggle {
+        display: block;
+        cursor: pointer;
+    }
+
+        .accordion-toggle:hover {
+            text-decoration: none;
+        }
+</style>
+<div class="page page-dashboard">
+
+
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> <span data-i18n="Category"></span></strong></div>
+            <div class="col-lg-2 boxer">
+                <div class="category" ng-click="ec()">
+                    Early Childhood
+                </div>
+            </div>
+            <div class="col-lg-2 boxer">
+                <div class="category">
+                    County Demographics
+                </div>
+            </div>
+
+            <div class="col-lg-2 boxer">
+                <div class="category">
+                    Achievement Gap
+                </div>
+            </div>
+
+            <div class="col-lg-2 boxer">
+                <div class="category">
+                    Workforce
+                </div>
+            </div>
+
+            <div class="col-lg-2 boxer">
+                <div class="category">
+                    Data
+                </div>
+            </div> 
+
+            <div class="col-lg-2 boxer">
+                <div class="category">
+                    Maps
+                </div>
+            </div> 
+
+
+            <div style="clear:both"></div>
+        </div>
+    </div>
+</div>

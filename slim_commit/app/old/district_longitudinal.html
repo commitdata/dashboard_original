@@ -1,0 +1,161 @@
+﻿
+
+<div class="page page-dashboard">
+
+    <div class="page-splash" ng-class="{'page-splash-active':spinner}">
+        <div class="page-splash-message">
+            <div class="page-splash-message-subtle">Loading...</div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-10">
+            <div class="panel panel-default">
+                <input kendo-auto-complete ng-model="selectedDistrict"
+                       k-data-source="autoCompleteResultSet" style="width: 100%"
+                       k-data-text-field="'DISTNAME'"
+                       on-change="changeDistrict()" />
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <button class="btn btn-primary" ng-click="download()">Download All Data</button>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong><i class="ti-bar-chart"></i> Enrollment</strong></div>
+                <div class="panel-body">
+
+                    <div id="enrollmentChart"></div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong><i class="ti-map-alt"></i>    Demographics</strong></div>
+                <div class="panel-body">
+
+                    <div id="demoChart"></div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong><i class="ti-bar-chart"></i> SAT Average</strong></div>
+                <div class="panel-body">
+
+                    <div id="satChart"></div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong><i class="ti-map-alt"></i>    ACT Average</strong></div>
+                <div class="panel-body">
+
+                    <div id="actChart"></div>
+
+
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong><i class="ti-map-alt"></i>    % Taking/Above Criterion</strong></div>
+                <div class="panel-body">
+
+                    <div id="takingChart"></div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong><i class="ti-bar-chart"></i> Teacher Experience</strong></div>
+                <div class="panel-body">
+
+                    <div id="longExperienceChart"></div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong><i class="ti-bar-chart"></i> % Economically Disadvantaged</strong></div>
+                <div class="panel-body">
+
+                    <div id="EcoChart"></div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong><i class="ti-bar-chart"></i> Grad Rates</strong></div>
+                <div class="panel-body">
+                    <div id="gradChart"></div>
+
+
+                    <!--<div kendo-chart
+                         k-legend="{ position: 'bottom' }"
+                         k-series-defaults="{ type: 'line' }"
+                         k-series="[
+                                 { field: 'GB0GR_P', name: 'African American' },
+                                 { field: 'GH0GR_P', name: 'Hispanic' },
+                                 { field: 'GW0GR_P', name: 'White' }
+                             ]"
+                         k-data-source="disd"></div>-->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong><i class="ti-bar-chart"></i> STAAR % Final Recommended</strong></div>
+                <div class="panel-body">
+
+                    <div id="districtLongStaar"></div>
+
+
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+
+
+ </div>

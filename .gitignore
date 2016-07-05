@@ -1,0 +1,10 @@
+packages
+bin
+obj
+slim_commit.v12.suo
+*.suo
+/slim_commit.v12.suo
+/.vs/config/applicationhost.config
+/.vs
+/slim_commit/obj
+/slim_commit/bin

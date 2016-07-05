@@ -1,0 +1,41 @@
+﻿<div class="page page-dashboard">
+
+    <h1 class="page-title">13-14 Texas School District Data</h1><hr />
+
+    <div class="page-splash" ng-class="{'page-splash-active':spinner}">
+        <div class="page-splash-message">
+            <div class="page-splash-message-subtle">Loading...</div>
+        </div>
+    </div>
+
+    <!--<input style="width:400px" kendo-auto-complete ng-model="selectedSchool" k-data-source="schools" placeholder=" Search Campuses..." />-->
+    <!--<input style="width:100%" kendo-auto-complete ng-model="country" k-options="FruitAutoCompleteFromFactory" placeholder="  Search Campuses..." />-->
+    <!--<select ng-change="campusChange()" style="width:100%" ng-model="selectedSchool" ng-options="c.CAMPNAME for c in schools"></select>-->
+
+
+    <div class="row">
+        <div class="col-md-2">
+            <span>Filter By County :</span>
+        </div>
+        <div class="col-md-8">
+            <div class="panel panel-default">
+
+
+                <input kendo-combo-box k-ng-model="selectedCounty"
+                       k-placeholder="'Type a County'"
+                       k-data-source="counties" style="width: 100%"
+                       k-data-text-field="'CNTYNAME'"
+                       k-data-value-field="'CNTYNAME'"
+                       k-filter="'startsWith'"
+                       on-change="countyChange()" />
+            </div>
+        </div>
+        <div class="col-md-2">
+            &nbsp;
+        </div>
+    </div>
+
+
+
+</div>
+

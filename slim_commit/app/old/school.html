@@ -1,0 +1,13 @@
+﻿<div class="page page-dashboard">
+    <div style="margin-bottom:20px">
+        <select kendo-drop-down-list="" k-data-text-field="'name'" k-data-source="schoolTypes" k-ng-model="selectedSchool"></select>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h1 class="panel-title">{{selectedSchool.name}}</h1>
+        </div>
+        <div class="panel-body">
+            <div ng-include="selectedSchool.url"></div>
+        </div>
+    </div>
+</div>

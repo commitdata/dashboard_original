@@ -1,0 +1,108 @@
+
+<div class="nav-wrapper">
+
+
+    <!--<div class="btn-group" style="width:100%">
+        <button style="width:100%" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            Select School <span class="caret"></span>
+        </button>
+        <ul style="width:100%" class="dropdown-menu" role="menu">
+            <li><a href="#">Select School</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li><a href="#">Separated link</a></li>
+        </ul>
+    </div>-->
+
+    <ul id="nav"
+        class="nav"
+        data-ng-controller="NavCtrl"
+        data-slim-scroll
+        data-collapse-nav
+        data-highlight-active>
+
+        <li><a href="#/home"> <i class="ti-home"></i><span data-i18n="Home"></span> </a></li>
+        <!--<li><a href="#/blog"> <i class="ti-pencil"></i><span data-i18n="Blog"></span></a></li>-->
+        <li><a href="#/district"><i class="ti-flag-alt"></i><span data-i18n="District"></span></a></li>
+        <li><a href="#/campus"><i class="ti-flag-alt-2"></i><span data-i18n="Campus"></span></a></li>
+        <li><a href="#/aeis_explanation"><i class="ti-panel"></i><span data-i18n="What is AEIS/TAPR?"></span></a></li>
+        <li><a href="#/staar_explanation"><i class="ti-dashboard"></i><span data-i18n="What is STAAR?"></span></a></li>
+
+        <!--<li><a href="#/resources"> <i class="ti-layers-alt"></i><span>Resources</span></a></li>-->
+        <li><a href="#/bulk"> <i class="ti-server"></i><span>Bulk Data</span></a></li>
+        <li><a href="#/donors"> <i class="ti-ruler-pencil"></i><span>Donors Choose</span></a></li>
+        <li id="scorecard-li"><a href="#/scorecard/2"> <i class="ti-ruler-pencil"></i><span>Scorecard</span></a></li>
+        <!--<li><a href="#/mapping"> <i class="ti-map-alt"></i><span>Mapping</span></a></li>
+        <li><a href="#/teks"> <i class="ti-ruler-alt"></i><span>TEKS</span></a></li>-->
+
+
+
+
+        <!--<li><a href="#/home"> <i class="ti-home"></i><span data-i18n="Home"></span> </a></li>
+        <li>
+            <a href=""><i class="ti-files"></i><span data-i18n="Districts"></span></a>
+            <ul>
+                <li><a href="#/district"><i class="ti-angle-right"></i>Current</a></li>
+                <li><a href="#/district_longitudinal"><i class="ti-angle-right"></i>Longitudinal</a></li>
+                <li><a href="#/district_select"><i class="ti-angle-right"></i>Download</a></li>
+               
+            </ul>
+        </li>
+        <li>
+            <a href=""><i class="ti-files"></i><span data-i18n="Schools"></span></a>
+            <ul>
+                <li><a href="#/campus"><i class="ti-angle-right"></i>Current</a></li>
+                <li><a href="#/campus_longitudinal"><i class="ti-angle-right"></i>Longitudinal</a></li>
+                <li><a href="#/campus_select"><i class="ti-angle-right"></i>Download</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href=""><i class="ti-files"></i><span data-i18n="AEIS/TAPR"></span></a>
+            <ul>
+                <li><a href="#/aeis_explanation"><i class="ti-angle-right"></i>Description</a></li>
+                <li><a href="#/aeis_all"><i class="ti-bar-chart"></i>Download Data</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href=""><i class="ti-files"></i><span data-i18n="STAAR"></span></a>
+            <ul>
+                <li><a href="#/staar_explanation"><i class="ti-angle-right"></i>Description</a></li>
+                <li><a href="#/district_staar"><i class="ti-bar-chart"></i>Download Data</a></li>
+            </ul>
+        </li>
+        <li><a href="#/bulk"> <i class="ti-server"></i><span>Bulk Data</span></a></li>
+        <li><a href="#/donors"> <i class="ti-ruler-pencil"></i><span>Donors Choose</span></a></li>
+        <li><a href="#/mapping"> <i class="ti-map-alt"></i><span>Mapping</span></a></li>
+        <li><a href="#/teks"> <i class="ti-map-alt"></i><span>TEKS</span></a></li>-->
+        
+        <!--<li><a href="#/scorecard/1"> <i class="ti-ruler-alt"></i><span>Scorecard</span></a></li>
+        <li><a href="#/teks"> <i class="ti-ruler-alt"></i><span>TEKS</span></a></li>
+        <li><a href="#/tab"> <i class="ti-pulse"></i><span>Dashboards</span></a></li>-->
+        
+
+        <!--<li>
+            <a href="#/type">
+                <i class="ti-eye"></i>
+                <span>
+                    Training
+                </span>
+            </a>
+        </li>
+       
+        <li>
+            <a href="#/pages"><i class="ti-files"></i><span data-i18n="Pages"></span></a>
+            <ul>
+                <li><a href="http://iarouse.com/dist-slim/landing/index.html" target="_blank"><i class="ti-angle-right"></i><span data-i18n="Landing"></span></a></li>
+                <li><a href="#/pages/signin"><i class="ti-angle-right"></i><span data-i18n="Sign In"></span></a></li>
+                <li><a href="#/pages/signup"><i class="ti-angle-right"></i><span data-i18n="Sign Up"></span></a></li>
+                <li><a href="#/pages/forgot-password"><i class="ti-angle-right"></i><span data-i18n="Forgot Password"></span></a></li>
+                <li><a href="#/pages/lock-screen"><i class="ti-angle-right"></i><span data-i18n="Lock Screen"></span></a></li>
+                <li><a href="#/pages/profile"><i class="ti-angle-right"></i><span data-i18n="User Profile"></span></a></li>
+                <li><a href="#/pages/invoice"><i class="ti-angle-right"></i><span data-i18n="Invoice"></span></a></li>
+                <li><a href="#/pages/404"><i class="ti-angle-right"></i>404 <span data-i18n="Error"></span></a></li>
+                <li><a href="#/pages/500"><i class="ti-angle-right"></i>500 <span data-i18n="Error"></span></a></li>
+                <li><a href="#/pages/blank"><i class="ti-angle-right"></i><span data-i18n="Blank Page"></span></a></li>
+            </ul>
+        </li>-->
+    </ul>
+</div>

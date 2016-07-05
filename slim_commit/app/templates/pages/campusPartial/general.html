@@ -1,0 +1,345 @@
+﻿<div>
+    <!-- Stats -->
+    <div class="row text-center print-item">
+        <div class="col-lg-3 col-xsm-6" kendo-tooltip="" k-options="boxTooltipOptions" data-div="Mobility">
+            <div class="panel mini-box">
+                <span class="btn-icon btn-icon-round btn-icon-lg-alt" style="background-color:#c3151c; color:white">
+                    <span class="ti-car"></span>
+                </span>
+                <div class="box-info">
+                    <p class="size-h2"><span>{{campus.studentInfo["CPEMALLP"].toFixed(0)}}</span><span class="size-h4">%</span></p>
+                    <p class="text-muted"><span>Mobility</span></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-xsm-6" kendo-tooltip="" k-options="boxTooltipOptions" data-div="Enrollment">
+            <div class="panel mini-box">
+                <span class="btn-icon btn-icon-round btn-icon-lg-alt" style="background-color:#003662; color:white">
+                    <i class="ti-user"></i>
+                </span>
+                <div class="box-info">
+                    <p class="size-h2">{{campus.studentInfo["CPETALLC"]| number:0}}<span class="size-h4"></span></p>
+                    <p class="text-muted"><span>Enrollment</span></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-xsm-6" kendo-tooltip="" k-options="boxTooltipOptions" data-div="Low_Income">
+            <div class="panel mini-box">
+                <span class="btn-icon btn-icon-round btn-icon-lg-alt" style="background-color:#91c63d; color:white">
+                    <i class="ti-money"></i>
+                </span>
+                <div class="box-info">
+                    <p class="size-h2">{{campus.studentInfo["CPETECOP"].toFixed(0)}}<span class="size-h4">%</span></p>
+                    <p class="text-muted"><span>Low Income</span></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-xsm-6" kendo-tooltip="" k-options="boxTooltipOptions" data-div="English">
+            <div class="panel mini-box">
+                <span class="btn-icon btn-icon-round btn-icon-lg-alt" style="background-color:#ef5727; color:white">
+                    <i class="ti-microphone"></i>
+                </span>
+                <div class="box-info">
+                    <p class="size-h2">{{campus.studentInfo["CPETLEPP"].toFixed(0)}}<span class="size-h4">%</span></p>
+                    <p class="text-muted"><span>English Learners</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong><i class="ti-bar-chart"></i> STAAR Achievement All Grades Aggregated by Subject BY DEMOGRAPHIC</strong></div>
+                <div class="panel-body">
+                    <div class="col-md-2">
+                        Choose Standard :
+                    </div>
+                    <div class="col-md-2">
+                        <label> <input type="radio" ng-model="starrAllRecType" value="1S"> Phase-In 1</label>
+                    </div>
+                    <div class="col-md-5">
+                        <label> <input type="radio" ng-model="starrAllRecType" value="42"> Postsecondary Readiness Standard</label>
+                    </div>
+                    <div class="col-md-3 icon-panel">
+                        <a href="#" download="student_subject.png" class="imageExport" data-chart="staarAll">
+                            <i class="fa fa-file-image-o fa-lg"></i>
+                        </a>
+                        <a class="csvExport" data-chart="staarAll"><i class="fa fa-download fa-lg"></i></a>
+                        <a> <i kendo-tooltip="" k-options="tooltipOptions" data-chart="staarAll" class="fa fa-question-circle fa-lg"></i></a>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-2">
+                        Choose Subject :
+                    </div>
+
+                    <div class="col-md-2">
+                        <label> <input type="radio" ng-model="starrAllSubType" value="A00"> All Subjects</label>
+                    </div>
+                    <div class="col-md-2">
+                        <label> <input type="radio" ng-model="starrAllSubType" value="AS0"> Social Studies</label>
+                    </div>
+                    <div class="col-md-1">
+                        <label> <input type="radio" ng-model="starrAllSubType" value="AR0"> Reading</label>
+                    </div>
+                    <div class="col-md-1">
+                        <label> <input type="radio" ng-model="starrAllSubType" value="AM0"> Math</label>
+                    </div>
+                    <div class="col-md-2">
+                        <label> <input type="radio" ng-model="starrAllSubType" value="AW0"> Writing</label>
+                    </div>
+                    <div class="col-md-2">
+                        <label> <input type="radio" ng-model="starrAllSubType" value="AC0"> Science</label>
+                    </div>
+
+
+
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-2">
+                        Choose Demoghrapic :
+                    </div>
+                    <div class="col-md-2">
+                        <label> <input type="radio" ng-model="starrAllDemoType" value="A00"> All Students</label>
+                    </div>
+                    <div class="col-md-2">
+                        <label> <input type="radio" ng-model="starrAllDemoType" value="B00"> African American</label>
+                    </div>
+                    <div class="col-md-1">
+                        <label> <input type="radio" ng-model="starrAllDemoType" value="W00"> White</label>
+                    </div>
+                    <div class="col-md-1">
+                        <label> <input type="radio" ng-model="starrAllDemoType" value="H00"> Hispanic</label>
+                    </div>
+                    <div class="col-md-2">
+                        <label> <input type="radio" ng-model="starrAllDemoType" value="E00"> Low Income</label>
+                    </div>
+                    <div class="col-md-2">
+                        <label> <input type="radio" ng-model="starrAllDemoType" value="L00"> English Language Learner</label>
+                    </div>
+
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-2">
+                        Sort By :
+                    </div>
+                    <div class="col-md-2">
+                        <label> <input type="radio" ng-model="starrAllChartType" value="year"> Year</label>
+                    </div>
+                    <div class="col-md-5">
+                        <label> <input type="radio" ng-model="starrAllChartType" value="level"> Level</label>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div id="staarAll"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <table>
+            <tbody>
+
+
+                <tr class="row print-item">
+
+
+                    <td class="col-md-7">
+                        <div class="panel panel-default">
+                            <div class="panel-heading"><strong><i class="ti-bar-chart"></i> STAAR ACHIEVEMENT BY SUBJECT</strong></div>
+                            <div class="panel-body">
+                                <div class="col-md-8">
+                                    <label> <input type="radio" ng-model="staarSubjectRecType" value="ph1"> Phase-In 1</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <label> <input type="radio" ng-model="staarSubjectRecType" value="rec"> Postsecondary Readiness Standard</label>
+                                </div>
+                                <div class="col-md-4 icon-panel">
+                                    <a href="#" download="student_staar.png" class="imageExport" data-chart="staarSubject">
+                                        <i class="fa fa-file-image-o fa-lg"></i>
+                                    </a>
+                                    <a class="csvExport" data-chart="staarSubject"><i class="fa fa-download fa-lg"></i></a>
+                                    <a><i kendo-tooltip="" k-options="tooltipOptions" data-chart="staarSubject" class="fa fa-question-circle fa-lg"></i></a>
+                                </div>
+                            </div>
+                            <div class="panel-body" id="neighbour">
+                                <div id="staarSubject"></div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="col-md-5">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <strong><i class="ti-map-alt"></i>    Map</strong>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row" style="margin-bottom:10px;">
+                                    <div class="col-md-9">
+                                        &nbsp;
+                                    </div>
+                                    <div class="col-md-3 icon-panel">
+                                        <a target="_blank" ng-click="exportMap()" href="" download="Campus_Map.png">
+                                            <i class="fa fa-file-image-o fa-lg"></i>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div id="map">
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="row">
+        <table>
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading"><strong><i class="ti-map-alt"></i>    Teacher Experience Distribution</strong></div>
+                            <div class="panel-body">
+                                <div class="col-md-12 icon-panel">
+                                    <a href="#" download="Teacher_Experience.png" class="imageExport" data-chart="teacherExperience">
+                                        <i class="fa fa-file-image-o fa-lg"></i>
+                                    </a>
+                                    <a class="csvExport" data-chart="teacherExperience"><i class="fa fa-download fa-lg"></i></a>
+                                    <a><i kendo-tooltip="" k-options="tooltipOptions" data-chart="teacherExperience" class=" fa fa-question-circle fa-lg"></i></a>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <div id="teacherExperience"></div>
+                            </div>
+                        </div>
+                    </td>
+
+
+                    <td class="col-lg-4" id="graduationRatesContainer">
+                        <div class="panel panel-default">
+                            <div class="panel-heading"><strong><i class="ti-list-ol"></i>    Graduation Rates</strong></div>
+                            <div class="panel-body">
+                                <div class="col-md-12 icon-panel">
+                                    <a href="#" download="Graduation_Rates.png" class="imageExport" data-chart="graduationRates">
+                                        <i class="fa fa-file-image-o fa-lg"></i>
+                                    </a>
+                                    <a class="csvExport" data-chart="graduationRates"><i class="fa fa-download fa-lg"></i></a>
+                                    <a><i kendo-tooltip="" k-options="tooltipOptions" data-chart="graduationRates" class="fa fa-question-circle fa-lg"></i></a>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <div id="graduationRates"></div>
+                            </div>
+                        </div>
+                    </td>
+
+                    <td class="col-lg-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading"><strong><i class="ti-list-ol"></i>    Student Demographics</strong></div>
+                            <div class="panel-body">
+                                <div class="col-md-12 icon-panel">
+                                    <a href="#" download="Student_Demo.png" class="imageExport" data-chart="studentDemo">
+                                        <i class="fa fa-file-image-o fa-lg"></i>
+                                    </a>
+                                    <a class="csvExport" data-chart="studentDemo"><i class="fa fa-download fa-lg"></i></a>
+                                    <a><i kendo-tooltip="" k-options="tooltipOptions" data-chart="studentDemo" class="fa fa-question-circle fa-lg"></i></a>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <div id="studentDemo"></div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="row">
+        <table id="admissionContainer">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <div class="panel panel-default">
+                            <div class="panel-heading"><strong><i class="ti-list-ol"></i>    Graduates Taking SAT or ACT</strong></div>
+                            <div class="panel-body">
+                                <div class="col-md-12 icon-panel">
+                                    <a href="#" download="ACT_SAT_Average.png" class="imageExport" data-chart="ACTSATAverage">
+                                        <i class="fa fa-file-image-o fa-lg"></i>
+                                    </a>
+                                    <a class="csvExport" data-chart="ACTSATAverage"><i class="fa fa-download fa-lg"></i></a>
+                                    <a><i kendo-tooltip="" k-options="tooltipOptions" data-chart="ACTSATAverage" class="fa fa-question-circle fa-lg"></i></a>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <div id="ACTSATAverage"></div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="col-md-3">
+                        <div class="panel panel-default">
+                            <div class="panel-heading"><strong><i class="ti-list-ol"></i>   SAT above 1110 or ACT above 24 </strong></div>
+                            <div class="panel-body">
+                                <div class="col-md-12 icon-panel">
+                                    <a href="#" download="ACT_SAT_Above_Criterion.png" class="imageExport" data-chart="ACTSATAboveCriterion">
+                                        <i class="fa fa-file-image-o fa-lg"></i>
+                                    </a>
+                                    <a class="csvExport" data-chart="ACTSATAboveCriterion"><i class="fa fa-download fa-lg"></i></a>
+                                    <a><i kendo-tooltip="" k-options="tooltipOptions" data-chart="ACTSATAboveCriterion" class="fa fa-question-circle fa-lg"></i></a>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <div id="ACTSATAboveCriterion"></div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="col-md-3">
+                        <div class="panel panel-default">
+                            <div class="panel-heading"><strong><i class="ti-list-ol"></i>    SAT Average-Includes Writing Component</strong></div>
+                            <div class="panel-body">
+                                <div class="col-md-12 icon-panel">
+                                    <a href="#" download="SAT_Average.png" class="imageExport" data-chart="SATAverage">
+                                        <i class="fa fa-file-image-o fa-lg"></i>
+                                    </a>
+                                    <a class="csvExport" data-chart="SATAverage"><i class="fa fa-download fa-lg"></i></a>
+                                    <a><i kendo-tooltip="" k-options="tooltipOptions" data-chart="SATAverage" class="fa fa-question-circle fa-lg"></i></a>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <div id="SATAverage"></div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="col-md-3">
+                        <div class="panel panel-default">
+                            <div class="panel-heading"><strong><i class="ti-list-ol"></i>    ACT Average </strong></div>
+                            <div class="panel-body">
+                                <div class="col-md-12 icon-panel">
+                                    <a href="#" download="ACT_Average.png" class="imageExport" data-chart="ACTAverage">
+                                        <i class="fa fa-file-image-o fa-lg"></i>
+                                    </a>
+                                    <a class="csvExport" data-chart="ACTAverage"><i class="fa fa-download fa-lg"></i></a>
+                                    <a><i kendo-tooltip="" k-options="tooltipOptions" data-chart="ACTAverage" class="fa fa-question-circle fa-lg"></i></a>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <div id="ACTAverage"></div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+
+</div>

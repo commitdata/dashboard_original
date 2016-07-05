@@ -1,0 +1,159 @@
+﻿
+<div class="page page-dashboard">
+
+    <h1 class="page-title">Campus Benchmarking</h1><hr />
+
+    <div class="page-splash" ng-class="{'page-splash-active':spinner}">
+        <div class="page-splash-message">
+            <div class="page-splash-message-subtle">Loading...</div>
+        </div>
+    </div>
+
+    <div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <select kendo-multi-select="distList" k-on-change="" k-options="districtOptions" ng-model="selectedDistricts" k-data-source="districtOptions.dataSource.data"></select>
+                </div>
+            </div>
+        </div>
+        <div class="row panel-default">
+            <div class="col-md-10">
+                &nbsp;
+            </div>
+            <div class="col-md-1">
+                <div>
+                    <button class="k-button form-control" ng-click="selectedDistricts= [];">Clear All</button>
+                </div>
+            </div>
+            <div class="col-md-1">
+                <div>
+                    <button class="k-button btn-primary form-control" ng-click="compareDistricts(selectedDistricts);">Go</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div>
+        <div class="row">
+            <div class="col-md-3">
+                <select kendo-drop-down-list
+                        k-data-text-field="'Name'"
+                        k-data-value-field="'Name'"
+                        k-data-source="categories"
+                        k-ng-model="selectedCategory"
+                        on-change="loadDistrict(selectedDistrict, selectedDistricts)"
+                        style="width: 100%"></select>
+            </div>
+            <div class="col-md-3">
+                <select kendo-drop-down-list
+                        k-data-text-field="'Name'"
+                        k-data-value-field="'Name'"
+                        k-data-source="demoGraphics"
+                        k-ng-model="selectedDemo"
+                        on-change="loadDistrict(selectedDistrict, selectedDistricts)"
+                        style="width: 100%"></select>
+            </div>
+            <div class="col-md-6">&nbsp;</div>
+        </div>
+    </div>
+
+    <!--<div class="row">
+        <div class="col-md-2">
+            Select District :
+        </div>
+        <div class="col-md-8">
+            <div class="panel panel-default">
+                <input kendo-combo-box="districtDD" ng-model="selectedDistrict"
+                       k-placeholder="'Type a District'"
+                       k-data-source="districts" style="width: 100%" k-options="{filter:'contains'}"
+                       on-change="districtChange()" />
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            &nbsp;
+        </div>
+    </div>-->
+    <div class="row">
+        <div class="col-md-6">
+            <div class="row panel-body">
+                <p ng-bind="districtMessage" ng-show="selectedDistrict"></p>
+                <p>The accompanying “scatterplot” diagram plots the student achievement for each campus in Texas (along the Y axis) against the percentage of the campus that is comprised of economically disadvantaged students (along the X axis).  As expected, as the level of poverty on a campus increases, the level of academic achievement declines….HOWEVER, the dispersion of student achievement generally broadens and there are very often schools within the same demographic percentage that notably outperform/underperform their brethren across Texas.  This “Hope Chart”, showing what is possible across our region if best practices are shared and implemented, is calculated for each and every grade and subject where data is available and can be accessed by the dropdown indicator on the right.</p>
+                <p>A regression analysis, calculating the expected academic achievement for any campus based on its level of economic disadvantage across all similar schools in the region, creates an expected “line of best fit”.  The “distance” from each campus “dot” (in terms of actual percentage of students achieving) to its expected achievement performance (based on its economic disadvantage percentage per the best-fit line) is then calculated.</p>
+                <p>Campuses reflecting achievement below their expected level based on campus poverty will reflect negative “downward” bars below the 0 axis; alternatively, campuses reflecting achievement above their expected level based on campus poverty will reflect positive “upward” bars above the 0 axis.</p>
+                <p>The site can look at a campus by campus view (showing the progression of grades within the same subject next to each other) or it can show a subject view comparing every campus adjusted for poverty across the district in the same grade and subject.</p>
+                <p>The first “campus-by-campus” view can identify where shortfalls or breakdowns are occurring to help determine what additional questions should be asked and where professional development might be helpful (i.e. a campus is above expectations in 3rd grade reading but declines such that by 5th it is underperforming the region).   The second “subject by subject” view can highlight within a district where outlier and underperformance are occurring and help target specific learning communities within the district where best practices can be shared and implemented.</p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-md-6"><strong><i class="ti-bar-chart"></i>Hope Chart</strong></div>
+                        <div class="col-md-6">
+                            <select kendo-drop-down-list
+                                    k-data-text-field="'Name'"
+                                    k-data-value-field="'Name'"
+                                    k-data-source="subjectGrades"
+                                    k-ng-model="selectedSubject"
+                                    on-change="getHopeData()"
+                                    style="width: 100%"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div id="hopeChart"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            View  :
+        </div>
+        <div class="col-md-4">
+            <input type="radio" name="view" value="campus" ng-model="viewType" /> By Campus
+        </div>
+        <div class="col-md-4">
+            <input type="radio" name="view" value="subject" ng-model="viewType" /> By Subject
+        </div>
+
+        <div class="col-md-2">
+            &nbsp;
+        </div>
+    </div>
+    <div class="panel-body">
+
+    </div>
+    <div ng-if="viewType=='campus'" class="row" ng-show="campuses.length > 0">
+        <div class="col-md-4" ng-repeat="campus in campuses | orderBy : ['Name','fields.length']">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong><i class="ti-bar-chart"></i>{{campus.Name}}</strong></div>
+                <div class="panel-body">
+                    <div id="{{campus.CAMPUS}}" ng-init="createCampusChart(campus,$index)"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div ng-if="viewType=='subject'" class="row" ng-show="subjects.length > 0">
+        <div ng-repeat="subject in subjects | orderBy : 'Name'">
+            <div class="panel panel-default" ng-init="subIndex = $index">
+                <div class="panel-heading"><strong><i class="ti-bar-chart"></i>{{subject.Name}}</strong></div>
+                <div class="panel-body" ng-repeat="chart in subject.charts">
+                    <div id="{{chart.id}}" ng-init="createSubjectChart(chart,subIndex)"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<style>
+    .k-tooltip-content {
+        width: 300px;
+    }
+</style>

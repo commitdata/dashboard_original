@@ -1,0 +1,274 @@
+﻿<div class="row print-item">
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading"><strong><i class="ti-bar-chart"></i> Teachers by Highest Degree Held</strong></div>
+            <div class="panel-body">
+                <div class="col-md-12 icon-panel">
+                    <a download="Teachers_Degree.png" class="imageExport" data-chart="teacherByDegree">
+                        <i class="fa fa-file-image-o fa-lg"></i>
+                    </a>
+                    <a class="csvExport" data-chart="teacherByDegree"><i class="fa fa-download fa-lg"></i></a>
+                    <a><i kendo-tooltip="" k-options="tooltipOptions" data-chart="teacherByDegree" class="fa fa-question-circle fa-lg"></i></a>
+                </div>
+            </div>
+            <div class="panel-body">
+
+                <div id="teacherByDegree"></div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading"><strong><i class="ti-bar-chart"></i> Teachers by Years of Experience</strong></div>
+            <div class="panel-body">
+                <div class="col-md-12 icon-panel">
+                    <a download="Teachers_Exp.png" class="imageExport" data-chart="teacherByExp">
+                        <i class="fa fa-file-image-o fa-lg"></i>
+                    </a>
+                    <a class="csvExport" data-chart="teacherByExp"><i class="fa fa-download fa-lg"></i></a>
+                    <a><i kendo-tooltip="" k-options="tooltipOptions" data-chart="teacherByExp" class="fa fa-question-circle fa-lg"></i></a>
+                </div>
+            </div>
+            <div class="panel-body">
+
+                <div id="teacherByExp"></div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row text-center print-item">
+
+    <div class="col-lg-4 col-xsm-6">
+        <div class="panel mini-box">
+            <span class="btn-icon btn-icon-round btn-icon-lg-alt" style="background-color:#c3151c; color:white">
+                <span class="ti-ruler-pencil"></span>
+            </span>
+            <div class="box-info">
+                <p class="size-h2">{{campus.staffAll["CPSSTOSA"].toFixed(0)| currency:"$":0}}<span class="size-h4"></span></p>
+                <p class="text-muted"><span>Average Base Salary for School Administrators</span></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-xsm-6">
+        <div class="panel mini-box">
+            <span class="btn-icon btn-icon-round btn-icon-lg-alt" style="background-color:#003662; color:white">
+                <i class="ti-money"></i>
+            </span>
+            <div class="box-info">
+                <p class="size-h2">{{campus.staffAll["CPSUTOSA"].toFixed(0) | currency:"$":0}}<span class="size-h4"></span></p>
+                <p class="text-muted"><span>Average Base Salary for Support Staff</span></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-xsm-6">
+        <div class="panel mini-box">
+            <span class="btn-icon btn-icon-round btn-icon-lg-alt" style="background-color:#91c63d; color:white">
+                <i class="ti-timer"></i>
+            </span>
+            <div class="box-info">
+                <p class="size-h2">{{campus.staffAll["CPSTTOSA"].toFixed(0)| currency:"$":0}}<span class="size-h4"> </span></p>
+                <p class="text-muted"><span>Average Base Salary for Teachers</span></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row print-item">
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading"><strong><i class="ti-bar-chart"></i> AVERAGE TEACHER BASE SALARY BY YEARS OF EXPERIENCE</strong></div>
+            <div class="panel-body">
+                <div class="col-md-12 icon-panel">
+                    <a download="Teachers_Salary.png" class="imageExport" data-chart="teacherBySalary">
+                        <i class="fa fa-file-image-o fa-lg"></i>
+                    </a>
+                    <a class="csvExport" data-chart="teacherBySalary"><i class="fa fa-download fa-lg"></i></a>
+                    <a><i kendo-tooltip="" k-options="tooltipOptions" data-chart="teacherBySalary" class="fa fa-question-circle fa-lg"></i></a>
+                </div>
+            </div>
+            <div class="panel-body">
+
+                <div id="teacherBySalary"></div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading"><strong><i class="ti-bar-chart"></i> PROFESSIONAL STAFF COUNT</strong></div>
+            <div class="panel-body">
+                <div class="col-md-12 icon-panel">
+                    <a download="Professional_Staff.png" class="imageExport" data-chart="professionalStaff">
+                        <i class="fa fa-file-image-o fa-lg"></i>
+                    </a>
+                    <a class="csvExport" data-chart="professionalStaff"><i class="fa fa-download fa-lg"></i></a>
+                    <a><i kendo-tooltip="" k-options="tooltipOptions" data-chart="professionalStaff" class="fa fa-question-circle fa-lg"></i></a>
+                </div>
+            </div>
+            <div class="panel-body">
+
+                <div id="professionalStaff"></div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row text-center print-item">
+
+    <div class="col-lg-4 col-xsm-6">
+        <div class="panel mini-box">
+            <span class="btn-icon btn-icon-round btn-icon-lg-alt" style="background-color:#c3151c; color:white">
+                <span class="ti-calendar"></span>
+            </span>
+            <div class="box-info">
+                <p class="size-h2">{{campus.staffAll["CPSTEXPA"].toFixed(0)}}<span class="size-h4"> years</span></p>
+                <p class="text-muted"><span>Average Years of Teacher Experience</span></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-xsm-6">
+        <div class="panel mini-box">
+            <span class="btn-icon btn-icon-round btn-icon-lg-alt" style="background-color:#003662; color:white">
+                <i class="ti-user"></i>
+            </span>
+            <div class="box-info">
+                <p class="size-h2">{{campus.staffAll["CPSTKIDR"].toFixed(0)}}<span class="size-h4"></span></p>
+                <p class="text-muted"><span>Student-to-Teacher Ratio</span></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-xsm-6">
+        <div class="panel mini-box">
+            <span class="btn-icon btn-icon-round btn-icon-lg-alt" style="background-color:#91c63d; color:white">
+                <i class="ti-calendar"></i>
+            </span>
+            <div class="box-info">
+                <p class="size-h2">{{campus.staffAll["CPSTTENA"].toFixed(0)}}<span class="size-h4"> years</span></p>
+                <p class="text-muted"><span>Average Teacher Tenure on Campus</span></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="row print-item">
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading"><strong><i class="ti-bar-chart"></i>  Class Size Averages</strong></div>
+            <div class="panel-body">
+                <div class="col-md-12 icon-panel">
+                    <a download="Class_Average.png" class="imageExport" data-chart="classAverage">
+                        <i class="fa fa-file-image-o fa-lg"></i>
+                    </a>
+                    <a class="csvExport" data-chart="classAverage"><i class="fa fa-download fa-lg"></i></a>
+                    <a><i kendo-tooltip="" k-options="tooltipOptions" data-chart="classAverage" class="fa fa-question-circle fa-lg"></i></a>
+                </div>
+            </div>
+            <div class="panel-body">
+
+                <div id="classAverage"></div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading"><strong><i class="ti-bar-chart"></i> Teachers by Program</strong></div>
+            <div class="panel-body">
+                <div class="col-md-12 icon-panel">
+                    <a download="Teacher_By_Program.png" class="imageExport" data-chart="teacherByProgram">
+                        <i class="fa fa-file-image-o fa-lg"></i>
+                    </a>
+                    <a class="csvExport" data-chart="teacherByProgram"><i class="fa fa-download fa-lg"></i></a>
+                    <a><i kendo-tooltip="" k-options="tooltipOptions" data-chart="teacherByProgram" class="fa fa-question-circle fa-lg"></i></a>
+                </div>
+            </div>
+            <div class="panel-body">
+
+                <div id="teacherByProgram"></div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row text-center print-item">
+
+    <div class="col-lg-6 col-xsm-6">
+        <div class="panel mini-box">
+            <span class="btn-icon btn-icon-round btn-icon-lg-alt" style="background-color:#c3151c; color:white">
+                <span class="ti-user"></span>
+            </span>
+            <div class="box-info">
+                <p class="size-h2">{{campus.staffAll["CPSAMIFC"].toFixed(0)}}<span class="size-h4"></span></p>
+                <p class="text-muted"><span>Racial/Ethnic Minority Staff Members</span></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 col-xsm-6">
+        <div class="panel mini-box">
+            <span class="btn-icon btn-icon-round btn-icon-lg-alt" style="background-color:#003662; color:white">
+                <i class="ti-user"></i>
+            </span>
+            <div class="box-info">
+                <p class="size-h2">{{campus.staffAll["CPSATOFC"].toFixed(0)}}<span class="size-h4"></span></p>
+                <p class="text-muted"><span>Staff Members</span></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="row text-center print-item">
+
+    <div class="col-lg-6 col-xsm-6">
+        <div class="panel mini-box">
+            <span class="btn-icon btn-icon-round btn-icon-lg-alt" style="background-color:#c3151c; color:white">
+                <span class="ti-user"></span>
+            </span>
+            <div class="box-info">
+                <p class="size-h2">{{campus.staffAll["CPSOTOFC"].toFixed(0)}}<span class="size-h4"></span></p>
+                <p class="text-muted"><span>Contract Service Staff Members</span></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 col-xsm-6">
+        <div class="panel mini-box">
+            <span class="btn-icon btn-icon-round btn-icon-lg-alt" style="background-color:#003662; color:white">
+                <i class="ti-medall-alt"></i>
+            </span>
+            <div class="box-info">
+                <p class="size-h2">{{campus.staffAll["CPSETOFC"].toFixed(0)}}<span class="size-h4"></span></p>
+                <p class="text-muted"><span>Educational Aides</span></p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row print-item">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading"><strong><i class="ti-bar-chart"></i>  Teachers by Ethnicity and Gender</strong></div>
+            <div class="panel-body">
+                <div class="col-md-12 icon-panel">
+                    <a download="Teacher_By_Ethnicity.png" class="imageExport" data-chart="teacherByEthnicity">
+                        <i class="fa fa-file-image-o fa-lg"></i>
+                    </a>
+                    <a class="csvExport" data-chart="teacherByEthnicity"><i class="fa fa-download fa-lg"></i></a>
+                    <a><i kendo-tooltip="" k-options="tooltipOptions" data-chart="teacherByEthnicity" class="fa fa-question-circle fa-lg"></i></a>
+                </div>
+            </div>
+            <div class="panel-body">
+
+                <div id="teacherByEthnicity"></div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

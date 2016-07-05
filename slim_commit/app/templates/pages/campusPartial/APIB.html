@@ -1,0 +1,69 @@
+﻿<div>
+
+    <div class="row print-item">
+
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong><i class="ti-list-ol"></i>  Percent Tested</strong></div>
+                <div class="panel-body panel-body-buttons">
+                    <div class="col-md-2">
+                        <label> <input type="checkbox" ng-model="apibTestedAllState">  All Subjects</label>
+                    </div>
+                    <div class="col-md-2">
+                        <label> <input type="checkbox" ng-model="apibTestedELAState">  ELA</label>
+                    </div>
+                    <div class="col-md-2">
+                        <label> <input type="checkbox" ng-model="apibTestedMathState">  Mathematics</label>
+                    </div>
+                    <div class="col-md-2">
+                        <label> <input type="checkbox" ng-model="apibTestedSciState">  Science</label>
+                    </div>
+                    <div class="col-md-4 icon-panel">
+                        <a href="#" download="apibTested.png" class="imageExport" data-chart="apibTested">
+                            <i class="fa fa-file-image-o fa-lg"></i>
+                        </a>
+                        <a class="csvExport" data-chart="apibTested"><i class="fa fa-download fa-lg"></i></a>
+                        <a><i kendo-tooltip="" k-options="tooltipOptions" data-chart="apibTested" class="fa fa-question-circle fa-lg"></i></a>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div id="apibTested"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row print-item">
+
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong><i class="ti-list-ol"></i>  Percent Examinees Above Criterion </strong></div>
+                <div class="panel-body panel-body-buttons">
+                    <div class="col-md-2">
+                        <label> <input type="checkbox" ng-model="apibAboveAllState">  All Subjects</label>
+                    </div>
+                    <div class="col-md-2">
+                        <label> <input type="checkbox" ng-model="apibAboveELAState">  ELA</label>
+                    </div>
+                    <div class="col-md-2">
+                        <label> <input type="checkbox" ng-model="apibAboveMathState">  Mathematics</label>
+                    </div>
+                    <div class="col-md-2">
+                        <label> <input type="checkbox" ng-model="apibAboveSciState">  Science</label>
+                    </div>
+                    <div class="col-md-4 icon-panel">
+                        <a href="#" download="apibAbove.png" class="imageExport" data-chart="apibAbove">
+                            <i class="fa fa-file-image-o fa-lg"></i>
+                        </a>
+                        <a class="csvExport" data-chart="apibAbove"><i class="fa fa-download fa-lg"></i></a>
+                        <a><i kendo-tooltip="" k-options="tooltipOptions" data-chart="apibAbove" class="fa fa-question-circle fa-lg"></i></a>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div id="apibAbove"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

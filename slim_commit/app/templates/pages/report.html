@@ -1,0 +1,120 @@
+﻿<div class="page report-container">
+
+    <div>
+        <div class="page-splash" ng-class="{'page-splash-active':spinner}">
+            <div class="page-splash-message">
+                <div class="page-splash-message-subtle">Loading...</div>
+            </div>
+        </div>
+
+        <!--<button class="btn btn-primary" ng-click="loadExcel()">
+            Export Excel
+        </button>-->
+    </div>
+
+
+
+    <div>
+        <accordion class="ui-accordion" close-others="false">
+            <accordion-group>
+                <accordion-heading class="guide sub">
+                    <div>Campus</div>
+                </accordion-heading>
+                <div>
+                    <div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="panel panel-default">
+                                    <select id="districtAutoSelect" /> 
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div>
+                                    <div class="panel panel-default">
+                                        <select id="campusAutoSelect" />
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div class="text-center">
+                                        <button class="k-button btn-primary" ng-click="addCampusToCommonList();"><i class="fa  fa-arrow-circle-down"></i> Add To List</button>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="panel panel-default">
+                                        <select id="commonCampusAutoSelected" />
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </accordion-group>
+
+            <accordion-group>
+                <accordion-heading class="guide sub">
+                    <div>Year</div>
+                </accordion-heading>
+
+                <div>
+                    <select id="yearAutoSelect" />
+                </div>
+
+            </accordion-group>
+
+            <accordion-group>
+                <accordion-heading class="guide sub">
+                    <div>Subject-Grade</div>
+                </accordion-heading>
+
+                <div>
+                    <select id="subjectGradeAutoSelect" />
+                </div>
+            </accordion-group>
+
+            <accordion-group>
+                <accordion-heading class="guide sub">
+                    <div>Demographic</div>
+                </accordion-heading>
+                <div>
+                    <select id="demoGraphicsAutoSelect" />
+                </div>
+            </accordion-group>
+
+            <accordion-group>
+                <accordion-heading class="guide sub">
+                    <div>Level</div>
+                </accordion-heading>
+                <div>
+                    <select id="levelAutoSelect" />
+                </div>
+            </accordion-group>
+        </accordion>
+    </div>
+    <div class="text-right">
+        <button class="btn btn-primary" ng-click="loadReport()" ng-disabled="selectedDistricts.length == 0">
+            Generate Report
+        </button>
+
+        <button class="btn btn-primary" ng-click="ExportData()" ng-disabled="selectedDistricts.length == 0">
+            Export Data
+        </button>
+
+    </div>
+    
+
+
+
+    <div>
+        <div id="campusReportGrid" />
+    </div>
+
+</div>
+
+<style>
+    .report-container select, .report-container .k-combobox{
+        width : 100%;
+    }
+</style>

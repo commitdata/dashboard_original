@@ -1,0 +1,32 @@
+﻿<div class="page page-dashboard">
+    <div style="margin-bottom:20px;">
+        <select kendo-drop-down-list="typeList" ng-diabled="disabled" ng-change="typeSelected(selectedType)" k-data-source="typeSource" ng-model="selectedType" style="width: 450px"></select>
+    </div>
+    <div class="panel panel-default" data-ng-show="selectedType=='Campus'">
+        <select kendo-multi-select="campList" ng-diabled="disabled" k-options="campusOptions" ng-model="selectedCampuses" k-ng-delay="campusOptions.dataSource.data" k-data-source="campusOptions.dataSource.data"></select>
+    </div>
+    <div class="panel panel-default" data-ng-show="selectedType=='District'">
+        <select kendo-multi-select="distList" ng-diabled="disabled" k-options="districtOptions" ng-model="selectedDistricts" k-ng-delay="districtOptions.dataSource.data" k-data-source="districtOptions.dataSource.data"></select>
+    </div>
+    <div style="margin-bottom:20px;">
+        <select kendo-drop-down-list="" k-data-text-field="'value'" k-data-value-field="'name'" k-data-source="tables" style="width: 450px" k-ng-model="selectedTable" k-on-change="tableSelected(selectedTable)"></select>
+    </div>
+    <div class="panel panel-default" data-ng-show="selectedTable.fields">
+        <select kendo-multi-select k-options="fieldOptions" ng-model="selectedFields" k-ng-delay="fieldOptions.dataSource.data" k-data-source="fieldOptions.dataSource.data"></select>
+    </div>
+    <div style="margin-bottom:20px;">
+        <button type="button" class="k-button" ng-click="search()">Look Up</button>
+        <button type="button" class="k-button" ng-click="reset()">Reset</button>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong><i class="ti-list-ol"></i>    Spreadsheet</strong></div>
+                <div class="panel-body">
+                    <div id="aeisGrid"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,58 @@
+﻿<!--<div>{{hello}}</div>-->
+<div>
+    <div>
+        <section id="header" class="top-header"></section>
+
+        <aside id="nav-container">
+            <div id="nav-wrapper">
+
+            </div>
+        </aside>
+    </div>
+
+    <div class="view-container">
+
+        <div class="page-splash" ng-class="{'page-splash-active':spinner}">
+            <div class="page-splash-message page-splash-message-subtle">Loading...</div>
+
+            <!--<img src="../../../images/commit_logo.png" />-->
+        </div>
+
+        <section id="content" class="animate-fade-up" style="padding:25px">
+
+            <p>Link to AEIS Glossary</p>
+
+            <div class="row">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> <span data-i18n="Table"></span></strong></div>
+                    <select ng-options="a for a in years"
+                            ng-model="selectedYear" ng-change="changeyear()">
+                        <option value="">-- choose year --</option>
+                    </select>
+  
+                    <select ng-options="a for a in tables"
+                            ng-model="selectedTable" ng-change="changeTable()">
+                        <option value="">-- choose table --</option>
+                    </select>
+                 
+
+                </div>
+            </div>
+            <div id="grid-loading-status" class="row"></div>
+            <div class="row">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> <span data-i18n="Table"></span></strong></div>
+
+                    <div id="dictionaryGrid"></div>
+
+
+                </div>
+            </div>
+
+
+
+
+
+        </section>
+    </div>
+</div>

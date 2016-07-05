@@ -1,0 +1,59 @@
+﻿<div class="row text-center print-item">
+
+    <div class="col-lg-4 col-xsm-6">
+        <div class="panel mini-box">
+            <span class="btn-icon btn-icon-round btn-icon-lg-alt" style="background-color:#c3151c; color:white">
+                <span class="ti-ruler-pencil"></span>
+            </span>
+            <div class="box-info">
+                <p class="size-h2">{{district.staffInformation["DPSTKIDR"].toFixed(0)}}<span class="size-h4"> to 1</span></p>
+                <p class="text-muted"><span>Student-Teacher Ratio</span></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-xsm-6">
+        <div class="panel mini-box">
+            <span class="btn-icon btn-icon-round btn-icon-lg-alt" style="background-color:#003662; color:white">
+                <i class="ti-money"></i>
+            </span>
+            <div class="box-info">
+                <p class="size-h2">{{district.staffInformation["DPSTTOSA"].toFixed(0) | currency:"$":0}}<span class="size-h4"></span></p>
+                <p class="text-muted"><span>Average Teacher Salary</span></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-xsm-6">
+        <div class="panel mini-box">
+            <span class="btn-icon btn-icon-round btn-icon-lg-alt" style="background-color:#91c63d; color:white">
+                <i class="ti-timer"></i>
+            </span>
+            <div class="box-info">
+                <p class="size-h2">{{district.staffInformation["DPSTEXPA"].toFixed(0)}}<span class="size-h4"> years</span></p>
+                <p class="text-muted"><span>Average Teacher Experience</span></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row print-item">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading"><strong><i class="ti-bar-chart"></i> Teacher Experience</strong></div>
+            <div class="panel-body">
+                <div class="col-md-12 icon-panel">
+                    <a download="Teacher_Experience.png" class="imageExport" data-chart="staffExperienceChart">
+                        <i class="fa fa-file-image-o fa-lg"></i>
+                    </a>
+                    <a class="csvExport" data-chart="staffExperienceChart"><i class="fa fa-download fa-lg"></i></a>
+                    <a><i kendo-tooltip="" k-options="tooltipOptions" data-chart="staffExperienceChart" class="fa fa-question-circle fa-lg"></i></a>
+                </div>
+            </div>
+            <div class="panel-body">
+
+                <div id="staffExperienceChart"></div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

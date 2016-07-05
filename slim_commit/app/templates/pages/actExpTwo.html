@@ -1,0 +1,125 @@
+﻿
+<div class="page page-dashboard">
+
+    <h1 class="page-title">Campus Benchmarking</h1><hr />
+
+    <div class="page-splash" ng-class="{'page-splash-active':spinner}">
+        <div class="page-splash-message">
+            <div class="page-splash-message-subtle">Loading...</div>
+        </div>
+    </div>
+
+    <!--<div class="row">
+        <div class="col-md-2">
+            Select District :
+        </div>
+        <div class="col-md-8">
+            <div class="panel panel-default">
+                <input kendo-combo-box="districtDD" ng-model="selectedDistrict"
+                       k-placeholder="'Type a District'"
+                       k-data-source="districts" style="width: 100%" k-options="{filter:'contains'}"
+                       on-change="districtChange()" />
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            &nbsp;
+        </div>
+    </div>-->
+    <div class="row">
+        <div class="col-md-4">
+            <div class="row panel-body">
+                <span ng-bind="districtMessage" ng-show="selectedDistrict"></span>
+                <p>The “distance” of each dot to its expected performance per the best-fit line is calculated; campuses below the line will be (-) vs. above the line (+).</p>
+                <p>Regardless of grade or subject, as schools increase in poverty, the dispersion in academic achievement substantially increases, often producing 50%+ variances.  The goal is to learn the effective practices from the positive outlier schools, and work collaboratively to both help districts become aware of those practices and scale them if the district chooses to pursue that path.</p>
+
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-md-9"><strong><i class="ti-bar-chart"></i>Hope Chart</strong></div>
+                        <div class="col-md-3">
+                            <select kendo-drop-down-list
+                                    k-data-text-field="'Name'"
+                                    k-data-source="subjectGrades"
+                                    k-ng-model="selectedSubject"
+                                    on-change="subjectChange()"
+                                    style="width: 100%"></select>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div id="hopeChart"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            View  :
+        </div>
+        <div class="col-md-4">
+            <input type="radio" name="view" value="campus" ng-model="viewType" /> By Campus
+        </div>
+        <div class="col-md-4">
+            <input type="radio" name="view" value="subject" ng-model="viewType" /> By Subject
+        </div>
+
+        <div class="col-md-2">
+            &nbsp;
+        </div>
+    </div>
+    <div class="panel-body">
+
+    </div>
+    <div ng-if="viewType=='campus'" class="row" ng-show="campuses.length > 0">
+        <div class="col-md-4" ng-repeat="campus in campuses">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong><i class="ti-bar-chart"></i>{{campus.Name}}</strong></div>
+                <div class="panel-body">
+
+                    <div kendo-chart
+                         k-legend="{ position: 'bottom' }"
+                         k-plot-area="{ margin : { top :  20, bottom : 20} }"
+                         k-series-defaults="{labels:{visible:true,template: '#= (value).toFixed(0) # %'},legend: {visible: true} }"
+                         k-tooltip="{visible: true,template: '#= series.name #: #= (value).toFixed(0) # % #= dataItem[series.field+\'tip\']#',color: 'white'}"
+                         k-series="campus.fields | orderBy : 'name'"
+                         k-value-axis="{labels: {template:'#=(value).toFixed(0) # %'}}"
+                         k-render="onRender($index)"
+                         k-data-source="campus.chartData"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div ng-if="viewType=='subject'" class="row" ng-show="subjects.length > 0">
+        <div ng-repeat="subject in subjects | orderBy : 'Name'">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong><i class="ti-bar-chart"></i>{{subject.Name}}</strong></div>
+                <div class="panel-body" ng-repeat="chart in subject.charts">
+
+                    <div kendo-chart
+                         k-legend="{ position: 'bottom' }"
+                         k-plot-area="{ margin : { top :  20, bottom : 20} }"
+                         k-series-defaults="{labels:{visible:true,template: '#= (value).toFixed(0) # %'},legend: {visible: true} }"
+                         k-tooltip="{visible: true,template: '#= series.name #: #= (value).toFixed(0) # % #= dataItem[series.field+\'tip\']#',color: 'white'}"
+                         k-series="chart.fields"
+                         k-value-axis="{labels: {template:'#=(value).toFixed(0) # %'}}"
+                         k-render="onSubjectRender($parent.$index)"
+                         k-data-source="chart.chartData"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<style>
+    .k-tooltip-content {
+        width: 300px;
+    }
+</style>

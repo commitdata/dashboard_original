@@ -1,0 +1,58 @@
+﻿<div>
+    <div class="row text-center print-item">
+    </div>
+    <!-- end stats -->
+
+    <div class="row print-item">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong><i class="ti-bar-chart"></i>STAAR ACHIEVEMENT ALL GRADES AGGREGATED BY SUBJECT</strong></div>
+                <div class="panel-body">
+                    <div class="col-md-4">
+                        <select kendo-drop-down-list ng-model="staarGradesRecType" class="year-up" style="width: 100%;">
+                            <option value="1SYRYR">Phase-In 1</option>
+                            <option value="42YRYR">
+                                Postsecondary Readiness Standard</optionvalue>
+                        </select>
+                    </div>
+                    <div class="col-md-5">
+                        <select kendo-drop-down-list on-change="gradeChange()" ng-model="selectStaarGrades" class="selectGrade pull-left" style="width: 40%;">
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="EOC">EOC</option>
+                        </select>
+                        <div class="pull-left">&nbsp;</div>
+                        <select kendo-drop-down-list
+                                k-data-text-field="'SubjectTitle'" ng-model="staarAllGradesSubType"
+                                k-data-value-field="'Subject'"
+                                k-data-source="filteredSubjects"
+                                style="width: 40%"></select>
+
+                    </div>
+
+                    <div class="col-md-1">
+                        <label>
+                            <input type="checkbox" ng-model="staarGradesState">
+                            Add state
+                        </label>
+                    </div>
+                    <div class="col-md-2 icon-panel">
+                        <a href="#" download="student_staar.png" class="imageExport" data-chart="staarGrades">
+                            <i class="fa fa-file-image-o fa-lg"></i>
+                        </a>
+                        <a class="csvExport" data-chart="staarGrades"><i class="fa fa-download fa-lg"></i></a>
+                        <a><i kendo-tooltip="" k-options="tooltipOptions" data-chart="staarGrades" class="fa fa-question-circle fa-lg"></i></a>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div id="staarGrades"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

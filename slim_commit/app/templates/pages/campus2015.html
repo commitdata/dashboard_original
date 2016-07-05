@@ -1,0 +1,255 @@
+﻿<div class="page page-dashboard" id="campus-container">
+    <div class="row print-item">
+        <div class="col-md-10">
+            <h1 class="page-title">{{selectedYear}} Texas School Campus Data</h1>
+        </div>
+        <div class="col-md-2">
+            <!--<select kendo-drop-down-list ng-model="selectedYear" style="width: 100%;" on-change="yearChange()">
+                <option value="2015">2015</option>
+                <option value="2014">2014</optionvalue>
+                <option value="2013">2013</option>
+            </select>-->
+        </div>
+    </div>
+    <hr />
+    <div class="page-splash" ng-class="{'page-splash-active':spinner}">
+        <div class="page-splash-message">
+            <div class="page-splash-message-subtle">Loading...</div>
+        </div>
+    </div>
+    <div class="row print-item no-print-padding">
+        <div class="col-md-2">
+            <span>Filter By County :</span>
+        </div>
+        <div class="col-md-8">
+            <div class="panel panel-default">
+
+
+                <input kendo-combo-box k-ng-model="selectedCounty"
+                       k-placeholder="'Type a County'"
+                       k-data-source="counties" style="width: 100%"
+                       k-data-text-field="'CNTYNAME'"
+                       k-data-value-field="'CNTYNAME'"
+                       k-filter="'startsWith'"
+                       on-change="countyChange()" />
+            </div>
+        </div>
+        <div class="col-md-2">
+            <!--&nbsp;-->
+            <select kendo-drop-down-list ng-model="selectedYear" class="year-down" style="width: 100%;" on-change="yearChange()">
+                <option value="2015">2015</option>
+                <option value="2014">2014</option>
+                <option value="2013">2013</option>
+            </select>
+        </div>
+    </div>
+
+
+    <div class="row print-item no-print-padding">
+        <div class="col-md-2">
+            <span>Filter By District :</span>
+        </div>
+        <div class="col-md-8">
+            <div class="panel panel-default">
+
+
+                <input k-disabled="!districts" kendo-combo-box k-ng-model="selectedDistrict"
+                       k-placeholder="'Type a District'"
+                       k-data-source="districts" style="width: 100%"
+                       k-data-text-field="'DISTNAME'"
+                       k-data-value-field="'DISTNAME'"
+                       k-filter="'startsWith'"
+                       on-change="districtChange()" />
+            </div>
+        </div>
+        <div class="col-md-2">
+            &nbsp;
+        </div>
+    </div>
+
+
+    <div class="row print-item no-print-padding">
+        <div class="col-md-2">
+            Select Campus :
+        </div>
+        <div class="col-md-8">
+            <div class="panel panel-default">
+                <input k-disabled="!campuses" kendo-combo-box k-ng-model="selectedCampus"
+                       k-placeholder="'Type a Campus'"
+                       k-data-source="campuses" style="width: 100%"
+                       k-data-value-field="'CAMPNAME'"
+                       k-data-text-field="'CAMPNAME'" k-options="{filter:'contains'}"
+                       on-change="campusChange()" />
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <button class="btn btn-primary" ng-click="download()">Download All Data</button>
+            <a style="font-size: 30px;margin: -5px 20px;float: right;" href="" ng-click="print()"><i class="fa fa-print"></i></a>
+        </div>
+    </div>
+
+
+
+    <div kendo-tab-strip k-content-urls="['/app/templates/pages/campusPartial/general.html',
+         '/app/templates/pages/campusPartial/student.html',
+         '/app/templates/pages/campusPartial/staff.html',
+         '/app/templates/pages/campusPartial/admissions.html',
+         '/app/templates/pages/campusPartial/c4Long.html',
+         '/app/templates/pages/campusPartial/longitudinal.html',
+         '/app/templates/pages/campusPartial/dropout.html',
+         '/app/templates/pages/campusPartial/APIB.html',
+         '/app/templates/pages/campusPartial/ccReady.html',
+        '/app/templates/pages/campusPartial/staar.html']" k-options="tabOptions">
+        <!-- tab list -->
+        <ul class="print-item no-print-padding">
+            <li class="k-state-active" data-item="general">General</li>
+            <li data-item="student">Student</li>
+            <li data-item="staff">Staff</li>
+            <li data-item="admissions" ng-show="selectedCampus.GRDTYPE=='S'">Readiness</li>
+            <li data-item="c4Long" ng-show="selectedCampus.GRDTYPE=='S'"> 4-Year Longitudinal</li>
+            <li data-item="longitudinal">Longitudinal</li>
+            <li data-item="dropout">Annual Dropout, Attendance</li>
+            <li data-item="apib">AP/IB Results</li>
+            <li data-item="ccReady"> College, Career Ready</li>
+            <li data-item="staar"> STAAR</li>
+        </ul>
+    </div>
+</div>
+
+<div class="documentation" ng-show="false">
+    <div id="staarSubjectDoc">
+        STAAR percent at the Phase-in 1 Standard (approximately 50% of questions correct) or the Postsecondary Readiness Standard level (approximately 70%-75% of the questions correct) aggregated at the district or campus level from the STAAR aggregator tool provided by TEA.
+    </div>
+    <div id="staarAllDoc">
+        STAAR Percent at the Phase-in 1 Standard (approximately 50% of questions correct) or the Postsecondary Readiness Standard (approximately 70%-75% of the questions correct). This indicator shows the percent of students who meet the applicable standard by performing at this level on two or more assessments. Students who took only one assessment are also included.
+    </div>
+    <div id="ACTAverageDoc">
+        This shows the average score for the ACT composite for the {{selectedYear-1}} graduating class. The maximum score is 36.
+    </div>
+    <div id="SATAverageDoc">
+        This shows the average score for the SAT critical reading, writing, and mathematics for the {{selectedYear-1}} graduating class. The maximum score is 2400.
+    </div>
+    <div id="ACTSATAverageDoc">
+        This shows the percent of {{selectedYear-1}} graduates who took the SAT or ACT college admissions test.
+    </div>
+    <div id="ACTSATAboveCriterionDoc">
+        This shows the percentage of examinees, in the {{selectedYear-1}} graduating class, who scored at or above the criterion score on either the SAT or ACT (1110 on the SAT critical reading and mathematics sections combined, or 24 on the ACT composite).
+    </div>
+    <div id="studentDemoDoc">
+        Students are reported as African American, Hispanic, White, American Indian, Asian, Pacific Islander, and Two or More Races. The percentage of the total number of students in the African American, Hispanic, White, and Other races/ethnicities are shown.
+    </div>
+    <div id="graduationRatesDoc">
+        This indicator shows the status of a group (cohort) of students after four years in high school (4-Year Longitudinal Rate). For the 4-Year Longitudinal Rate, the cohort consists of students who first attended ninth grade in 2010-{{selectedYear-1}}. They are followed through their expected graduation with the class of {{selectedYear-1}}.
+    </div>
+    <div id="teacherExperienceDoc">
+        The breakdown of teacher FTE percentage by years of professional experience.
+    </div>
+    <div id="staarGradesDoc">
+       STAAR percent at the Phase-in 1 Standard (approximately 50% of questions correct) or the Postsecondary Readiness Standard level (approximately 70%-75% of the questions correct) on the basis of grades and its respective subjects.
+    </div>
+
+    <div id="Mobility">
+        A student is considered to be mobile if he or she has been in membership at the school for less than 83% of the school year (i.e., has missed six or more weeks at a particular school). The district mobility rate reflects school-to-school mobility within the same district or from outside the district.
+    </div>
+    <div id="Enrollment">
+        This is the total number of public school students who were reported in membership on a campus in October at any grade from early childhood education through grade 12.
+    </div>
+    <div id="English">
+        The percent of ELL or LEP students is calculated by dividing the number of ELL students by the total number of students in the school or district.
+    </div>
+    <div id="Low_Income">
+        The percentage of economically disadvantaged students is calculated as the sum of students eligible for free or reduced-price lunch or eligible for other public assistance, divided by the total number of students.
+    </div>
+
+
+    <!--  Campus Long -->
+    <div id="demographicsTimeDoc">
+        Students are reported as African American, Hispanic, White, American Indian, Asian, Pacific Islander, and Two or More Races. The percentage of the total number of students with the African American, Hispanic, White, Asian, and Other races/ethnicities are shown.
+    </div>
+    <div id="enrollmentTimeDoc">
+        Changes in student enrollment over time.
+    </div>
+    <div id="lowIncomeTimeDoc">
+        Changes in the percentage of enrolled students who are economically disadvantaged.
+    </div>
+    <div id="mobilityTimeDoc">
+        A student is considered to be mobile if he or she has been in membership at the school for less than 83% of the school year (i.e., has missed six or more weeks at a particular school). The district mobility rate reflects school-to-school mobility within the same district or from outside the district.
+    </div>
+    <div id="attendanceTimeDoc">
+        Changes in student attendance over time.
+    </div>
+    <div id="longStaarDoc">
+        STAAR percent at the Postsecondary Readiness Standard level aggregated at the district or campus level from the STAAR aggregator tool provided by TEA.
+    </div>
+    <div id="annualGraduatesDoc">
+        Class of {{selectedYear-1}} graduates by race/ethnicity.
+    </div>
+    <div id="studentByDemoDoc">
+        Campus student composition by race/ethnicity, {{selectedYear-1}}-{{selectedYear}} school year.
+    </div>
+    <div id="studentByGradeDoc">
+        Campus student composition by grade level and gifted/talented status, {{selectedYear-1}}-{{selectedYear}} 
+    </div>
+    <div id="enrollmentByProgramDoc">
+        Campus student enrollment percentage in specific educational programs, {{selectedYear-1}}-{{selectedYear}} 
+    </div>
+    <div id="retentionRatesDoc">
+        Student retention rates by grade level and by gen ed / special ed, {{selectedYear-1}}-{{selectedYear}} 
+    </div>
+    <div id="teacherByDegreeDoc">
+        Teacher Full-Time-Equivalents by highest level of education attained, {{selectedYear-1}}-{{selectedYear}} 
+    </div>
+    <div id="teacherByExpDoc">
+        Teacher Full-Time-Equivalents by years of professional teaching experience, {{selectedYear-1}}-{{selectedYear}}
+    </div>
+    <div id="teacherBySalaryDoc">
+        Average teacher base salary by years of professional teaching experience, {{selectedYear-1}}-{{selectedYear}}
+    </div>
+    <div id="professionalStaffDoc">
+        Professional full-time equivalent staff count by staff type, {{selectedYear-1}}-{{selectedYear}}
+    </div>
+    <div id="teacherByProgramDoc">
+        Teacher full-time equivalent count by program, {{selectedYear-1}}-{{selectedYear}}
+    </div>
+    <div id="teacherByEthnicityDoc">
+        Teacher full-time equivalent count by gender and race/ethnicity, {{selectedYear-1}}-{{selectedYear}}
+    </div>
+    <div id="admActSatDoc">
+        SAT and ACT exam participation and performance relative to criterion by race/ethnicity, by economics, and by gender, class of {{selectedYear-1}}
+    </div>
+    <div id="admActAverageDoc">
+        ACT average student performance relative to criterion by race/ethnicity, by economics, and by gender, class of {{selectedYear-1}}
+    </div>
+    <div id="admSatAverageDoc">
+        SAT average student performance relative to criterion by race/ethnicity, by economics, and by gender, class of {{selectedYear-1}}
+    </div>
+    <div id="c4LongRateDoc">
+        High school success rates by various student dimensions, class of {{selectedYear-1}}
+    </div>
+</div>
+<style>
+    .angular-google-map-container {
+        height: 483px;
+    }
+
+    .k-tooltip-content {
+        width: 300px;
+    }
+
+    .panel-body {
+        overflow: auto;
+    }
+
+    .k-tabstrip .k-content.k-state-active {
+        background-color: #f3f3f3;
+    }
+
+    .k-tabstrip .k-state-active {
+        border-color: #c5c5c5;
+    }
+
+    [class*="col-"] {
+        box-sizing: border-box;
+    }
+</style>

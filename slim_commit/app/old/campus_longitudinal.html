@@ -1,0 +1,132 @@
+﻿<div class="page page-dashboard">
+    <div class="panel panel-default">
+        <input kendo-auto-complete ng-model="selectedCampus"
+               k-data-source="filterResultSet" style="width: 100%"
+               k-data-text-field="'CAMPUS'"
+               on-change="campusChange()" />
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-8">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong><i class="ti-bar-chart"></i> Student Demographics</strong></div>
+                <div class="panel-body">
+
+
+                    <div id="campusDemoChart"></div>
+
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong><i class="ti-bar-chart"></i> Enrollment</strong></div>
+                <div class="panel-body">
+
+
+                    <div id="campusLongEnrollmentChart"></div>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+    <div class="row">
+
+        <div class="col-md-8">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong><i class="ti-bar-chart"></i> STAAR % Final Recommended</strong></div>
+                <div class="panel-body">
+
+                    <div id="charter2"></div>
+
+
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong><i class="ti-bar-chart"></i> % Economically Disadvantaged</strong></div>
+                <div class="panel-body">
+
+                    <!--teacher blocks-->
+                    <!--<div id="campusLongEconDis"></div>-->
+
+                    <div kendo-chart
+                         k-legend="{ position: 'bottom' }"
+                         k-series-defaults="{ type: 'line' }"
+                         k-series="[
+                                 { field: 'CPETECOP', name: 'Nuclear electricity' }
+                             ]"
+                         k-data-source="selectedCampusAEIS"></div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-8">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong><i class="ti-bar-chart"></i> Teacher Experience</strong></div>
+                <div class="panel-body">
+
+                    <!--<div id="charter2" kendo-chart="myChart2"
+                         k-legend="{ position: 'bottom' }"
+                         k-options="myOptions"
+                         k-series-defaults="{ type: 'column' }"
+                         k-series="[
+                                { field: 'myField', name: '3 - math', color:'#c3151c' }
+                            ]"
+                         k-data-source="selectedData"></div>-->
+
+                    <div id="campusLongExperienceChart"></div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong><i class="ti-bar-chart"></i> % Mobility</strong></div>
+                <div class="panel-body">
+
+                    <!--teacher blocks-->
+                    <!--<div id="campusLongEconDis"></div>-->
+
+                    <div kendo-chart
+                         k-legend="{ position: 'bottom' }"
+                         k-series-defaults="{ type: 'line' }"
+                         k-series="[
+                                 { field: 'CPEMALLP', name: 'Nuclear electricity' }
+                             ]"
+                         k-data-source="selectedCampusAEIS"></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+

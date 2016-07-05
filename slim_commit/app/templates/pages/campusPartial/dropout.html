@@ -1,0 +1,55 @@
+﻿<div>
+    <div class="row text-center print-item">
+        
+        <div class="col-lg-6 col-xsm-12" kendo-tooltip="" k-options="boxTooltipOptions" data-div="IHE">
+            <div class="panel mini-box">
+                <span class="btn-icon btn-icon-round btn-icon-lg-alt" style="background-color:#003662; color:white">
+                    <i class="ti-user"></i>
+                </span>
+                <div class="box-info">
+                    <p class="size-h2">{{campus.dropoutAll["CAHEEYRYR"]| number:0}}<span class="size-h4">%</span></p>
+                    <p class="text-muted"><span>Higher Education (IHE)</span></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-xsm-12" kendo-tooltip="" k-options="boxTooltipOptions" data-div="IHERemediation">
+            <div class="panel mini-box">
+                <span class="btn-icon btn-icon-round btn-icon-lg-alt" style="background-color:#003662; color:white">
+                    <i class="ti-user"></i>
+                </span>
+                <div class="box-info">
+                    <p class="size-h2">{{campus.dropoutAll["CAHECYRYR"]| number:0}}<span class="size-h4">%</span></p>
+                    <p class="text-muted"><span>IHE Completing One Year Without Remediation</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Stats -->
+
+    <div class="row print-item">
+
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong><i class="ti-list-ol"></i>   Annual Dropout, Attendance</strong></div>
+                <div class="panel-body panel-body-buttons">
+                    <div class="col-md-6">
+                        <label> <input type="checkbox" ng-model="drpAllAttendanceState">  Attendance Rate</label>
+                        <label> <input type="checkbox" ng-model="drpAllGr7State">  Dropout Rate (Gr 7-8)</label>
+                        <label> <input type="checkbox" ng-model="drpAllGr9State">  Dropout Rate (Gr 9-12)</label>
+                    </div>
+                    <div class="col-md-6 icon-panel">
+                        <a href="#" download="drpAll.png" class="imageExport" data-chart="drpAll">
+                            <i class="fa fa-file-image-o fa-lg"></i>
+                        </a>
+                        <a class="csvExport" data-chart="drpAll"><i class="fa fa-download fa-lg"></i></a>
+                        <a><i kendo-tooltip="" k-options="tooltipOptions" data-chart="drpAll" class="fa fa-question-circle fa-lg"></i></a>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div id="drpAll"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

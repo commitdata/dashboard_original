@@ -1,0 +1,143 @@
+﻿<div>
+    <div class="row text-center print-item">
+        <div class="col-lg-3 col-xsm-6" kendo-tooltip="" k-options="boxTooltipOptions" data-div="Mobility">
+            <div class="panel mini-box">
+                <span class="btn-icon btn-icon-round btn-icon-lg-alt" style="background-color:#c3151c; color:white">
+                    <span class="ti-car"></span>
+                </span>
+                <div class="box-info">
+                    <p class="size-h2"><span>{{district.studentAll["DPEMALLP"].toFixed(0)}}</span><span class="size-h4">%</span></p>
+                    <p class="text-muted"><span>Mobility</span></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-xsm-6" kendo-tooltip="" k-options="boxTooltipOptions" data-div="Enrollment">
+            <div class="panel mini-box">
+                <span class="btn-icon btn-icon-round btn-icon-lg-alt" style="background-color:#003662; color:white">
+                    <i class="ti-user"></i>
+                </span>
+                <div class="box-info">
+                    <p class="size-h2">{{district.studentAll["DPETALLC"]| number:0}}<span class="size-h4"></span></p>
+                    <p class="text-muted"><span>Enrollment</span></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-xsm-6" kendo-tooltip="" k-options="boxTooltipOptions" data-div="Low_Income">
+            <div class="panel mini-box">
+                <span class="btn-icon btn-icon-round btn-icon-lg-alt" style="background-color:#91c63d; color:white">
+                    <i class="ti-money"></i>
+                </span>
+                <div class="box-info">
+                    <p class="size-h2">{{district.studentAll["DPETECOP"].toFixed(0)}}<span class="size-h4">%</span></p>
+                    <p class="text-muted"><span>Low Income</span></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-xsm-6" kendo-tooltip="" k-options="boxTooltipOptions" data-div="English">
+            <div class="panel mini-box">
+                <span class="btn-icon btn-icon-round btn-icon-lg-alt" style="background-color:#ef5727; color:white">
+                    <i class="ti-microphone"></i>
+                </span>
+                <div class="box-info">
+                    <p class="size-h2">{{district.studentAll["DPETLEPP"].toFixed(0)}}<span class="size-h4">%</span></p>
+                    <p class="text-muted"><span>English Learners</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Stats -->
+
+    <div class="row print-item">
+        <div class="col-md-6" id="annualGraduatesContainer">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong><i class="ti-map-alt"></i>    Annual Graduates</strong></div>
+                <div class="panel-body">
+                    <div class="col-md-12 icon-panel">
+                        <a href="#" download="Annual_Graduates.png" class="imageExport" data-chart="annualGraduates">
+                            <i class="fa fa-file-image-o fa-lg"></i>
+                        </a>
+                        <a class="csvExport" data-chart="annualGraduates"><i class="fa fa-download fa-lg"></i></a>
+                        <a><i kendo-tooltip="" k-options="tooltipOptions" data-chart="annualGraduates" class=" fa fa-question-circle fa-lg"></i></a>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div id="annualGraduates"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6" id="studentByDemoContainer">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong><i class="ti-list-ol"></i>    Student Demographics</strong></div>
+                <div class="panel-body">
+                    <div class="col-md-12 icon-panel">
+                        <a href="#" download="Student_By_Demo.png" class="imageExport" data-chart="studentByDemo">
+                            <i class="fa fa-file-image-o fa-lg"></i>
+                        </a>
+                        <a class="csvExport" data-chart="studentByDemo"><i class="fa fa-download fa-lg"></i></a>
+                        <a><i kendo-tooltip="" k-options="tooltipOptions" data-chart="studentByDemo" class="fa fa-question-circle fa-lg"></i></a>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div id="studentByDemo"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row print-item">
+        <div class="col-md-6" id="retentionRatesContainer">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong><i class="ti-list-ol"></i>   Retention Rates by Grade </strong></div>
+                <div class="panel-body">
+                    <div class="col-md-12 icon-panel">
+                        <a href="#" download="Retention_Rates.png" class="imageExport" data-chart="retentionRates">
+                            <i class="fa fa-file-image-o fa-lg"></i>
+                        </a>
+                        <a class="csvExport" data-chart="retentionRates"><i class="fa fa-download fa-lg"></i></a>
+                        <a><i kendo-tooltip="" k-options="tooltipOptions" data-chart="retentionRates" class="fa fa-question-circle fa-lg"></i></a>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div id="retentionRates"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6" id="studentByGradeContainer">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong><i class="ti-list-ol"></i>   Student By Grade </strong></div>
+                <div class="panel-body">
+                    <div class="col-md-12 icon-panel">
+                        <a href="#" download="Retention_Rates.png" class="imageExport" data-chart="studentByGrade">
+                            <i class="fa fa-file-image-o fa-lg"></i>
+                        </a>
+                        <a class="csvExport" data-chart="studentByGrade"><i class="fa fa-download fa-lg"></i></a>
+                        <a><i kendo-tooltip="" k-options="tooltipOptions" data-chart="studentByGrade" class="fa fa-question-circle fa-lg"></i></a>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div id="studentByGrade"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row print-item">
+        <div class="col-md-6" id="enrollmentByProgramContainer">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong><i class="ti-list-ol"></i>    Student Enrollment by Program </strong></div>
+                <div class="panel-body">
+                    <div class="col-md-12 icon-panel">
+                        <a href="#" download="Enrollment_By_Program.png" class="imageExport" data-chart="enrollmentByProgram">
+                            <i class="fa fa-file-image-o fa-lg"></i>
+                        </a>
+                        <a class="csvExport" data-chart="enrollmentByProgram"><i class="fa fa-download fa-lg"></i></a>
+                        <a><i kendo-tooltip="" k-options="tooltipOptions" data-chart="enrollmentByProgram" class="fa fa-question-circle fa-lg"></i></a>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div id="enrollmentByProgram"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

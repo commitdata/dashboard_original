@@ -1,0 +1,106 @@
+﻿<div class="page page-dashboard" id="campus-container">
+    <div class="row print-item">
+        <div class="col-md-10">
+            <h1 class="page-title">Texas School Campus Report</h1>
+        </div>
+    </div>
+    <hr />
+    <div class="page-splash" ng-class="{'page-splash-active':spinner}">
+        <div class="page-splash-message">
+            <div class="page-splash-message-subtle">Loading...</div>
+        </div>
+    </div>
+
+    <div class="row print-item no-print-padding">
+        <div class="col-md-2">
+            <span>Select Year :</span>
+        </div>
+        <div class="col-md-10">
+            <div class="panel panel-default">
+                <select kendo-drop-down-list ng-model="selectedYear" class="year-down" style="width: 100%;" on-change="yearChange()">
+                    <option value="2015">2015</option>
+                    <option value="2014">2014</option>
+                    <option value="2013">2013</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row print-item no-print-padding">
+        <div class="col-md-2">
+            <span>Filter By County :</span>
+        </div>
+        <div class="col-md-10">
+            <div class="panel panel-default">
+
+
+                <input kendo-combo-box k-ng-model="selectedCounty"
+                       k-placeholder="'Type a County'"
+                       k-data-source="counties" style="width: 100%"
+                       k-data-text-field="'CNTYNAME'"
+                       k-data-value-field="'CNTYNAME'"
+                       k-filter="'startsWith'"
+                       on-change="countyChange()" />
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row print-item no-print-padding">
+        <div class="col-md-2">
+            <span>Filter By District :</span>
+        </div>
+        <div class="col-md-10">
+            <div class="panel panel-default">
+
+
+                <input k-disabled="!districts" kendo-combo-box k-ng-model="selectedDistrict"
+                       k-placeholder="'Type a District'"
+                       k-data-source="districts" style="width: 100%"
+                       k-data-text-field="'DISTNAME'"
+                       k-data-value-field="'DISTNAME'"
+                       k-filter="'startsWith'"
+                       on-change="districtChange()" />
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row print-item no-print-padding">
+        <div class="col-md-2">
+            Select Campuses :
+        </div>
+        <div class="col-md-10">
+            <div class="panel panel-default">
+                <select kendo-multi-select="campList" k-on-change="" k-options="campusOptions" ng-model="selectedCampuses" k-data-source="campusOptions.dataSource.data"></select>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<style>
+    .angular-google-map-container {
+        height: 483px;
+    }
+
+    .k-tooltip-content {
+        width: 300px;
+    }
+
+    .panel-body {
+        overflow: auto;
+    }
+
+    .k-tabstrip .k-content.k-state-active {
+        background-color: #f3f3f3;
+    }
+
+    .k-tabstrip .k-state-active {
+        border-color: #c5c5c5;
+    }
+
+    [class*="col-"] {
+        box-sizing: border-box;
+    }
+</style>

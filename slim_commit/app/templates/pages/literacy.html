@@ -1,0 +1,269 @@
+﻿<div style="margin-top:25px" class="container-fluid">
+    <!--Fixed stat panels-->
+    <div class="row">
+        <div class="col-xs-12 col-sm-4">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="number blue">
+                        36%
+                    </div>
+                    <div class="supportingText">
+                        of Dallas County 3rd grade students are currently <span class="blue"><b>reading on grade level</b></span>.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-4">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="number red">
+                        1 in 6
+                    </div>
+                    <div class="supportingText">
+                        children who are not reading proficiently in 3rd grade <span class="red"><b>fail to graduate on time</b></span>.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-4">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="number yellow">
+                        $1,102,951,200
+                    </div>
+                    <div class="supportingText">
+                        <span class="yellow"><b>lost</b></span> in <span class="yellow"><b>earnings, taxes, and productivity</b></span> by Dallas County per cohort as a result.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Infographic-->
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <!--Buttons-->
+                    <div class="center">
+                        <button type="button" class="btn btn-default infoButton" value="proficient" onmouseover="hoverAnimation(this.value)" onmouseout="hoverClear()">Reading Proficiently</button>
+                        <button type="button" class="btn btn-default infoButton" value="notProficient" onmouseover="hoverAnimation(this.value)" onmouseout="hoverClear()">Not Reading Proficiently</button>
+                        <button type="button" class="btn btn-default infoButton" value="poor" onmouseover="hoverAnimation(this.value)" onmouseout="hoverClear()">Living in Poverty</button>
+                        <button type="button" class="btn btn-default infoButton" value="minority" onmouseover="hoverAnimation(this.value)" onmouseout="hoverClear()">Minority Status</button>
+                    </div>
+                    <!--Title and captions-->
+                    <div id="infoCaptionDiv">
+                        <div id="infoTitle" class="center">
+                            <br>
+                            How does 3rd grade literacy affect high school graduation?
+                        </div>
+                        <div class="infoText" id="proficient" style="display:none;">
+                            <span class="blue number"><b>1 in 24</b></span>, or <span class="blue"><b>4%</b></span> of, students
+                            who <span class="blue"><b>are reading proficiently</b></span> in 3rd grade <span class="blue">
+                                <b>
+                                    fail to
+                                    graduate
+                                </b>
+                            </span> from high school on time.
+                        </div>
+                        <div class="infoText" id="notProficient" style="display:none;">
+                            The rate is <span class="red"><b>4 times greater</b></span> for students who are <span class="red">
+                                <b>
+                                    not
+                                    reading proficiently
+                                </b>
+                            </span> in 3rd grade. <span class="red number"><b>1 in 6</b></span>, or
+                            <span class="red"><b>16%</b></span>, of these students <span class="red"><b>fail to graduate</b></span> from
+                            high school on time.
+                        </div>
+                        <div class="infoText" id="poor" style="display:none;">
+                            <span class="yellow"><b>Poverty</b></span> compounds the issue. A little more than <span class="yellow number">
+                                <b>
+                                    1 in 4
+                                </b>
+                            </span>, or <span class="yellow"><b>26%</b></span> of students students who have been living in poverty for
+                            at least a year <span class="yellow"><b>and</b></span> who are <span class="yellow">
+                                <b>
+                                    not reading proficiently
+                                </b>
+                            </span> in 3rd grade <span class="yellow"><b>fail to graduate</b></span> from high school on time.
+                        </div>
+                        <div class="infoText" id="minority" style="display:none;">
+                            The rates are highest for <span class="orange"><b>black and Hispanic</b></span> students who are
+                            <span class="orange"><b>living in poverty and</b></span> who are <span class="orange"><b>not reading proficiently</b></span>,
+                            of whom nearly <span class="orange number"><b>1 in 3</b></span>, or <span class="orange"><b>31%</b></span>
+                            and <span class="orange"><b>33%</b></span> respectively, <span class="orange"><b>fail to graduate</b></span> from high
+                            school on time.
+                        </div>
+                    </div>
+                    <!--Infographic-->
+                    <div id="infoContainer" class="center">
+                        <info-chart></info-chart>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Charts-->
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <!--Donut chart column-->
+                    <div class="col-xs-12 col-md-4">
+                        <!--Interactive panel title-->
+                        <div class="interactiveText" id="interactiveTitle">
+                            For Dallas County, a 3rd
+                            grade <span class="blue"><b>literacy</b></span> rate of 
+                            <b><span class="blue number">{{literacyRate}}%</span></b> means that...
+                        </div>
+                        <!--Donut chart-->
+                        <div class="relative" id="donutContainer">
+                            <donut-chart data="literacyRate"></donut-chart>
+                            <!--Donut chart caption-->
+                            <div class="captionText" id="donutCaption">
+                                <span class="red number"><b>{{notProfLabel}}</b></span><br>
+                                Dallas County 3rd grade<br>
+                                students are reading<br>
+                                <span class="red"><b>below grade level</b></span>.
+                            </div>
+                        </div>
+                    </div>
+                    <!--Bar chart column-->
+                    <div class="col-xs-12 col-md-4" id="barContainer">
+                        <!--Bar chart-->
+                        <bar-chart data="literacyRate" not-prof-not-grad="notProfNotGrad" prof-not-grad="profNotGrad"></bar-chart>
+                        <!--Bar chart caption-->
+                        <div class="captionText">
+                            <span class="red number"><b>{{notProfNotGradLabel}}</b></span>,
+                            or <span class="red"><b>16%</b></span> of, students <span class="red">
+                                <b>
+                                    not
+                                    reading proficiently
+                                </b>
+                            </span>in 3rd grade<span class="red">
+                                <b>
+                                    won't
+                                    graduate
+                                </b>
+                            </span> from high school on time.<br>
+                            The same is true of only <span class="blue number">{{profNotGradLabel}}</span>, or
+                            <span class="blue"><b>4%</b></span>, of those who <span class="blue">
+                                <b>
+                                    are reading
+                                    proficiently
+                                </b>    
+                            </span> in 3rd grade.
+                        </div>
+                    </div>
+                    <!--Line chart column-->
+                    <div class="col-xs-12 col-md-4" id="lineContainer">
+                        <!--Line chart caption-->
+                        <div class="captionText">
+                            And because <span class="yellow">
+                                <b>
+                                    each student who fails to
+                                    graduate
+                                </b>
+                            </span> from high school
+                            <span class="yellow"><b>costs</b></span> society an
+                            estimated <span class="yellow"><b>$260,000</b></span> in lost earnings, taxes,
+                            and productivity, with 3rd grade <span class="blue">
+                                <b>
+                                    literacy at
+                                    {{literacyRate}}%
+                                </b>
+                            </span> Dallas County will ultimately <span class="yellow"><b>lose</b></span>...
+                            <span class="yellow number"><b>${{moneyLostLabel}}</b></span>
+                        </div>
+                        <!--Line chart-->
+                        <line-chart data="literacyRate" money-lost="moneyLost"></line-chart>
+                    </div>
+                    <!--Slider-->
+                    <div class="col-xs-12">
+                        <br>
+                        <input id="literacyRateSlider" type="range" ng-model="literacyRate" min=0 max=100 step=1>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Bar Graph-->
+    <!--
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                </div>
+            </div>
+        </div>
+    </div>
+    -->
+    <!--Maps-->
+
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div id="schoolMapDiv">
+                        <div class="title">
+                            <h4><b>% READING ON GRADE LEVEL, BY GRADE</b></h4>
+                        </div>
+                        <br>
+                        <div id="gradeLevelBar">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+    <div class="row">
+        <!--County Map-->
+        <div class="col-md-6 col-sm-12 col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div id="schoolMapDiv">
+                        <div class="title">
+                            <h4><b>3RD GRADE LITERACY BY SCHOOL, DALLAS COUNTY</b></h4>
+                        </div>
+                        <br>
+                        <div id="leafletMap">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--State map-->
+        <div class="col-md-6 col-sm-12 col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div id="countyMapDiv">
+                        <div class="title">
+                            <div>
+                                <h4>
+                                    <b>3RD GRADE LITERACY BY COUNTY, TEXAS</b>
+                                </h4>
+                            </div>
+                            <div>
+                                0.0% <svg width="200" height="30" id="countyKey"></svg> 100.0%
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <button type="button" id="zoomButton" class="btn btn-default button">Zoom to Dallas County</button>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="center">
+                            <county-map geo-data="geoData" value-data="valueData"></county-map>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

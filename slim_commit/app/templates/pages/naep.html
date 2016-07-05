@@ -1,0 +1,32 @@
+﻿<div class="col-xs-12 col-md-12">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <!--Title-->
+            <h4>
+                <b>AVERAGE SCORE BY STATE AND CITY</b>
+            </h4>
+            <!--Subtitle-->
+            <h6>
+                <b>
+                    <span id="gradeMap"></span>TH GRADE,
+                    <span id="subjectMap"></span>,
+                    <span id="groupMap"></span>,
+                    <span id="yearMap"></span>
+                </b>
+            </h6>
+            <!-- Color Key-->
+            <div>
+                Lowest: <b><span id="lowestScore"></span></b>&nbsp;
+                <svg width="190" height="20" id="legendSvg"></svg>
+                Highest: <b><span id="highestScore"></span></b>&nbsp;
+            </div>
+            <!-- Checkbox-->
+            <div>
+                <input type="checkbox" class="displayCheckbox" onclick="toggleCities()" checked> Display Cities
+            </div>
+            <!--SVG-->
+            <div id="mapVis">
+            </div>
+        </div>
+    </div>
+</div>

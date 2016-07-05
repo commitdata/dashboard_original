@@ -1,0 +1,87 @@
+﻿<div class="row print-item">
+
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading"><strong><i class="ti-list-ol"></i>    SAT/ACT</strong></div>
+            <div class="panel-body panel-body-buttons">
+                <div class="col-md-6">
+                    <label> <input type="checkbox" ng-model="admActSatTestedState">  Percent Tested</label>
+                    <label> <input type="checkbox" ng-model="admActSatCriterianState">  Percent At/Above Criterion</label>
+                </div>
+                <div class="col-md-6 icon-panel">
+                    <a href="#" download="admActSat.png" class="imageExport" data-chart="admActSat">
+                        <i class="fa fa-file-image-o fa-lg"></i>
+                    </a>
+                    <a class="csvExport" data-chart="admActSat"><i class="fa fa-download fa-lg"></i></a>
+                    <a><i kendo-tooltip="" k-options="tooltipOptions" data-chart="admActSat" class="fa fa-question-circle fa-lg"></i></a>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div id="admActSat"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row print-item">
+
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading"><strong><i class="ti-list-ol"></i>  ACT Average</strong></div>
+            <div class="panel-body panel-body-buttons">
+                <div class="col-md-2">
+                    <label> <input type="checkbox" ng-model="admActAverageAllState">  All Subjects</label>
+                </div>
+                <div class="col-md-2">
+                    <label> <input type="checkbox" ng-model="admActAverageELAState">  English Language Arts</label>
+                </div>
+                <div class="col-md-2">
+                    <label> <input type="checkbox" ng-model="admActAverageMathState">  Mathematics</label>
+                </div>
+                <div class="col-md-2">
+                    <label> <input type="checkbox" ng-model="admActAverageSciState">  Science</label>
+                </div>
+                <div class="col-md-4 icon-panel">
+                    <a href="#" download="admActAverage.png" class="imageExport" data-chart="admActAverage">
+                        <i class="fa fa-file-image-o fa-lg"></i>
+                    </a>
+                    <a class="csvExport" data-chart="admActAverage"><i class="fa fa-download fa-lg"></i></a>
+                    <a><i kendo-tooltip="" k-options="tooltipOptions" data-chart="admActAverage" class="fa fa-question-circle fa-lg"></i></a>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div id="admActAverage"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row print-item">
+
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading"><strong><i class="ti-list-ol"></i>    SAT Average</strong></div>
+            <div class="panel-body panel-body-buttons">
+                <div class="col-md-2">
+                    <label> <input type="checkbox" ng-model="admSatAverageAllState">  All Subjects</label>
+                </div>
+                <div class="col-md-2">
+                    <label> <input type="checkbox" ng-model="admSatAverageELAState">  English Language Arts</label>
+                </div>
+                <div class="col-md-2">
+                    <label> <input type="checkbox" ng-model="admSatAverageMathState">  Mathematics</label>
+                </div>
+                <div class="col-md-6 icon-panel">
+                    <a href="#" download="admSatAverage.png" class="imageExport" data-chart="admSatAverage">
+                        <i class="fa fa-file-image-o fa-lg"></i>
+                    </a>
+                    <a class="csvExport" data-chart="admSatAverage"><i class="fa fa-download fa-lg"></i></a>
+                    <a><i kendo-tooltip="" k-options="tooltipOptions" data-chart="admSatAverage" class="fa fa-question-circle fa-lg"></i></a>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div id="admSatAverage"></div>
+            </div>
+        </div>
+    </div>
+</div>

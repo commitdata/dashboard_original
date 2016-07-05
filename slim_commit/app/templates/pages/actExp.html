@@ -1,0 +1,202 @@
+﻿
+<div class="page page-dashboard">
+
+    <h1 class="page-title">Actual Vs Expected Data</h1><hr />
+
+    <div class="page-splash" ng-class="{'page-splash-active':spinner}">
+        <div class="page-splash-message">
+            <div class="page-splash-message-subtle">Loading...</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label> <input type="radio" ng-model="viewType" value="campus" ng-click="selectedDistrict=null"> Campus View </label>
+        </div>
+        <div class="col-md-6">
+            <label> <input type="radio" ng-model="viewType" value="subject" ng-click="selectedDistrict=null"> Subject View </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            Select District :
+        </div>
+        <div class="col-md-8">
+            <div class="panel panel-default">
+                <input kendo-combo-box="districtDD" ng-model="selectedDistrict"
+                       k-placeholder="'Type a District'"
+                       k-data-source="districts" style="width: 100%" k-options="{filter:'contains'}"
+                       on-change="districtChange()" />
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            &nbsp;
+        </div>
+    </div>
+
+    <div class="row" ng-hide="viewType =='subject' || noFeeder">
+        <div class="col-md-2">
+            Select Feeder Pattern :
+        </div>
+        <div class="col-md-8">
+            <div class="panel panel-default">
+                <input kendo-combo-box="districtFP" ng-model="selectedFeeder"
+                       k-placeholder="'Type a Feeder Pattern'"
+                       k-data-source="feeders" style="width: 100%" k-options="{filter:'contains'}"
+                       on-change="feederChange()" />
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            &nbsp;
+        </div>
+    </div>
+
+    <div class="row" ng-show="viewType =='subject'">
+        <div class="col-md-2">
+            Select Subject :
+        </div>
+
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-lg-2" ng-repeat="subject in subjects" style="margin-bottom:5px;">
+                    <button class="btn btn-primary" ng-click="subjectChange(subject)" ng-class="{active : subject == selectedSubject}">
+                        {{subject.Name}}
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            &nbsp;
+        </div>
+    </div>
+
+    <div id="subjectChartView">
+        <div id="subjectChart">
+
+        </div>
+    </div>
+
+    <div ng-show="viewType == 'campus' && selectedDistrict">
+        <div ng-show="eSchools.length > 0">
+            <h3 class="page-title">Elementary Schools</h3><hr />
+            <div class="row">
+                <div class="col-lg-2" ng-repeat="school in eSchools" style="margin-bottom:5px;">
+                    <button class="btn btn-primary" ng-click="schoolSelected(school, 'es');" ng-class="{active : school == selectedesSchool}">
+                        {{school.CNAME}}
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" id="{{selectedesSchool.CNAME}}"><strong><i class="ti-bar-chart"></i>{{selectedesSchool.CNAME}}</strong></div>
+                        <div class="panel-body">
+
+                            <div kendo-chart
+                                 k-legend="{ position: 'bottom' }"
+                                 k-series-defaults="{labels:{visible:true,template: '#= (value*100).toFixed(0) # %'},legend: {visible: true} }"
+                                 k-tooltip="{visible: true,template: '#= series.name #: #= (value*100).toFixed(0) # %',color: 'white'}"
+                                 k-series="[
+                                 { field: 'm3', name: '3rd Grade Math',color:'#91c63d' },
+                                 { field: 'r3', name: '3rd Grade Reading', color:'#003662' },
+                                 { field: 'm4', name: '4th Grade Math', color:'#91c63d' },
+                                 { field: 'r4', name: '4th Grade Reading' , color:'#003662' },
+                                 { field: 'w4', name: '4th Grade Writing', color:'#ef5727' },
+                                 { field: 'm5', name: '5th Grade Math', color:'#91c63d' },
+                                 { field: 'r5', name: '5th Grade Reading', color:'#003662' },
+                                 { field: 's5', name: '5th Grade Science' , color:'#fbb613' },
+
+                             ]"
+                                 k-value-axis="{labels: {template:'#=(value*100).toFixed(0) # %'}}"
+                                 k-data-source="esArr"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div ng-show="mSchools.length > 0">
+            <h3 class="page-title">Middle Schools</h3><hr />
+            <div class="row">
+                <div class="col-lg-2" ng-repeat="school in mSchools" style="margin-bottom:5px;">
+                    <button class="btn btn-primary" ng-click="schoolSelected(school, 'ms');" ng-class="{active : school == selectedmsSchool}">
+                        {{school.CNAME}}
+                    </button>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" id="{{selectedmsSchool.CNAME}}"><strong><i class="ti-bar-chart"></i>{{selectedmsSchool.CNAME}}</strong></div>
+                        <div class="panel-body">
+
+                            <div kendo-chart
+                                 k-legend="{ position: 'bottom' }"
+                                 k-series-defaults="{labels:{visible:true,template: '#= (value*100).toFixed(0) # %'},legend: {visible: true} }"
+                                 k-tooltip="{visible: true,template: '#= series.name #: #= (value*100).toFixed(0) # %',color: 'white'}"
+                                 k-series="[
+                                 { field: 'm6', name: '6th Grade Math',color:'#91c63d' },
+                                 { field: 'r6', name: '6th Grade Reading', color:'#003662' },
+                                 { field: 'm7', name: '7th Grade Math', color:'#91c63d' },
+                                 { field: 'r7', name: '7th Grade Reading' , color:'#003662' },
+                                 { field: 'w7', name: '7th Grade Writing', color:'#ef5727' },
+                                 { field: 'm8', name: '8th Grade Math', color:'#91c63d' },
+                                 { field: 'r8', name: '8th Grade Reading', color:'#003662' },
+                                 { field: 's8', name: '8th Grade Science' , color:'#fbb613' },
+                                 { field: 'h8', name: '8th Grade History', color:'#c3151c' },
+                                 { field: 'xx', name: 'Unknown' , color:'#ef5727' }
+
+                             ]"
+                                 k-value-axis="{labels: {template:'#=(value*100).toFixed(0) # %'}}"
+                                 k-data-source="msArr"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-show="hSchools.length > 0">
+            <h3 class="page-title">High Schools</h3><hr />
+            <div class="row">
+                <div class="col-lg-2" ng-repeat="school in hSchools" style="margin-bottom:5px;">
+                    <button class="btn btn-primary" ng-click="schoolSelected(school, 'hs');" ng-class="{active : school == selectedhsSchool}">
+                        {{school.CNAME}}
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" id="{{selectedhsSchool.CNAME}}"><strong><i class="ti-bar-chart"></i>{{selectedhsSchool.CNAME}}</strong></div>
+                        <div class="panel-body">
+
+                            <div kendo-chart
+                                 k-legend="{ position: 'bottom' }"
+                                 k-series-defaults="{labels:{visible:true,template: '#= (value*100).toFixed(0) # %'},legend: {visible: true} }"
+                                 k-tooltip="{visible: true,template: '#= series.name #: #= (value*100).toFixed(0) # %',color: 'white'}"
+                                 k-series="[
+                                 { field: 'a1', name: 'Algebra 1',color:'#91c63d' },
+                                 { field: 'bi', name: 'Biology', color:'#003662' },
+                                 { field: 'e1', name: 'English 1', color:'#c3151c' },
+                                 { field: 'e2', name: 'English 2' , color:'#fbb613' },
+                                 { field: 'us', name: 'US History', color:'#ef5727' }
+                             ]"
+                                 k-value-axis="{labels: {template:'#=(value*100).toFixed(0) # %'}}"
+                                 k-data-source="hsArr"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<style>
+    .k-tooltip-content {
+        width: 300px;
+    }
+</style>

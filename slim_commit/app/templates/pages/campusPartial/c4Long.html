@@ -1,0 +1,49 @@
+﻿<div>
+    <div class="row print-item">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong><i class="ti-list-ol"></i>   4-Year Longitudinal Rate</strong></div>
+                <div class="panel-body panel-body-buttons">
+
+                    <div class="col-md-9">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label> <input type="checkbox" ng-model="c4LongRateGradState">  Graduated</label>
+                            </div>
+                            <div class="col-md-3">
+                                <label> <input type="checkbox" ng-model="c4LongRateGEDState">  Received GED</label>
+                            </div>
+                            <div class="col-md-3">
+                                <label> <input type="checkbox" ng-model="c4LongRateHSState">  Continued HS</label>
+                            </div>
+                            <div class="col-md-3">
+                                <label> <input type="checkbox" ng-model="c4LongRateDropState">  Dropped Out</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label> <input type="checkbox" ng-model="c4LongRateGGState">  Graduates & GED</label>
+                            </div>
+                            <div class="col-md-3">
+                                <label> <input type="checkbox" ng-model="c4LongRateGGCState">  Graduates, GED & Continuers</label>
+                            </div>
+                            <div class="col-md-6">
+                                <label> <input type="checkbox" ng-model="c4LongRateFedState">  Federal Graduation Rate Without Exclusions</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 icon-panel">
+                        <a href="#" download="c4LongRate.png" class="imageExport" data-chart="c4LongRate">
+                            <i class="fa fa-file-image-o fa-lg"></i>
+                        </a>
+                        <a class="csvExport" data-chart="c4LongRate"><i class="fa fa-download fa-lg"></i></a>
+                        <a><i kendo-tooltip="" k-options="tooltipOptions" data-chart="c4LongRate" class="fa fa-question-circle fa-lg"></i></a>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div id="c4LongRate"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

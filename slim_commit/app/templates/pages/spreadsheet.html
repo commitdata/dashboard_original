@@ -1,0 +1,30 @@
+﻿<div class="page page-dashboard">
+
+    <div kendo-tab-strip k-content-urls="[ null, null]">
+        <!-- tab list -->
+        <ul>
+            <li ng-repeat="category in categories" ng-class="{'k-state-active' : $index == 0}">{{category.name}}</li>
+        </ul>
+
+        <div class="row" style="padding: 1em" ng-repeat="category in categories">
+            <div class="panel panel-body">
+                <div class="col-md-5"> <a href="" ng-click="setAll(category,true);"><i class="fa fa-check-square-o"> &nbsp; Select All</i></a> </div>
+                <div class="col-md-5"> <a href="" ng-click="setAll(category, false);"><i class="fa fa-minus-square-o"> &nbsp; Deselect All</i> </a> </div>
+            </div>
+            <div class="col-md-3" ng-repeat="field in category.fields">
+                <input ng-change="update()" type="checkbox" ng-model="field.selected" /> {{spreadsheetFields[field.name]}}
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong><i class="ti-list-ol"></i>    Spreadsheet</strong></div>
+                <div class="panel-body">
+                    <div id="spreadsheet"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
