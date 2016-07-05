@@ -1,0 +1,280 @@
+<div class="page">
+    <div class="row"> 
+        <!-- What is STAAR? -->
+        <div class="col-md-4"> 
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong><i class="ti-bar-chart"></i> What is STAAR?</strong></div>
+                <div class="panel-body">
+                    <p>STAAR stands for the State of Texas Assessments of Academic Readiness. It is the set of tests a student going through the public school system in Texas must take throughout their academic career. You can see a list of those tests to the right. </p>
+                    <p>STAAR replaced the TAKS testing system and it based on the state standards, the Texas Essential Skills and Knowledge (TEKS) which you can browse below.</p>
+                    <p>Each year, after students take the tests the Texas Education Agency releases the data to the public. We have created this site in order to make it easier for the general public to browse and understand that data.</p>
+                </div>
+            </div>
+        </div> 
+        <div class="col-md-8">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong><i class="ti-bar-chart"></i> List of Tests Taken By Students in their Career</strong></div>
+                <div class="panel-body">
+                    <k-chart [chartOptions]="barChartOptions"></k-chart>
+                </div>
+            </div>
+        </div> 
+    </div>
+    
+    <div class="row"> 
+        <!-- Where to find the data? -->
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong><i class="ti-bar-chart"></i> Where to find the data?</strong></div>
+                <div class="panel-body">
+                    <p>The state releases STAAR information in two places. The first is the <a href="https://www.pearsonaccess.com/cs/Satellite?c=Page&childpagename=Texas%2FtxPALPPALayout&cid=1175826712647&pagename=txPALPWrapper" target="_blank">Pearson Access</a> system where you can download pdfs full of STAAR information for different levels. The second is the <a href="http://tea.texas.gov/student.assessment/staar/aggregate/">STAAR Aggregate Data System</a> where you can download large spreadsheets for each campus, district or region as well as the state level.</p>
+                    <p>TEA reports the data at four different levels:</p>
+                    <ul>
+                        <li>Campus</li>
+                        <li>District</li>
+                        <li>Region</li>
+                        <li>State</li>
+                    </ul>
+                    <p>Data at the student level is unavailable to the general public and subject to strict privacy laws including the Federal Family Educational Rights and Privacy Act (FERPA).</p>
+                    <p>In the 2 tables at the bottom of this page you can see the different demographics and levels the STAAR system reports.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- What does the data mean? -->
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong><i class="ti-bar-chart"></i> What does the data mean?</strong></div>
+                <div class="panel-body"> 
+                    <p>
+                        The names of the different achievement levels of STAAR results can be very confusing. Below is a conversion chart for the 3rd grade reading test as an example. That test has 40 questions and depending on the number correct, that score is deemed to be a certain level. This varies by test...you can find the conversion chart for each test <a href="http://tea.texas.gov/student.assessment/staar/convtables/" target="_blank">here</a>. And you can find a great guide written by TEA that goes into in depth explanations of what each standard level means (i.e. Phase-In 1) <a href="https://commitdallas.blob.core.windows.net/references/STAAR-Standard-Setting-QA.pdf" target="_blank">here</a>.
+                    </p>
+                    <img style="width:100%" src="../../../global-assets/images/STAAR_conversion.PNG" /> 
+                </div>
+            </div>
+        </div> 
+    </div>
+    
+    <div class="row">  
+        <!-- What's on the Tests? -->
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong><i class="ti-bar-chart"></i> What's on the Tests?</strong></div>
+                <div class="panel-body" id="tableTest">
+                    <p>
+                        TEA releases sample questions for each STAAR test every year. We have attached those below. And you can find them on the TEA site <a href="http://tea.texas.gov/Student_Testing_and_Accountability/Testing/State_of_Texas_Assessments_of_Academic_Readiness_(STAAR)/STAAR_Released_Test_Questions/" target="_blank">here</a>. Please look through these to see how the numbers you will look at if you browse the data actually align with what happens in the classroom.
+                    </p>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Level</th>
+                                    <th>Test Questions</th>
+                                    <th>Answers</th> 
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>3rd Grade Reading</td>
+                                    <td><a target="_blank" href="https://commitdallas.blob.core.windows.net/staar-test-questions/STAAR-G3-2014Test-read.pdf">Example Questions</a></td>
+                                    <td><a target="_blank" href="https://commitdallas.blob.core.windows.net/staar-test-questions/STAAR-2014-Key-G3-Read.pdf">Answers</a></td>
+                                </tr>
+                                <tr>
+                                    <td>3rd Grade Math</td>
+                                    <td><a target="_blank" href="https://commitdallas.blob.core.windows.net/staar-test-questions/STAAR-G3-2014Test-math.pdf">Example Questions</a></td>
+                                    <td><a target="_blank" href="https://commitdallas.blob.core.windows.net/staar-test-questions/STAAR-2014-Key-G3-Math.pdf">Answers</a></td>
+                                </tr>
+                                <tr>
+                                    <td>4th Grade Reading</td>
+                                    <td><a target="_blank" href="https://commitdallas.blob.core.windows.net/staar-test-questions/STAAR-G4-2014Test-read.pdf">Example Questions</a></td>
+                                    <td><a target="_blank" href="https://commitdallas.blob.core.windows.net/staar-test-questions/STAAR-2014-Key-G4-Read.pdf">Answers</a></td>
+                                </tr>
+                                <tr>
+                                    <td>4th Grade Math</td>
+                                    <td><a target="_blank" href="https://commitdallas.blob.core.windows.net/staar-test-questions/STAAR-G4-2014Test-math.pdf">Example Questions</a></td>
+                                    <td><a target="_blank" href="https://commitdallas.blob.core.windows.net/staar-test-questions/STAAR-2014-Key-G4-Math.pdf">Answers</a></td>
+                                </tr>
+                                <tr>
+                                    <td>4th Grade Writing</td>
+                                    <td><a target="_blank" href="https://commitdallas.blob.core.windows.net/staar-test-questions/STAAR-G4-2014Test-write.pdf">Example Questions</a></td>
+                                    <td><a target="_blank" href="https://commitdallas.blob.core.windows.net/staar-test-questions/STAAR-2014-Key-G4-Writing.pdf">Answers</a></td>
+                                </tr>
+                                <tr>
+                                    <td>5th Grade Reading</td>
+                                    <td><a target="_blank" href="https://commitdallas.blob.core.windows.net/staar-test-questions/STAAR-G5-2014Test-read.pdf">Example Questions</a></td>
+                                    <td><a target="_blank" href="https://commitdallas.blob.core.windows.net/staar-test-questions/STAAR-2014-Key-G5-Read.pdf">Answers</a></td>
+                                </tr>
+                                <tr>
+                                    <td>5th Grade Math</td>
+                                    <td><a target="_blank" href="https://commitdallas.blob.core.windows.net/staar-test-questions/STAAR-G5-2014Test-math.pdf">Example Questions</a></td>
+                                    <td><a target="_blank" href="https://commitdallas.blob.core.windows.net/staar-test-questions/STAAR-2014-Key-G5-Math.pdf">Answers</a></td>
+                                </tr>
+                                <tr>
+                                    <td>5th Grade Science</td>
+                                    <td><a target="_blank" href="https://commitdallas.blob.core.windows.net/staar-test-questions/STAAR-G5-2014Test-sci.pdf">Example Questions</a></td>
+                                    <td><a target="_blank" href="https://commitdallas.blob.core.windows.net/staar-test-questions/STAAR-2014-Key-G5-Science.pdf">Answers</a></td>
+                                </tr>
+                                <tr>
+                                    <td>6th Grade Reading</td>
+                                    <td><a target="_blank" href="https://commitdallas.blob.core.windows.net/staar-test-questions/STAAR-G6-2014Test-read.pdf">Example Questions</a></td>
+                                    <td><a target="_blank" href="https://commitdallas.blob.core.windows.net/staar-test-questions/STAAR-2014-Key-G6-Read.pdf">Answers</a></td>
+                                </tr>
+                                <tr>
+                                    <td>6th Grade Math</td>
+                                    <td><a target="_blank" href="https://commitdallas.blob.core.windows.net/staar-test-questions/STAAR-G6-2014Test-math.pdf">Example Questions</a></td>
+                                    <td><a target="_blank" href="https://commitdallas.blob.core.windows.net/staar-test-questions/STAAR-2014-Key-G6-Math.pdf">Answers</a></td>
+                                </tr>
+                                <tr>
+                                    <td>7th Grade Reading</td>
+                                    <td><a target="_blank" href="https://commitdallas.blob.core.windows.net/staar-test-questions/STAAR-G7-2014Test-read.pdf">Example Questions</a></td>
+                                    <td><a target="_blank" href="https://commitdallas.blob.core.windows.net/staar-test-questions/STAAR-2014-Key-G7-Read.pdf">Answers</a></td>
+                                </tr>
+                                <tr>
+                                    <td>7th Grade Math</td>
+                                    <td><a target="_blank" href="https://commitdallas.blob.core.windows.net/staar-test-questions/STAAR-G7-2014Test-math.pdf">Example Questions</a></td>
+                                    <td><a target="_blank" href="https://commitdallas.blob.core.windows.net/staar-test-questions/STAAR-2014-Key-G7-Math.pdf">Answers</a></td>
+                                </tr>
+                                <tr>
+                                    <td>7th Grade Writing</td>
+                                    <td><a target="_blank" href="https://commitdallas.blob.core.windows.net/staar-test-questions/STAAR-G7-2014Test-write.pdf">Example Questions</a></td>
+                                    <td><a target="_blank" href="https://commitdallas.blob.core.windows.net/staar-test-questions/STAAR-2014-Key-G7-Writing.pdf">Answers</a></td>
+                                </tr>
+                                <tr>
+                                    <td>8th Grade Reading</td>
+                                    <td><a target="_blank" href="https://commitdallas.blob.core.windows.net/staar-test-questions/STAAR-G8-2014Test-read.pdf">Example Questions</a></td>
+                                    <td><a target="_blank" href="https://commitdallas.blob.core.windows.net/staar-test-questions/STAAR-2014-Key-G8-Read.pdf">Answers</a></td>
+                                </tr>
+                                <tr>
+                                    <td>8th Grade Math</td>
+                                    <td><a target="_blank" href="https://commitdallas.blob.core.windows.net/staar-test-questions/STAAR-G8-2014Test-math.pdf">Example Questions</a></td>
+                                    <td><a target="_blank" href="https://commitdallas.blob.core.windows.net/staar-test-questions/STAAR-2014-Key-G8-Math.pdf">Answers</a></td>
+                                </tr>
+                                <tr>
+                                    <td>8th Grade Science</td>
+                                    <td><a target="_blank" href="https://commitdallas.blob.core.windows.net/staar-test-questions/STAAR-G8-2014Test-sci.pdf">Example Questions</a></td>
+                                    <td><a target="_blank" href="https://commitdallas.blob.core.windows.net/staar-test-questions/STAAR-2014-Key-G8-Science-080514.pdf">Answers</a></td>
+                                </tr>
+                                <tr>
+                                    <td>8th Grade History</td>
+                                    <td><a target="_blank" href="https://commitdallas.blob.core.windows.net/staar-test-questions/STAAR-G8-2014Test-socstud.pdf">Example Questions</a></td>
+                                    <td><a target="_blank" href="https://commitdallas.blob.core.windows.net/staar-test-questions/STAAR-2014-Key-G8-SocStud.pdf">Answers</a></td>
+                                </tr>
+                                <tr>
+                                    <td>English I</td>
+                                    <td><a target="_blank" href="https://commitdallas.blob.core.windows.net/staar-test-questions/STAAR-EOC-Apr2014Test-Eng1.pdf">Example Questions</a></td>
+                                    <td><a target="_blank" href="https://commitdallas.blob.core.windows.net/staar-test-questions/STAAR-EOC-2014-Key-EngI.pdf">Answers</a></td>
+                                </tr>
+                                <tr>
+                                    <td>English II</td>
+                                    <td><a target="_blank" href="https://commitdallas.blob.core.windows.net/staar-test-questions/STAAR-EOC-Apr2014Test-Eng2.pdf">Example Questions</a></td>
+                                    <td><a target="_blank" href="https://commitdallas.blob.core.windows.net/staar-test-questions/STAAR-EOC-2014-Key-EngII.pdf">Answers</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Algebra I</td>
+                                    <td><a target="_blank" href="https://commitdallas.blob.core.windows.net/staar-test-questions/STAAR-EOC-May2014Test-Alg1.pdf">Example Questions</a></td>
+                                    <td><a target="_blank" href="https://commitdallas.blob.core.windows.net/staar-test-questions/STAAR-EOC-2014-Key-AlgI.pdf">Answers</a></td>
+                                </tr>
+                                <tr>
+                                    <td>US History</td>
+                                    <td><a target="_blank" href="https://commitdallas.blob.core.windows.net/staar-test-questions/STAAR-EOC-May2014Test-USHist.pdf">Example Questions</a></td>
+                                    <td><a target="_blank" href="https://commitdallas.blob.core.windows.net/staar-test-questions/STAAR-EOC-2014-Key-UShist.pdf">Answers</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Biology</td>
+                                    <td><a target="_blank" href="https://commitdallas.blob.core.windows.net/staar-test-questions/STAAR-EOC-May2014Test-Bio.pdf">Example Questions</a></td>
+                                    <td><a target="_blank" href="https://commitdallas.blob.core.windows.net/staar-test-questions/STAAR-EOC-2014-Key-Bio.pdf">Answers</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div> 
+                </div>
+            </div>
+        </div> 
+
+        <!-- Standards -->
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong><i class="ti-bar-chart"></i> Standards</strong></div>
+                <div class="panel-body" id="teksTable">
+                    <p>The test are designed to aling with the <a href="http://tea.texas.gov/index2.aspx?id=6148" target="_blank"> Texas Essential Knowledge and Skills</a> (TEKS), which are the standards set by the state for what each student should know at the end of each school year.</p>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Subject</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><a target="_blank" href="http://ritter.tea.state.tx.us/rules/tac/chapter110/index.html">English Language Arts and Reading </a></td> </tr>
+                                <tr><td><a target="_blank" href="http://ritter.tea.state.tx.us/rules/tac/chapter111/index.html">Mathematics</a></td> </tr>
+                                <tr><td><a target="_blank" href="http://ritter.tea.state.tx.us/rules/tac/chapter112/index.html">Science</a></td> </tr>
+                                <tr><td><a target="_blank" href="http://ritter.tea.state.tx.us/rules/tac/chapter113/index.html">Social Studies</a></td> </tr>
+                                <tr><td><a target="_blank" href="http://ritter.tea.state.tx.us/rules/tac/chapter114/index.html">Languages Other than English</a></td> </tr>
+                                <tr><td><a target="_blank" href="http://ritter.tea.state.tx.us/rules/tac/chapter115/index.html">Health Education</a></td> </tr>
+                                <tr><td><a target="_blank" href="http://ritter.tea.state.tx.us/rules/tac/chapter116/index.html">Physical Education</a></td> </tr>
+                                <tr><td><a target="_blank" href="http://ritter.tea.state.tx.us/rules/tac/chapter117/index.html">Fine Arts</a></td> </tr>
+                                <tr><td><a target="_blank" href="http://ritter.tea.state.tx.us/rules/tac/chapter118/index.html">Economics</a></td> </tr>
+                                <tr><td><a target="_blank" href="http://ritter.tea.state.tx.us/rules/tac/chapter126/index.html">Technology Applications</a></td> </tr>
+                                <tr><td><a target="_blank" href="http://ritter.tea.state.tx.us/rules/tac/chapter127/index.html">Career Development</a></td> </tr>
+                                <tr><td><a target="_blank" href="http://ritter.tea.state.tx.us/rules/tac/chapter128/index.html">English as a Second Language</a></td> </tr>
+                                <tr><td><a target="_blank" href="http://ritter.tea.state.tx.us/rules/tac/chapter130/index.html">Career and Technical Education</a></td> </tr>  
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div>
+
+    <!-- Demographic Groups -->
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong><i class="ti-bar-chart"></i> Demographic Groups</strong></div>
+                <div class="panel-body" id="demoTable">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Level</th>
+                                    <th>Test Questions</th> 
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="#demoGraphicGroup of demoGraphicGroups">
+                                    <td>{{demoGraphicGroup.variable}}</td>
+                                    <td>{{demoGraphicGroup.description}}</td>
+                                </tr> 
+                            </tbody>
+                        </table>
+                    </div> 
+                </div>
+            </div>
+        </div>
+
+        <!-- Categories -->
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong><i class="ti-bar-chart"></i> Categories</strong></div>
+                <div class="panel-body" id="subjectTable">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Level</th>
+                                    <th>Test Questions</th> 
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="#category of categories">
+                                    <td>{{category.variable}}</td>
+                                    <td>{{category.description}}</td>
+                                </tr> 
+                            </tbody>
+                        </table>
+                    </div> 
+                </div>
+            </div>
+        </div> 
+    </div>
+</div>

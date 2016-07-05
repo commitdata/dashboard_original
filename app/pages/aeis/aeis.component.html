@@ -1,0 +1,135 @@
+ <div class="row"> 
+
+    <div class="col-md-8"> 
+        <!-- What is AEIS/TAPR? -->
+        <div class="panel panel-default">
+            <div class="panel-heading"><strong><i class="ti-bar-chart"></i> What is AEIS/TAPR?</strong></div>
+            <div class="panel-body">
+                <p>
+                    AEIS is the program of the Texas Education Agency that stands for Academic Excellence Indicator. It has changed its name to the Texas Academic Performance Reports in the past 2 years. (TAPR)
+                </p>
+                <p>
+                    The data is available on their <a href="http://ritter.tea.state.tx.us/perfreport/aeis/" target="_blank">site</a> from the past 20 years. We have taken just about all of the data from that site, and tried to put it in a format that's a little easier to gather and work with.
+                </p>
+                <p>
+                    You can download whatever data you're looking for at our <a href="http://data.commit2dallas.org/#/bulk">Bulk download page</a>or you can browse by the campus level on our <a href="http://data.commit2dallas.org/#/campus">campus page</a> or at the district and state level on our <a href="http://data.commit2dallas.org/#/district">district page</a>.
+                </p>
+                <p>
+                    There are 254 Counties in Texas with 8,254 schools and 1257 School Districts. Our state is made up of 4.5 million students and 334,354 teachers so there's a lot of data.
+                </p>
+            </div>
+        </div> 
+
+        <section class="panel panel-box">
+            <div class="panel-top bg-primary" style="background-color:#002768">
+                <div class="text-center"> 
+                </div>
+                <div class="divider divider-lg"></div>
+                <div class="divider divider-lg"></div>
+                <div class="divider divider-lg"></div>
+                <div class="divider divider-lg"></div>
+            </div>
+            <div class="panel-img bg-primary">
+                <img alt="" src="global-assets/images/texas.jpg" class="img-circle">
+            </div>
+            <div class="list-justified-container">
+                <ul class="list-justified text-center">
+                    <li>
+                        <p class="size-h3">8,574</p>
+                        <p class="text-muted">Campuses</p>
+                    </li>
+                    <li>
+                        <p class="size-h3">1,227</p>
+                        <p class="text-muted">Districts</p>
+                    </li>
+                    <li>
+                        <p class="size-h3">5,135,880</p>
+                        <p class="text-muted">Students</p>
+                    </li>
+                    <li>
+                        <p class="size-h3">334,511</p>
+                        <p class="text-muted">Teachers</p>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Where can I find the data? -->
+        <div class="panel panel-default">
+            <div class="panel-heading"><strong><i class="ti-bar-chart"></i> Where can I find the data?</strong></div>
+            <div class="panel-body">
+                <p>The state opens up the data on their website <a href="http://ritter.tea.state.tx.us/perfreport/aeis/" target="_blank">here</a>.</p>
+                <p>The data is aggregated at 4 levels:</p>
+                <ul>
+                    <li>Campus</li>
+                    <li>District</li>
+                    <li>Region</li>
+                    <li>State</li>
+                </ul>
+                <p>Each campus is given a campus number that is 9 digits long. The first 3 digits are the county, second three are the district, and then the campus. For example, 057905225:</p>
+                <ul>
+                    <li>057 - Dallas County</li>
+                    <li>905 - Dallas ISD</li>
+                    <li>225 - Woodrow Wilson High School</li>
+                </ul>
+                <p>Attached is a list of campus, district, and counties in Texas.</p>
+                <ul>
+                    <li><a href="https://commitdallas.blob.core.windows.net/references/2014_campus_reference.csv">Campus Reference</a></li>
+                    <li><a href="https://commitdallas.blob.core.windows.net/references/2014_district_reference.csv">District Reference</a></li>
+                    <li><a href="https://commitdallas.blob.core.windows.net/references/County_Numbers.csv">County Reference</a></li>
+                </ul> 
+            </div>
+        </div>  
+    </div>
+
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading"><strong><i class="ti-bar-chart"></i> Texas Student Demographics</strong></div>
+            <div class="panel-body">
+                <div class="text-center">Share of Internet Population Growth, 2007 - 2012</div>
+                <k-chart [chartOptions]="chartOptions"> 
+                </k-chart>
+            </div>
+        </div> 
+        <div class="panel panel-default">
+            <div class="panel-heading"><strong><i class="ti-bar-chart"></i> Texas School Districts</strong></div>
+            <div class="panel-body">
+                <img style="width:100%;" src="../../../global-assets/images/TX_Districts2.png" /> 
+            </div>
+        </div>
+    </div>  
+
+    <div class="row">
+        <div class="col-md-12"> 
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> <span data-i18n="Table"></span></strong></div>
+                <div class="panel-body">
+                    <p>Here is a list of all the tables and variables available in the AEIS/TAPR system going back to 1999</p>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div style="margin-bottom:20px;">
+                               <select class="k-widget k-dropdown k-header k-input" (change)="changeYear($event.target.value)">
+                                   <option *ngFor="#year of years" value="{{year.value}}">
+                                        {{year.text}}
+                                   </option>
+                               </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div style="margin-bottom:20px;">
+                                <select class="k-widget k-dropdown k-header k-input" (change)="changeTable($event.target.value)">
+                                   <option *ngFor="#table of tables" value="{{table.value}}">
+                                        {{table.text}}
+                                   </option>
+                               </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div id="dictionaryGrid"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+<aside id="nav-container" class="nav-container nav-fixed nav-vertical bg-dark">
+	<div class="nav-wrapper">
+		<ul id="nav" class="nav">
+			<li><a [routerLink]="['Home']" href=""> <i class="ti-home"></i><span data-i18n="Home">Home</span> </a></li>
+            <li><a [routerLink]="['Staar']" href=""><i class="ti-panel"></i><span data-i18n="Staar">What is STAAR?</span></a></li>	
+            <li><a [routerLink]="['Aeis']" href=""><i class="ti-flag-alt"></i><span data-i18n="Aeis">What is AEIS/TAPR?</span></a></li>
+            <li><a [routerLink]="['BulkData']" href=""><i class="ti-server"></i><span data-i18n="BulkData">Bulk Data</span></a></li>
+			<li><a [routerLink]="['DonorsChoose', {id:''}]" href=""><i class="ti-panel"></i><span data-i18n="Donors">Donors Choose</span></a></li>	
+			<li><a [routerLink]="['Scorecard']" href=""><i class="ti-ruler-pencil"></i><span data-i18n="Scorecard">Scorecard</span></a></li>	
+			<!--
+			<li><a [routerLink]="['Staar']" href=""><i class="ti-panel"></i><span data-i18n="Staar">What is STAAR?</span></a></li>	
+			<li><a [routerLink]="['BulkData']" href=""><i class="ti-panel"></i><span data-i18n="BulkData">Bulk Data</span></a></li>	
+			-->
+		</ul>
+	</div>
+</aside>
+
+<div id="content" class="content-container">
+    <section class="view-container">
+		<div class="page page-profile">
+			<header class="profile-header">
+				<div class="profile-img"></div> 
+				<a href="http://www.commit2dallas.org" target="_blank"><img alt="" src="global-assets/images/logo5.png"></a> 
+				<div class="profile-social" style="margin-left:25px;">
+					<a href="https://www.facebook.com/Commit2Dallas" target="_blank" class="btn-icon btn-icon-round btn-facebook"><i class="ti-facebook"></i></a>
+					<a href="https://twitter.com/commit2dallas" target="_blank" class="btn-icon btn-icon-round btn-twitter"><i class="ti-twitter"></i></a> 
+				</div> 
+			</header>
+            <router-outlet></router-outlet>
+		</div>
+	</section>
+</div>
