@@ -7,7 +7,6 @@ namespace slim_commit.Models
 {
     public class CampusFilter
     {
-        public string[] District { get; set; }
         public string[] Campus { get; set; }
         public string[] Year { get; set; }
         public Grades[] Grades { get; set; }

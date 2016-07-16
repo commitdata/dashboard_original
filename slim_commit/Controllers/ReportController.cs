@@ -50,7 +50,6 @@ namespace slim_commit.Controllers
                 string query = getFilterQuery(campusFilter);
                 connection.Open();
                 SqlCommand command = new SqlCommand(query, connection);
-                command.AddArrayParameters(campusFilter.District, "district");
                 command.AddArrayParameters(campusFilter.Demographic, "demo");
                 command.AddArrayParameters(campusFilter.Campus, "campus");
                 command.AddArrayParameters(campusFilter.Year, "year");
@@ -121,7 +120,6 @@ namespace slim_commit.Controllers
                 string query = getFilterQuery(campusFilter);
                 connection.Open();
                 SqlCommand command = new SqlCommand(query, connection);
-                command.AddArrayParameters(campusFilter.District, "district");
                 command.AddArrayParameters(campusFilter.Demographic, "demo");
                 command.AddArrayParameters(campusFilter.Campus, "campus");
                 command.AddArrayParameters(campusFilter.Year, "year");
@@ -141,10 +139,6 @@ namespace slim_commit.Controllers
             string separator = ",";
             string subjectGrades = string.Empty;
             string level = string.Empty;
-            if (campusFilter.District.Contains("All"))
-            {
-                campusFilter.District = new string[] { };
-            }
             if (campusFilter.Level.Length > 0)
             {
                 level = string.Join(",", campusFilter.Level);
@@ -167,7 +161,7 @@ namespace slim_commit.Controllers
                 subjectGrades = subjectGrades + " ) ";
             }
 
-            string query = "SELECT DNAME,CNAME,YEAR, DEMO, SUBJECT, GRADE, LANGUAGE " + level + " FROM [dbo].[staar_campus]  WHERE DISTRICT IN (@district) AND CAMPUS IN (@campus) AND YEAR IN (@year) AND DEMO IN (@demo) " + subjectGrades;
+            string query = "SELECT DNAME,CNAME,YEAR, DEMO, SUBJECT, GRADE, LANGUAGE " + level + " FROM [dbo].[staar_campus]  WHERE CAMPUS IN (@campus) AND YEAR IN (@year) AND DEMO IN (@demo) " + subjectGrades;
 
             return query;
         }

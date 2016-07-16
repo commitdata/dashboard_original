@@ -30,9 +30,9 @@
 
     function getAnalyticData(filter) {
         var districtData = [];
-        _.each(filter.District, function (camp) {
-            var data = _.find($scope.districts, function (districts) {
-                return districts.district = camp;
+        _.each($scope.selectedDistricts, function (camp) {
+            var data = _.find($scope.districts, function (dist) {
+                return dist.DISTRICT == camp;
             });
             districtData.push(data);
         });
@@ -50,7 +50,7 @@
         { Text: "2012", Value: "12" },
         { Text: "2013", Value: "13" },
         { Text: "2014", Value: "14" },
-        { Text: "2015", Value: "15" }   
+        { Text: "2015", Value: "15" }
     ];
 
     $scope.subjectGrades = [
@@ -138,7 +138,16 @@
 
         var autoFillData = [];
 
-        $scope.selectedDistricts.push($("#districtAutoSelect").data('kendoComboBox').value());
+        var selectedDistrict = $("#districtAutoSelect").data('kendoComboBox').value();
+        var isDistrictInList = false;
+        _.each($scope.selectedDistricts, function (district) {
+            if (district == selectedDistrict)
+                isDistrictInList = true;
+        });
+
+        if (!isDistrictInList)
+            $scope.selectedDistricts.push(selectedDistrict);
+
 
         var multiSelectItems = $('#campusAutoSelect').data('kendoMultiSelect');
         var selectedValues = multiSelectItems.value();
@@ -158,7 +167,6 @@
 
     function getfilterData() {
         var grade = [];
-        var district = $scope.selectedDistricts;
         var campus = getMultiSelectedValues('#commonCampusAutoSelected');
         var year = getMultiSelectedValues('#yearAutoSelect');
         var gradeData = getMultiSelectedValues('#subjectGradeAutoSelect');
@@ -172,7 +180,6 @@
         var level = getMultiSelectedValues('#levelAutoSelect');
 
         return {
-            District: district,
             Campus: campus,
             Year: year,
             Grades: grade,
@@ -183,7 +190,7 @@
     }
 
     $scope.loadReport = function () {
-       
+
         var filter = getfilterData();
         $scope.spinner = true;
         reportData.GenerateReport(filter).then(function (response) {
