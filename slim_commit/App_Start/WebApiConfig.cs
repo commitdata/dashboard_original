@@ -16,6 +16,8 @@ namespace slim_commit.App_Start
             // Web API routes
             //config.MapHttpAttributeRoutes();
 
+            config.EnableCors();
+
             config.Routes.MapHttpRoute(
                 name: "ActionApi",
                 routeTemplate: "api/{controller}/{action}/{id}",

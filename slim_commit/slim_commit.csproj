@@ -107,6 +107,10 @@
       <HintPath>..\packages\System.Spatial.5.7.0\lib\net40\System.Spatial.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Web.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.3\lib\net45\System.Web.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -122,6 +126,10 @@
     </Reference>
     <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.3\lib\net45\System.Web.Http.Cors.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -2778,6 +2786,7 @@
     <Compile Include="Cache\CommitCache.cs" />
     <Compile Include="Controllers\actExpController.cs" />
     <Compile Include="Controllers\aeisCurrentController.cs" />
+    <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="Controllers\CampusController.cs" />
     <Compile Include="Controllers\campusLongController.cs" />
     <Compile Include="Controllers\campusLongStaarController.cs" />
@@ -2791,6 +2800,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\districtLongController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
+    <Compile Include="Controllers\ReporterController.cs" />
     <Compile Include="Controllers\sqlController.cs" />
     <Compile Include="Controllers\StaarController.cs" />
     <Compile Include="Controllers\StaarSimpleController.cs" />
@@ -2799,10 +2809,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\CommitCorsPolicyAttribute.cs" />
     <Compile Include="Helpers\ExcelExportHelper.cs" />
     <Compile Include="Models\ActExpQuery.cs" />
     <Compile Include="Models\AeisQuery.cs" />
     <Compile Include="Models\AnalyticsData.cs" />
+    <Compile Include="Models\C2C.cs" />
     <Compile Include="Models\CampStaar.cs" />
     <Compile Include="Models\Campus.cs" />
     <Compile Include="Models\CampusAnalytics.cs" />
@@ -2811,6 +2823,7 @@
     <Compile Include="Models\District.cs" />
     <Compile Include="Models\DistrictStaar.cs" />
     <Compile Include="Models\InvitationModel.cs" />
+    <Compile Include="Models\ReporterModel.cs" />
     <Compile Include="Models\StaarQuery.cs">
       <SubType>Code</SubType>
     </Compile>
