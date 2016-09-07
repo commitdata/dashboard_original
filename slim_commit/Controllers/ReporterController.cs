@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Text;
 using System.Web.Http;
 using slim_commit.Models;
 
@@ -23,17 +25,67 @@ namespace slim_commit.Controllers
         {
             var records = new List<C2C>();
 
+            if (reporterModel == null) return records;
+
+            var sql = new StringBuilder("SELECT * FROM C2C");
+
+            var whereClause = new StringBuilder(" WHERE ");
+             
+            var appendAnd = false;
+
+            var query = PrepareSubInClause(reporterModel.Counties, "COUNTY", false, true);
+
+            if (!string.IsNullOrEmpty(query))
+            {
+                whereClause.Append(query);
+                appendAnd = true;
+            }
+
+            query = PrepareSubInClause(reporterModel.Districts, "DISTRICT", appendAnd, true);
+
+            if (!string.IsNullOrEmpty(query))
+            {
+                whereClause.Append(query);
+                appendAnd = true;
+            }
+
+            query = PrepareSubInClause(reporterModel.Campuses, "CAMPUS", appendAnd, true);
+
+            if (!string.IsNullOrEmpty(query))
+            {
+                whereClause.Append(query);
+                appendAnd = true;
+            }
+
+            query = PrepareSubInClause(reporterModel.Levels, "GRDTYPE", appendAnd, false);
+
+            if (!string.IsNullOrEmpty(query))
+            {
+                whereClause.Append(query);
+                appendAnd = true;
+            }
+
+            query = PrepareSubInClause(reporterModel.Charters, "CFLCHART", appendAnd, false);
+
+            if (!string.IsNullOrEmpty(query))
+            {
+                whereClause.Append(query); 
+            }
+
+            if (whereClause.Length > 10) sql.Append(whereClause);
+
             using (var connection = new SqlConnection(_connectionString))
             {
                 if (connection.State == ConnectionState.Closed) connection.Open();
 
-                var command = new SqlCommand("SELECT * FROM C2C WHERE COUNTY IN (@county) AND DISTRICT IN (@district) AND CAMPUS IN (@campus) AND GRDTYPE IN (@level) AND CFLCHART IN (@charter)", connection);
+                var command = new SqlCommand(sql.ToString(), connection);
 
-                command.AddArrayParameters(reporterModel.Counties, "county");
-                command.AddArrayParameters(reporterModel.Districts, "district");
-                command.AddArrayParameters(reporterModel.Campuses, "campus");
-                command.AddArrayParameters(reporterModel.Levels, "level");
-                command.AddArrayParameters(reporterModel.Charters, "charter");
+                //"SELECT * FROM C2C WHERE COUNTY IN (@county) AND DISTRICT IN (@district) AND CAMPUS IN (@campus) AND GRDTYPE IN (@level) AND CFLCHART IN (@charter)"
+                //command.AddArrayParameters(reporterModel.Counties, "county");
+                //command.AddArrayParameters(reporterModel.Districts, "district");
+                //command.AddArrayParameters(reporterModel.Campuses, "campus");
+                //command.AddArrayParameters(reporterModel.Levels, "level");
+                //command.AddArrayParameters(reporterModel.Charters, "charter");
 
                 var reader = command.ExecuteReader();
                 if (reader.HasRows)
@@ -155,6 +207,31 @@ namespace slim_commit.Controllers
                 connection.Close();
             }
             return records;
+        }
+
+
+        private string PrepareSubInClause(string[] values, string identifier, bool appendAnd, bool containSingleQuoteAtStart)
+        { 
+            if (values == null || values.Length == 0) return string.Empty; 
+
+            var inClause = new StringBuilder(string.Format(" {0} {1} IN (", appendAnd ? "AND" : String.Empty, identifier));
+            var count = 1;
+             
+            foreach (var value in values)
+            {
+                if (count >= 0 && count != values.Length)
+                {
+                    inClause.Append(containSingleQuoteAtStart ? string.Format("''{0}',", value) : string.Format("'{0}',", value)); // actual value in IN clause
+                }
+                else if(count == values.Length)
+                {
+                    inClause.Append(containSingleQuoteAtStart ? string.Format("''{0}')", value) : string.Format("'{0}')", value)); // bracket close of IN clause  
+                }
+
+                count++;
+            }
+
+            return inClause.ToString();
         }
     }
 }

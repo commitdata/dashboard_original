@@ -498,18 +498,16 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:slim_commit.Controllers.ReporterController.GetDistricts(slim_commit.Models.ReporterDistrictFilterModel)">
+        <member name="M:slim_commit.Controllers.ReporterController.GetDistricts">
             <summary>
             Get Districts
-            </summary>
-            <param name="filter"></param>
+            </summary> 
             <returns></returns>
         </member>
-        <member name="M:slim_commit.Controllers.ReporterController.GetCampuses(slim_commit.Models.ReporterCampusFilterModel)">
+        <member name="M:slim_commit.Controllers.ReporterController.GetCampuses">
             <summary>
             Get Campuses
-            </summary>
-            <param name="filter"></param>
+            </summary> 
             <returns></returns>
         </member>
         <member name="M:slim_commit.Controllers.ReporterController.GetGradeTypes">
