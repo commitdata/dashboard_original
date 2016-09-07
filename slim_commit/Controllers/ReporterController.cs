@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Text;
 using System.Web.Http;
 using slim_commit.Models;
@@ -30,10 +31,18 @@ namespace slim_commit.Controllers
             var sql = new StringBuilder("SELECT * FROM C2C");
 
             var whereClause = new StringBuilder(" WHERE ");
-             
+
+            if ((reporterModel.Counties != null && reporterModel.Counties.Any()) ||
+                (reporterModel.Districts != null && reporterModel.Districts.Any()) ||
+                (reporterModel.Campuses != null && reporterModel.Campuses.Any()))
+            {
+                whereClause.Append("(");
+            }
+
+
             var appendAnd = false;
 
-            var query = PrepareSubInClause(reporterModel.Counties, "COUNTY", false, true);
+            var query = PrepareSubInClause(reporterModel.Counties, "COUNTY", false, true, "OR");
 
             if (!string.IsNullOrEmpty(query))
             {
@@ -41,7 +50,7 @@ namespace slim_commit.Controllers
                 appendAnd = true;
             }
 
-            query = PrepareSubInClause(reporterModel.Districts, "DISTRICT", appendAnd, true);
+            query = PrepareSubInClause(reporterModel.Districts, "DISTRICT", appendAnd, true, "OR");
 
             if (!string.IsNullOrEmpty(query))
             {
@@ -49,7 +58,7 @@ namespace slim_commit.Controllers
                 appendAnd = true;
             }
 
-            query = PrepareSubInClause(reporterModel.Campuses, "CAMPUS", appendAnd, true);
+            query = PrepareSubInClause(reporterModel.Campuses, "CAMPUS", appendAnd, true, "OR");
 
             if (!string.IsNullOrEmpty(query))
             {
@@ -57,7 +66,14 @@ namespace slim_commit.Controllers
                 appendAnd = true;
             }
 
-            query = PrepareSubInClause(reporterModel.Levels, "GRDTYPE", appendAnd, false);
+            if ((reporterModel.Counties != null && reporterModel.Counties.Any()) ||
+                (reporterModel.Districts != null && reporterModel.Districts.Any()) ||
+                (reporterModel.Campuses != null && reporterModel.Campuses.Any()))
+            {
+                whereClause.Append(")");
+            }
+
+            query = PrepareSubInClause(reporterModel.Levels, "GRDTYPE", appendAnd, false, "AND");
 
             if (!string.IsNullOrEmpty(query))
             {
@@ -65,7 +81,7 @@ namespace slim_commit.Controllers
                 appendAnd = true;
             }
 
-            query = PrepareSubInClause(reporterModel.Charters, "CFLCHART", appendAnd, false);
+            query = PrepareSubInClause(reporterModel.Charters, "CFLCHART", appendAnd, false, "AND");
 
             if (!string.IsNullOrEmpty(query))
             {
@@ -210,11 +226,11 @@ namespace slim_commit.Controllers
         }
 
 
-        private string PrepareSubInClause(string[] values, string identifier, bool appendAnd, bool containSingleQuoteAtStart)
+        private string PrepareSubInClause(string[] values, string identifier, bool appendAnd, bool containSingleQuoteAtStart, string clause)
         { 
             if (values == null || values.Length == 0) return string.Empty; 
 
-            var inClause = new StringBuilder(string.Format(" {0} {1} IN (", appendAnd ? "AND" : String.Empty, identifier));
+            var inClause = new StringBuilder(string.Format(" {0} {1} IN (", appendAnd ? clause : String.Empty, identifier));
             var count = 1;
              
             foreach (var value in values)
