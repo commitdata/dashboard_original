@@ -80,19 +80,16 @@ namespace slim_commit.Controllers
 
         /// <summary>
         /// Get Districts
-        /// </summary>
-        /// <param name="filter"></param>
+        /// </summary> 
         /// <returns></returns>
-        [HttpPost]
-        public List<ReporterDistrictModel> GetDistricts(ReporterDistrictFilterModel filter)
+        public List<ReporterDistrictModel> GetDistricts() //ReporterDistrictFilterModel filter
         {
             var records = new List<ReporterDistrictModel>();
 
             using (var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                var command = new SqlCommand("select distinct DISTNAME, DISTRICT,COUNTY from C2C where COUNTY IN (@county) order by DISTNAME", connection);
-                command.AddArrayParameters(filter.Counties, "county");
+                var command = new SqlCommand("select distinct DISTNAME, DISTRICT,COUNTY from C2C order by DISTNAME", connection);
                 var reader = command.ExecuteReader();
                 while (reader.Read())
                 {
@@ -109,19 +106,17 @@ namespace slim_commit.Controllers
 
         /// <summary>
         /// Get Campuses
-        /// </summary>
-        /// <param name="filter"></param>
+        /// </summary> 
         /// <returns></returns>
-        [HttpPost]
-        public List<ReporterCampusModel> GetCampuses(ReporterCampusFilterModel filter)
+        public List<ReporterCampusModel> GetCampuses() //ReporterCampusFilterModel filter
         {
             var records = new List<ReporterCampusModel>();
 
             using (var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                var command = new SqlCommand("select distinct CAMPNAME, CAMPUS, DISTRICT,COUNTY from C2C where DISTRICT IN (@district) order by CAMPNAME", connection);
-                command.AddArrayParameters(filter.Districts, "district");
+                var command = new SqlCommand("select distinct CAMPNAME, CAMPUS, DISTRICT,COUNTY from C2C order by CAMPNAME", connection);
+                //command.AddArrayParameters(filter.Districts, "district");
                 var reader = command.ExecuteReader();
                 while (reader.Read())
                 {
