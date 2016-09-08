@@ -481,6 +481,11 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
+        <member name="T:slim_commit.Controllers.ReporterController">
+            <summary>
+            Reporter Controller
+            </summary>
+        </member>
         <member name="F:slim_commit.Controllers.ReporterController._connectionString">
             <summary>
             Connection string
@@ -498,13 +503,13 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:slim_commit.Controllers.ReporterController.GetDistricts">
+        <member name="M:slim_commit.Controllers.ReporterController.GetDistricts(slim_commit.Models.ReporterDistrictFilterModel)">
             <summary>
             Get Districts
             </summary> 
             <returns></returns>
         </member>
-        <member name="M:slim_commit.Controllers.ReporterController.GetCampuses">
+        <member name="M:slim_commit.Controllers.ReporterController.GetCampuses(slim_commit.Models.ReporterCampusFilterModel)">
             <summary>
             Get Campuses
             </summary> 

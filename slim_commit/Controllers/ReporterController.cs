@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
 using System.Web.Http;
 using slim_commit.Models;
 
 namespace slim_commit.Controllers
 {
+    /// <summary>
+    /// Reporter Controller
+    /// </summary>
     public class ReporterController : BaseApiController
     {
         /// <summary>
@@ -26,82 +26,17 @@ namespace slim_commit.Controllers
         {
             var records = new List<C2C>();
 
-            if (reporterModel == null) return records;
-
-            var sql = new StringBuilder("SELECT * FROM C2C");
-
-            var whereClause = new StringBuilder(" WHERE ");
-
-            if ((reporterModel.Counties != null && reporterModel.Counties.Any()) ||
-                (reporterModel.Districts != null && reporterModel.Districts.Any()) ||
-                (reporterModel.Campuses != null && reporterModel.Campuses.Any()))
-            {
-                whereClause.Append("(");
-            }
-
-
-            var appendAnd = false;
-
-            var query = PrepareSubInClause(reporterModel.Counties, "COUNTY", false, true, "OR");
-
-            if (!string.IsNullOrEmpty(query))
-            {
-                whereClause.Append(query);
-                appendAnd = true;
-            }
-
-            query = PrepareSubInClause(reporterModel.Districts, "DISTRICT", appendAnd, true, "OR");
-
-            if (!string.IsNullOrEmpty(query))
-            {
-                whereClause.Append(query);
-                appendAnd = true;
-            }
-
-            query = PrepareSubInClause(reporterModel.Campuses, "CAMPUS", appendAnd, true, "OR");
-
-            if (!string.IsNullOrEmpty(query))
-            {
-                whereClause.Append(query);
-                appendAnd = true;
-            }
-
-            if ((reporterModel.Counties != null && reporterModel.Counties.Any()) ||
-                (reporterModel.Districts != null && reporterModel.Districts.Any()) ||
-                (reporterModel.Campuses != null && reporterModel.Campuses.Any()))
-            {
-                whereClause.Append(")");
-            }
-
-            query = PrepareSubInClause(reporterModel.Levels, "GRDTYPE", appendAnd, false, "AND");
-
-            if (!string.IsNullOrEmpty(query))
-            {
-                whereClause.Append(query);
-                appendAnd = true;
-            }
-
-            query = PrepareSubInClause(reporterModel.Charters, "CFLCHART", appendAnd, false, "AND");
-
-            if (!string.IsNullOrEmpty(query))
-            {
-                whereClause.Append(query); 
-            }
-
-            if (whereClause.Length > 10) sql.Append(whereClause);
-
             using (var connection = new SqlConnection(_connectionString))
             {
                 if (connection.State == ConnectionState.Closed) connection.Open();
 
-                var command = new SqlCommand(sql.ToString(), connection);
+                var command = new SqlCommand("SELECT * FROM C2C WHERE COUNTY IN (@county) AND DISTRICT IN (@district) AND CAMPUS IN (@campus) AND GRDTYPE IN (@level) AND CFLCHART IN (@charter)", connection);
 
-                //"SELECT * FROM C2C WHERE COUNTY IN (@county) AND DISTRICT IN (@district) AND CAMPUS IN (@campus) AND GRDTYPE IN (@level) AND CFLCHART IN (@charter)"
-                //command.AddArrayParameters(reporterModel.Counties, "county");
-                //command.AddArrayParameters(reporterModel.Districts, "district");
-                //command.AddArrayParameters(reporterModel.Campuses, "campus");
-                //command.AddArrayParameters(reporterModel.Levels, "level");
-                //command.AddArrayParameters(reporterModel.Charters, "charter");
+                command.AddArrayParameters(reporterModel.Counties, "county");
+                command.AddArrayParameters(reporterModel.Districts, "district");
+                command.AddArrayParameters(reporterModel.Campuses, "campus");
+                command.AddArrayParameters(reporterModel.Levels, "level");
+                command.AddArrayParameters(reporterModel.Charters, "charter");
 
                 var reader = command.ExecuteReader();
                 if (reader.HasRows)
@@ -150,14 +85,16 @@ namespace slim_commit.Controllers
         /// Get Districts
         /// </summary> 
         /// <returns></returns>
-        public List<ReporterDistrictModel> GetDistricts() //ReporterDistrictFilterModel filter
+        [HttpPost]
+        public List<ReporterDistrictModel> GetDistricts(ReporterDistrictFilterModel filter) 
         {
             var records = new List<ReporterDistrictModel>();
 
             using (var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                var command = new SqlCommand("select distinct DISTNAME, DISTRICT,COUNTY from C2C order by DISTNAME", connection);
+                var command = new SqlCommand("select distinct DISTNAME, DISTRICT,COUNTY from C2C WHERE COUNTY IN (@county) order by DISTNAME", connection);
+                command.AddArrayParameters(filter.Counties, "county");
                 var reader = command.ExecuteReader();
                 while (reader.Read())
                 {
@@ -176,15 +113,16 @@ namespace slim_commit.Controllers
         /// Get Campuses
         /// </summary> 
         /// <returns></returns>
-        public List<ReporterCampusModel> GetCampuses() //ReporterCampusFilterModel filter
+        [HttpPost]
+        public List<ReporterCampusModel> GetCampuses(ReporterCampusFilterModel filter) 
         {
             var records = new List<ReporterCampusModel>();
 
             using (var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                var command = new SqlCommand("select distinct CAMPNAME, CAMPUS, DISTRICT,COUNTY from C2C order by CAMPNAME", connection);
-                //command.AddArrayParameters(filter.Districts, "district");
+                var command = new SqlCommand("select distinct CAMPNAME, CAMPUS, DISTRICT,COUNTY from C2C WHERE DISTRICT IN (@district) order by CAMPNAME", connection);
+                command.AddArrayParameters(filter.Districts, "district");
                 var reader = command.ExecuteReader();
                 while (reader.Read())
                 {
@@ -223,31 +161,6 @@ namespace slim_commit.Controllers
                 connection.Close();
             }
             return records;
-        }
-
-
-        private string PrepareSubInClause(string[] values, string identifier, bool appendAnd, bool containSingleQuoteAtStart, string clause)
-        { 
-            if (values == null || values.Length == 0) return string.Empty; 
-
-            var inClause = new StringBuilder(string.Format(" {0} {1} IN (", appendAnd ? clause : String.Empty, identifier));
-            var count = 1;
-             
-            foreach (var value in values)
-            {
-                if (count >= 0 && count != values.Length)
-                {
-                    inClause.Append(containSingleQuoteAtStart ? string.Format("''{0}',", value) : string.Format("'{0}',", value)); // actual value in IN clause
-                }
-                else if(count == values.Length)
-                {
-                    inClause.Append(containSingleQuoteAtStart ? string.Format("''{0}')", value) : string.Format("'{0}')", value)); // bracket close of IN clause  
-                }
-
-                count++;
-            }
-
-            return inClause.ToString();
         }
     }
 }
