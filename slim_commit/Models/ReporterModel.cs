@@ -90,7 +90,7 @@ namespace slim_commit.Models
         {
             this.DistrictName = dataRecord["DISTNAME"].ToString();
             this.District = dataRecord["DISTRICT"].ToString();
-            this.County = dataRecord["COUNTY"].ToString();
+            //this.County = dataRecord["COUNTY"].ToString();
         }
     }
 
@@ -126,8 +126,8 @@ namespace slim_commit.Models
         {
             this.CampusName = dataRecord["CAMPNAME"].ToString();
             this.Campus = dataRecord["CAMPUS"].ToString();
-            this.District = dataRecord["DISTRICT"].ToString();
-            this.County = dataRecord["COUNTY"].ToString();
+            //this.District = dataRecord["DISTRICT"].ToString();
+            //this.County = dataRecord["COUNTY"].ToString();
         }
     }
 

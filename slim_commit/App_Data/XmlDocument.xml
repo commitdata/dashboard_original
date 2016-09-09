@@ -491,6 +491,30 @@
             Connection string
             </summary>
         </member>
+        <member name="M:slim_commit.Controllers.ReporterController.FilterC2C1(slim_commit.Models.ReporterModel)">
+            <summary>
+            Get C2C records
+            </summary> 
+            <returns>List of C2C records</returns>
+        </member>
+        <member name="M:slim_commit.Controllers.ReporterController.GetCounties1">
+            <summary>
+            Get Counties
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:slim_commit.Controllers.ReporterController.GetDistricts1(slim_commit.Models.ReporterDistrictFilterModel)">
+            <summary>
+            Get Districts
+            </summary> 
+            <returns></returns>
+        </member>
+        <member name="M:slim_commit.Controllers.ReporterController.GetCampuses1(slim_commit.Models.ReporterCampusFilterModel)">
+            <summary>
+            Get Campuses
+            </summary> 
+            <returns></returns>
+        </member>
         <member name="M:slim_commit.Controllers.ReporterController.FilterC2C(slim_commit.Models.ReporterModel)">
             <summary>
             Get C2C records
@@ -658,6 +682,17 @@
             </summary>
         </member>
         <member name="M:slim_commit.Models.C2C.#ctor(System.Data.IDataRecord)">
+            <summary>
+            constructor
+            </summary>
+            <param name="dataRecord"></param>
+        </member>
+        <member name="T:slim_commit.Models.ReporterC2C">
+            <summary>
+            C2C
+            </summary>
+        </member>
+        <member name="M:slim_commit.Models.ReporterC2C.#ctor(System.Data.IDataRecord)">
             <summary>
             constructor
             </summary>
