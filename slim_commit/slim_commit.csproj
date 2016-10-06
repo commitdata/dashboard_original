@@ -2806,6 +2806,7 @@
     <Compile Include="Controllers\StaarSimpleController.cs" />
     <Compile Include="Controllers\teksController.cs" />
     <Compile Include="Extensions\DataReaderExtensions.cs" />
+    <Compile Include="Extensions\DataRecordExtension.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

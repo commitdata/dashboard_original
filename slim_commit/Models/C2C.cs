@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
+using slim_commit.Extensions;
 
 namespace slim_commit.Models
 {
@@ -167,105 +168,115 @@ namespace slim_commit.Models
         public string CFLCHART { get; set; }
         public string GRDSPAN { get; set; }
         public string GRDTYPE { get; set; }
-        public string CPETALLC { get; set; }
-        public string CPETBLAC { get; set; }
-        public string CPETHISC { get; set; }
-        public string CPETWHIC { get; set; }
-        public string CPETECOC { get; set; }
-        public string CPETLEPC { get; set; }
-        public string CPETRSKC { get; set; }
-        public string CPETBLAP { get; set; }
-        public string CPETHISP { get; set; }
-        public string CPETWHIP { get; set; }
-        public string CPETECOP { get; set; }
-        public string CPETLEPP { get; set; }
-        public string CPETRSKP { get; set; }
-        public string CPEMALLP { get; set; }
-        public string CPETSPEP { get; set; }
-        public string CPETGPKC { get; set; }
-        public string Estimated_Eligible_1st_Graders { get; set; }
-        public string CPETGPKP { get; set; }
-        public string Num_Not_Enrolled { get; set; }
-        public string attendance_rate { get; set; }
-        public string Graduates { get; set; }
-        public string percent_test_taking { get; set; }
-        public string percent_above_criterion { get; set; }
-        public string percent_college_ready { get; set; }
-        public string number_not_college_ready { get; set; }
-        public string percent_graduating_4_years { get; set; }
-        public string three_r_d { get; set; }
-        public string three_r_rec { get; set; }
-        public string three_r_not_rec { get; set; }
-        public string three_r_rec_rate { get; set; }
-        public string four_m_d { get; set; }
-        public string four_m_rec { get; set; }
-        public string four_m_not_rec { get; set; }
-        public string four_m_rec_rate { get; set; }
-        public string eight_s_d { get; set; }
-        public string eight_s_rec { get; set; }
-        public string eight_s_not_rec { get; set; }
-        public string eight_s_rec_rate { get; set; }
-        public string a1_EOC_d { get; set; }
-        public string a1_EOC_rec { get; set; }
-        public string a1_EOC_not_rec { get; set; }
-        public string a1_EOC_rec_rate { get; set; }
+        public int? CPETALLC { get; set; }
+        public int? CPETBLAC { get; set; }
+        public int? CPETHISC { get; set; }
+        public int? CPETWHIC { get; set; }
+        public int? CPETECOC { get; set; }
+        public int? CPETLEPC { get; set; }
+        public decimal? CPETRSKC { get; set; }
+        public decimal? CPETBLAP { get; set; }
+        public decimal? CPETHISP { get; set; }
+        public decimal? CPETWHIP { get; set; }
+        public decimal? CPETECOP { get; set; }
+        public decimal? CPETLEPP { get; set; }
+        public decimal? CPETRSKP { get; set; }
+        public decimal? CPEMALLP { get; set; }
+        public decimal? CPETSPEP { get; set; }
+        public int? CPETGPKC { get; set; }
+        public decimal? Estimated_Eligible_1st_Graders { get; set; }
+        public decimal? CPETGPKP { get; set; }
+        public decimal? Num_Not_Enrolled { get; set; }
+        public decimal? attendance_rate { get; set; }
+        public decimal? Graduates { get; set; }
+        public decimal? percent_test_taking { get; set; }
+        public decimal? percent_above_criterion { get; set; }
+        public int? percent_college_ready { get; set; }
+        public int? number_not_college_ready { get; set; }
+        public decimal? percent_graduating_4_years { get; set; }
+        public int? three_r_d { get; set; }
+        public int? three_r_rec { get; set; }
+        public int? three_r_not_rec { get; set; }
+        public decimal? three_r_rec_rate { get; set; }
+        public int? four_m_d { get; set; }
+        public int? four_m_rec { get; set; }
+        public int? four_m_not_rec { get; set; }
+        public decimal? four_m_rec_rate { get; set; }
+        public int? eight_s_d { get; set; }
+        public int? eight_s_rec { get; set; }
+        public int? eight_s_not_rec { get; set; }
+        public decimal? eight_s_rec_rate { get; set; }
+        public int? a1_EOC_d { get; set; }
+        public int? a1_EOC_rec { get; set; }
+        public int? a1_EOC_not_rec { get; set; }
+        public decimal? a1_EOC_rec_rate { get; set; }
         /// <summary>
         /// constructor
         /// </summary>
         /// <param name="dataRecord"></param>
         public ReporterC2C(IDataRecord dataRecord)
         {
-            this.Id = int.Parse(dataRecord["Id"].ToString());
-            this.CNTYNAME = dataRecord["CNTYNAME"].ToString().Replace("'", string.Empty);
-            this.DISTNAME = dataRecord["DISTNAME"].ToString();
-            this.CAMPUS = dataRecord["CAMPUS"].ToString();
-            this.CAMPNAME = dataRecord["CAMPNAME"].ToString();
-            this.CFLALTED = dataRecord["CFLALTED"].ToString();
-            this.CFLCHART = dataRecord["CFLCHART"].ToString();
-            this.GRDSPAN = dataRecord["GRDSPAN"].ToString();
-            this.GRDTYPE = dataRecord["GRDTYPE"].ToString();
-            this.CPETALLC = dataRecord["CPETALLC"].ToString();
-            this.CPETBLAC = dataRecord["CPETBLAC"].ToString();
-            this.CPETHISC = dataRecord["CPETHISC"].ToString();
-            this.CPETWHIC = dataRecord["CPETWHIC"].ToString();
-            this.CPETECOC = dataRecord["CPETECOC"].ToString();
-            this.CPETLEPC = dataRecord["CPETLEPC"].ToString();
-            this.CPETRSKC = dataRecord["CPETRSKC"].ToString();
-            this.CPETBLAP = dataRecord["CPETBLAP"].ToString();
-            this.CPETHISP = dataRecord["CPETHISP"].ToString();
-            this.CPETWHIP = dataRecord["CPETWHIP"].ToString();
-            this.CPETECOP = dataRecord["CPETECOP"].ToString();
-            this.CPETLEPP = dataRecord["CPETLEPP"].ToString();
-            this.CPETRSKP = dataRecord["CPETRSKP"].ToString();
-            this.CPEMALLP = dataRecord["CPEMALLP"].ToString();
-            this.CPETSPEP = dataRecord["CPETSPEP"].ToString();
-            this.CPETGPKC = dataRecord["CPETGPKC"].ToString();
-            this.Estimated_Eligible_1st_Graders = dataRecord["Estimated_Eligible_1st_Graders"].ToString();
-            this.CPETGPKP = dataRecord["CPETGPKP"].ToString();
-            this.Num_Not_Enrolled = dataRecord["Num_Not_Enrolled"].ToString();
-            this.attendance_rate = dataRecord["attendance_rate"].ToString();
-            this.Graduates = dataRecord["Graduates"].ToString();
-            this.percent_test_taking = dataRecord["percent_test_taking"].ToString();
-            this.percent_above_criterion = dataRecord["percent_above_criterion"].ToString();
-            this.percent_college_ready = dataRecord["percent_college_ready"].ToString();
-            this.number_not_college_ready = dataRecord["number_not_college_ready"].ToString();
-            this.percent_graduating_4_years = dataRecord["percent_graduating_4_years"].ToString();
-            this.three_r_d = dataRecord["3_r_d"].ToString();
-            this.three_r_rec = dataRecord["3_r_rec"].ToString();
-            this.three_r_not_rec = dataRecord["3_r_not_rec"].ToString();
-            this.three_r_rec_rate = dataRecord["3_r_rec_rate"].ToString();
-            this.four_m_d = dataRecord["4_m_d"].ToString();
-            this.four_m_rec = dataRecord["4_m_rec"].ToString();
-            this.four_m_not_rec = dataRecord["4_m_not_rec"].ToString();
-            this.four_m_rec_rate = dataRecord["4_m_rec_rate"].ToString();
-            this.eight_s_d = dataRecord["8_s_d"].ToString();
-            this.eight_s_rec = dataRecord["8_s_rec"].ToString();
-            this.eight_s_not_rec = dataRecord["8_s_not_rec"].ToString();
-            this.eight_s_rec_rate = dataRecord["8_s_rec_rate"].ToString();
-            this.a1_EOC_d = dataRecord["a1_EOC_d"].ToString();
-            this.a1_EOC_rec = dataRecord["a1_EOC_rec"].ToString();
-            this.a1_EOC_not_rec = dataRecord["a1_EOC_not_rec"].ToString();
-            this.a1_EOC_rec_rate = dataRecord["a1_EOC_rec_rate"].ToString();
+            this.Id = dataRecord.GetValueOrDefault<int>("Id");
+
+            this.CNTYNAME = dataRecord.GetValueOrDefault<string>("CNTYNAME").Replace("'", string.Empty);
+            this.DISTNAME = dataRecord.GetValueOrDefault<string>("DISTNAME");
+            this.CAMPUS = dataRecord.GetValueOrDefault<string>("CAMPUS");
+            this.CAMPNAME = dataRecord.GetValueOrDefault<string>("CAMPNAME");
+            this.CFLALTED = dataRecord.GetValueOrDefault<string>("CFLALTED");
+            this.CFLCHART = dataRecord.GetValueOrDefault<string>("CFLCHART");
+            this.GRDSPAN = dataRecord.GetValueOrDefault<string>("GRDSPAN");
+            this.GRDTYPE = dataRecord.GetValueOrDefault<string>("GRDTYPE");
+
+            this.CPETALLC = dataRecord.GetValueOrDefault<int?>("CPETALLC");
+            this.CPETBLAC = dataRecord.GetValueOrDefault<int?>("CPETBLAC");
+            this.CPETHISC = dataRecord.GetValueOrDefault<int?>("CPETHISC");
+            this.CPETWHIC = dataRecord.GetValueOrDefault<int?>("CPETWHIC");
+            this.CPETECOC = dataRecord.GetValueOrDefault<int?>("CPETECOC");
+            this.CPETLEPC = dataRecord.GetValueOrDefault<int?>("CPETLEPC");
+
+            this.CPETRSKC = dataRecord.GetValueOrDefault<decimal?>("CPETRSKC");
+            this.CPETBLAP = dataRecord.GetValueOrDefault<decimal?>("CPETBLAP");
+            this.CPETHISP = dataRecord.GetValueOrDefault<decimal?>("CPETHISP");
+            this.CPETWHIP = dataRecord.GetValueOrDefault<decimal?>("CPETWHIP");
+            this.CPETECOP = dataRecord.GetValueOrDefault<decimal?>("CPETECOP");
+            this.CPETLEPP = dataRecord.GetValueOrDefault<decimal?>("CPETLEPP");
+            this.CPETRSKP = dataRecord.GetValueOrDefault<decimal?>("CPETRSKP");
+            this.CPEMALLP = dataRecord.GetValueOrDefault<decimal?>("CPEMALLP");
+            this.CPETSPEP = dataRecord.GetValueOrDefault<decimal?>("CPETSPEP");
+
+            this.CPETGPKC = dataRecord.GetValueOrDefault<int?>("CPETGPKC");
+
+            this.Estimated_Eligible_1st_Graders = dataRecord.GetValueOrDefault<decimal?>("Estimated_Eligible_1st_Graders");
+            this.CPETGPKP = dataRecord.GetValueOrDefault<decimal?>("CPETGPKP");
+            this.Num_Not_Enrolled = dataRecord.GetValueOrDefault<decimal?>("Num_Not_Enrolled");
+            this.attendance_rate = dataRecord.GetValueOrDefault<decimal?>("attendance_rate");
+            this.Graduates = dataRecord.GetValueOrDefault<decimal?>("Graduates");
+            this.percent_test_taking = dataRecord.GetValueOrDefault<decimal?>("percent_test_taking");
+            this.percent_above_criterion = dataRecord.GetValueOrDefault<decimal?>("percent_above_criterion");
+
+            this.percent_college_ready = dataRecord.GetValueOrDefault<int?>("percent_college_ready");
+            this.number_not_college_ready = dataRecord.GetValueOrDefault<int?>("number_not_college_ready");
+            this.percent_graduating_4_years = dataRecord.GetValueOrDefault<decimal?>("percent_graduating_4_years");
+
+            this.three_r_d = dataRecord.GetValueOrDefault<int?>("3_r_d");
+            this.three_r_rec = dataRecord.GetValueOrDefault<int?>("3_r_rec");
+            this.three_r_not_rec = dataRecord.GetValueOrDefault<int?>("3_r_not_rec");
+            this.three_r_rec_rate = dataRecord.GetValueOrDefault<decimal?>("3_r_rec_rate");
+
+            this.four_m_d = dataRecord.GetValueOrDefault<int?>("4_m_d");
+            this.four_m_rec = dataRecord.GetValueOrDefault<int?>("4_m_rec");
+            this.four_m_not_rec = dataRecord.GetValueOrDefault<int?>("4_m_not_rec");
+            this.four_m_rec_rate = dataRecord.GetValueOrDefault<decimal?>("4_m_rec_rate");
+
+            this.eight_s_d = dataRecord.GetValueOrDefault<int?>("8_s_d");
+            this.eight_s_rec = dataRecord.GetValueOrDefault<int?>("8_s_rec");
+            this.eight_s_not_rec = dataRecord.GetValueOrDefault<int?>("8_s_not_rec");
+            this.eight_s_rec_rate = dataRecord.GetValueOrDefault<decimal?>("8_s_rec_rate");
+
+            this.a1_EOC_d = dataRecord.GetValueOrDefault<int?>("a1_EOC_d");
+            this.a1_EOC_rec = dataRecord.GetValueOrDefault<int?>("a1_EOC_rec");
+            this.a1_EOC_not_rec = dataRecord.GetValueOrDefault<int?>("a1_EOC_not_rec");
+            this.a1_EOC_rec_rate = dataRecord.GetValueOrDefault<decimal?>("a1_EOC_rec_rate");
         }
     }
 }
