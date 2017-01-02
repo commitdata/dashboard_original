@@ -202,7 +202,7 @@
             var campusSeries = [], districtSeries = [], stateSeries = [];
             var cKey = "C" + $scope.starrAllDemoType + $scope.starrAllSubType + $scope.starrAllRecType + "YRYR";
             var dKey = "D" + $scope.starrAllDemoType + $scope.starrAllSubType + $scope.starrAllRecType + "YRYR";
-            for (i = 2013; i <= 2015; i++) {
+            for (i = 2013; i <= 2015; i++) { // 2016 
                 var campusItem = _.findWhere($scope.staarAll.campus, { YEAR: i });
                 var districtItem = _.findWhere($scope.staarAll.district, { YEAR: i });
                 var stateItem = _.findWhere($scope.staarAll.state, { YEAR: i });
@@ -365,10 +365,10 @@
             var other = 100 - $scope.campus.studentInfo["CPETWHIP"] - $scope.campus.studentInfo["CPETBLAP"] - $scope.campus.studentInfo["CPETHISP"] - $scope.campus.studentInfo["CPETASIP"];
 
             var pieData = [
-                { category: "% " + fieldMapper.campus["CPETHISP"].replace("Student: ", ""), value: $scope.campus.studentInfo["CPETHISP"].toFixed(1), color: '#c3151c' },
-                { category: "% " + fieldMapper.campus["CPETBLAP"].replace("Student: ", ""), value: $scope.campus.studentInfo["CPETBLAP"].toFixed(1), color: '#003662' },
-                { category: "% " + fieldMapper.campus["CPETWHIP"].replace("Student: ", ""), value: $scope.campus.studentInfo["CPETWHIP"].toFixed(1), color: '#fbb613' },
-                { category: "% " + fieldMapper.campus["CPETASIP"].replace("Student: ", ""), value: $scope.campus.studentInfo["CPETASIP"].toFixed(1), color: '#0086a1' },
+                { category: "% " + fieldMapper.campus["CPETHISP"].replace("Student: ", ""), value: $scope.campus.studentInfo["CPETHISP"], color: '#c3151c' },
+                { category: "% " + fieldMapper.campus["CPETBLAP"].replace("Student: ", ""), value: $scope.campus.studentInfo["CPETBLAP"], color: '#003662' },
+                { category: "% " + fieldMapper.campus["CPETWHIP"].replace("Student: ", ""), value: $scope.campus.studentInfo["CPETWHIP"], color: '#fbb613' },
+                { category: "% " + fieldMapper.campus["CPETASIP"].replace("Student: ", ""), value: $scope.campus.studentInfo["CPETASIP"], color: '#0086a1' },
                 { category: '% Other', value: other.toFixed(1), color: '#91c63d' },
             ];
 

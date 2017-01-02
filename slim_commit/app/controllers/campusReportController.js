@@ -39,7 +39,7 @@
 
         function init() {
             $scope.spinner = true;
-            $scope.selectedYear = '2015';
+            $scope.selectedYear = '2015'; //'2016';
             campusReportData.getCounties($scope.selectedYear).success(function (data) {
                 $scope.counties = data;
                 $scope.selectedCounty = _.findWhere($scope.counties, { COUNTY: "'057" });

@@ -64,7 +64,7 @@
     };
 
     $scope.$on("$viewContentLoaded", function () {
-        $scope.selectedYear = $routeParams.year || '2015';
+        $scope.selectedYear = $routeParams.year || '2016'; 
         district2015Data.setCurrentYear($scope.selectedYear);
         districtGeneral.Init($scope, chartMapper);
         districtStudent.Init($scope, chartMapper);

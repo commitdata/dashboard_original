@@ -116,9 +116,15 @@
     };
     $scope.gradeChange = function () {
         if (!$scope.selectStaarGrades) return;
-        if ($scope.selectStaarGrades != "none") {
+        if ($scope.selectStaarGrades != "none") { 
             $scope.filteredSubjects = _.where($scope.subject, { "Grade": $scope.selectStaarGrades });
-            $scope.staarAllGradesSubType = $scope.filteredSubjects[0].Subject;
+            if ($scope.filteredSubjects.length > 0) {
+                $scope.staarAllGradesSubType = $scope.filteredSubjects[0].Subject;
+            }
+            else {
+                $scope.filteredSubjects = {};
+                $scope.staarAllGradesSubType = null;
+            }
         }
         else {
             $scope.filteredSubjects = {};
@@ -305,7 +311,7 @@
 
 
     $scope.$on("$viewContentLoaded", function () {
-        $scope.selectedYear = $routeParams.year || '2015';
+        $scope.selectedYear = $routeParams.year || '2016';
         campusData.setCurrentYear($scope.selectedYear);
         campusGeneral.Init($scope, chartMapper);
         campusStudent.Init($scope, chartMapper);

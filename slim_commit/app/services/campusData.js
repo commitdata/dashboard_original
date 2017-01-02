@@ -8,7 +8,7 @@
             }
         });
     };
-    var year = 2015;
+    var year = 2016;
     return {
         setCurrentYear: function (currentYear) {
             year = currentYear;
@@ -73,8 +73,8 @@
         },
         getStaarSubject: function (campus) {
             return $http.get("/api/campus/GetStaarSubject?year=" + year + "&campus=" + campus).then(function (response) {
-                _.each(response.data, function (obj) {
-                    _.each(obj, function (value, key) {
+                _.each(response.data, function (obj) { 
+                    _.each(obj, function (value, key) { 
                         if (["CAMPUS", "Subject", "Grade"].indexOf(key) < 0) {
                             obj[key] = parseFloat(value) || null;
                         }
