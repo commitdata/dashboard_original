@@ -247,7 +247,7 @@ namespace slim_commit.Controllers
             using (SqlConnection connection = new SqlConnection(currentConnection))
             {
                 connection.Open();
-                for (int i = 2013; i <= 2016; i++)
+                for (int i = 2013; i <= 2015; i++) //2016
                 {
                     string query = string.Format("SELECT Year,District,Subject,Grade, sum(cast(d as float)) as d, sum(cast(satis_ph1_nm as float)) as satis_ph1_nm, sum(cast(satis_rec_nm as float)) as satis_rec_nm FROM staar_district where (DISTRICT = @district OR DISTRICT ='''1') AND year = @year group by Subject,Grade,District,Year");
                     SqlCommand command = new SqlCommand(query, connection);
