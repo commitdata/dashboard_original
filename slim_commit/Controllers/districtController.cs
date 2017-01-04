@@ -228,7 +228,7 @@ namespace slim_commit.Controllers
                 connection.Open();
                 string query = "DAGC4X14R as DAGC4XYRYR, DBGC4X14R as DBGC4XYRYR, DHGC4X14R as DHGC4XYRYR, DWGC4X14R as DWGC4XYRYR, DLGC4X14R as DLGC4XYRYR, DEGC4X14R as DEGC4XYRYR";
                 query = query.Replace("14R as", yearCode + "R as");
-                if(year == 2016) query = query.Replace("4X1", "41");
+                if (year == 2016) query = query.Replace("4X1", "41");
                 SqlCommand command = new SqlCommand(string.Format("select DISTRICT, {0} from DCOMP4$ where district = @district OR district = @state", query), connection);
                 command.Parameters.AddWithValue("district", district);
                 command.Parameters.AddWithValue("state", state);
@@ -247,17 +247,13 @@ namespace slim_commit.Controllers
             using (SqlConnection connection = new SqlConnection(currentConnection))
             {
                 connection.Open();
-                for (int i = 2013; i <= 2015; i++) //2016
+                string query = "SELECT Year,District,Subject,Grade, sum(cast(d as float)) as d, sum(cast(satis_ph1_nm as float)) as satis_ph1_nm, sum(cast(satis_rec_nm as float)) as satis_rec_nm FROM staar_district where (DISTRICT = @district OR DISTRICT =\'\'\'1\') AND year in ({0}) group by Subject,Grade,District,Year";
+                SqlCommand command = new SqlCommand(string.Format(query, "13, 14, 15"), connection);
+                command.Parameters.AddWithValue("district", district);
+                using (SqlDataReader reader = command.ExecuteReader())
                 {
-                    string query = string.Format("SELECT Year,District,Subject,Grade, sum(cast(d as float)) as d, sum(cast(satis_ph1_nm as float)) as satis_ph1_nm, sum(cast(satis_rec_nm as float)) as satis_rec_nm FROM staar_district where (DISTRICT = @district OR DISTRICT ='''1') AND year = @year group by Subject,Grade,District,Year");
-                    SqlCommand command = new SqlCommand(query, connection);
-                    command.Parameters.AddWithValue("district", district);
-                    command.Parameters.AddWithValue("year", i.ToString().Substring(2));
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        List<Dictionary<string, object>> currentRecords = reader.GetAllRecords();
-                        districtRecords.AddRange(currentRecords);
-                    }
+                    List<Dictionary<string, object>> currentRecords = reader.GetAllRecords();
+                    districtRecords.AddRange(currentRecords);
                 }
                 connection.Close();
             }
