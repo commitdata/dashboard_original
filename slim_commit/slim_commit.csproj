@@ -2793,7 +2793,7 @@
     <Compile Include="Controllers\campusReportController.cs" />
     <Compile Include="Controllers\campusSingleController.cs" />
     <Compile Include="Controllers\dictionaryController.cs" />
-    <Compile Include="Controllers\districtController.cs" />
+    <Compile Include="Controllers\DistrictController.cs" />
     <Compile Include="Controllers\districtLongStaarController.cs" />
     <Compile Include="Controllers\districtSingleController.cs" />
     <Compile Include="Controllers\downloadController.cs" />

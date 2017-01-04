@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using slim_commit.Extensions;
 using slim_commit.Models;
+#pragma warning disable 1591
 
 namespace slim_commit.Controllers
 {
-    public class districtController : ApiController
+    public class DistrictController : ApiController
     {
         private string GetConnection(int year)
         {
@@ -136,7 +134,7 @@ namespace slim_commit.Controllers
                 string query = string.Format("SELECT District,Subject,Grade, sum(cast(d as float)) as d, sum(cast(satis_ph1_nm as float)) as satis_ph1_nm, sum(cast(satis_rec_nm as float)) as satis_rec_nm FROM staar_district where (DISTRICT = @district OR DISTRICT ='''1') AND year = @year group by Subject,Grade,District");
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("district", district);
-                command.Parameters.AddWithValue("year", year.ToString().Substring(2));
+                command.Parameters.AddWithValue("year", year.ToString().Substring(2)).DbType = DbType.Int32;
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     districtRecords = reader.GetAllRecords();
@@ -361,4 +359,5 @@ namespace slim_commit.Controllers
             return true;
         }
     }
+
 }
