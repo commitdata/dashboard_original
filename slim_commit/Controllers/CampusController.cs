@@ -16,7 +16,7 @@ namespace slim_commit.Controllers
     {
 
         private string GetConnection(int year)
-        {            
+        {
             return ConfigurationManager.ConnectionStrings["tapr_" + year].ConnectionString;
         }
         public List<Dictionary<string, object>> GetCounties(int year)
@@ -164,31 +164,28 @@ namespace slim_commit.Controllers
             var campusRecords = new List<Dictionary<string, object>>();
             Parallel.ForEach(new int[4] { 2013, 2014, 2015, 2016 }, (i) =>
                 {
-                //for (var i = 2013; i <= 2015; i++)
-                {
-                        var currentStaar4 = cstaar4.Replace("15R as", i.ToString().Substring(2) + "R as");
-                        var currentStaar5 = cstaar5.Replace("15R as", i.ToString().Substring(2) + "R as");
-                        if (i == 2013)
-                        {
-                            currentStaar5 = currentStaar5.Replace("4213R as", "1213R as");
-                            currentStaar4 = currentStaar4.Replace("1S13R as", "1513R as");
-                        }
+                    var currentStaar4 = cstaar4.Replace("15R as", i.ToString().Substring(2) + "R as");
+                    var currentStaar5 = cstaar5.Replace("15R as", i.ToString().Substring(2) + "R as");
+                    if (i == 2013)
+                    {
+                        currentStaar5 = currentStaar5.Replace("4213R as", "1213R as");
+                        currentStaar4 = currentStaar4.Replace("1S13R as", "1513R as");
+                    }
 
-                        using (var connection = new SqlConnection(GetConnection(i)))
+                    using (var connection = new SqlConnection(GetConnection(i)))
+                    {
+                        connection.Open();
+                        var query = string.Format("select {0}, {1} from CSTAAR4$ as c4 join CSTAAR5$ as c5 on c4.CAMPUS = c5.CAMPUS where c4.CAMPUS = @campus", currentStaar4, currentStaar5);
+                        var command = new SqlCommand(query, connection);
+                        command.Parameters.AddWithValue("campus", campus);
+                        var reader = command.ExecuteReader();
+                        var currentRecords = reader.GetAllRecords();
+                        if (currentRecords.Any())
                         {
-                            connection.Open();
-                            var query = string.Format("select {0}, {1} from CSTAAR4$ as c4 join CSTAAR5$ as c5 on c4.CAMPUS = c5.CAMPUS where c4.CAMPUS = @campus", currentStaar4, currentStaar5);
-                            var command = new SqlCommand(query, connection);
-                            command.Parameters.AddWithValue("campus", campus);
-                            var reader = command.ExecuteReader();
-                            var currentRecords = reader.GetAllRecords();
-                            if (currentRecords.Any())
-                            {
-                                currentRecords[0].Add("YEAR", i);
-                                campusRecords.Add(currentRecords[0]);
-                            }
-                            connection.Close();
+                            currentRecords[0].Add("YEAR", i);
+                            campusRecords.Add(currentRecords[0]);
                         }
+                        connection.Close();
                     }
                 });
             return campusRecords;
@@ -200,34 +197,31 @@ namespace slim_commit.Controllers
             var dstaar4 = "d4.DA00A001S15R as DA00A001SYRYR, d4.DB00A001S15R as DB00A001SYRYR, d4.DW00A001S15R as DW00A001SYRYR, d4.DH00A001S15R as DH00A001SYRYR, d4.DE00A001S15R as DE00A001SYRYR, d4.DL00A001S15R as DL00A001SYRYR, d4.DA00AS01S15R as DA00AS01SYRYR, d4.DB00AS01S15R as DB00AS01SYRYR, d4.DW00AS01S15R as DW00AS01SYRYR, d4.DH00AS01S15R as DH00AS01SYRYR, d4.DE00AS01S15R as DE00AS01SYRYR, d4.DL00AS01S15R as DL00AS01SYRYR, d4.DA00AR01S15R as DA00AR01SYRYR, d4.DB00AR01S15R as DB00AR01SYRYR, d4.DW00AR01S15R as DW00AR01SYRYR, d4.DH00AR01S15R as DH00AR01SYRYR, d4.DE00AR01S15R as DE00AR01SYRYR, d4.DL00AR01S15R as DL00AR01SYRYR, d4.DA00AM01S15R as DA00AM01SYRYR, d4.DB00AM01S15R as DB00AM01SYRYR, d4.DW00AM01S15R as DW00AM01SYRYR, d4.DH00AM01S15R as DH00AM01SYRYR, d4.DE00AM01S15R as DE00AM01SYRYR, d4.DL00AM01S15R as DL00AM01SYRYR, d4.DA00AW01S15R as DA00AW01SYRYR, d4.DB00AW01S15R as DB00AW01SYRYR, d4.DW00AW01S15R as DW00AW01SYRYR, d4.DH00AW01S15R as DH00AW01SYRYR, d4.DE00AW01S15R as DE00AW01SYRYR, d4.DL00AW01S15R as DL00AW01SYRYR, d4.DA00AC01S15R as DA00AC01SYRYR, d4.DB00AC01S15R as DB00AC01SYRYR, d4.DW00AC01S15R as DW00AC01SYRYR, d4.DH00AC01S15R as DH00AC01SYRYR, d4.DE00AC01S15R as DE00AC01SYRYR, d4.DL00AC01S15R as DL00AC01SYRYR";
             var dstaar5 = "d5.DA00A004215R as DA00A0042YRYR, d5.DB00A004215R as DB00A0042YRYR, d5.DW00A004215R as DW00A0042YRYR, d5.DH00A004215R as DH00A0042YRYR, d5.DE00A004215R as DE00A0042YRYR, d5.DL00A004215R as DL00A0042YRYR, d5.DA00AS04215R as DA00AS042YRYR, d5.DB00AS04215R as DB00AS042YRYR, d5.DW00AS04215R as DW00AS042YRYR, d5.DH00AS04215R as DH00AS042YRYR, d5.DE00AS04215R as DE00AS042YRYR, d5.DL00AS04215R as DL00AS042YRYR, d5.DA00AR04215R as DA00AR042YRYR, d5.DB00AR04215R as DB00AR042YRYR, d5.DW00AR04215R as DW00AR042YRYR, d5.DH00AR04215R as DH00AR042YRYR, d5.DE00AR04215R as DE00AR042YRYR, d5.DL00AR04215R as DL00AR042YRYR, d5.DA00AM04215R as DA00AM042YRYR, d5.DB00AM04215R as DB00AM042YRYR, d5.DW00AM04215R as DW00AM042YRYR, d5.DH00AM04215R as DH00AM042YRYR, d5.DE00AM04215R as DE00AM042YRYR, d5.DL00AM04215R as DL00AM042YRYR, d5.DA00AW04215R as DA00AW042YRYR, d5.DB00AW04215R as DB00AW042YRYR, d5.DW00AW04215R as DW00AW042YRYR, d5.DH00AW04215R as DH00AW042YRYR, d5.DE00AW04215R as DE00AW042YRYR, d5.DL00AW04215R as DL00AW042YRYR, d5.DA00AC04215R as DA00AC042YRYR, d5.DB00AC04215R as DB00AC042YRYR, d5.DW00AC04215R as DW00AC042YRYR, d5.DH00AC04215R as DH00AC042YRYR, d5.DE00AC04215R as DE00AC042YRYR, d5.DL00AC04215R as DL00AC042YRYR";
             var districtRecords = new List<Dictionary<string, object>>();
-            Parallel.ForEach(new int[4] { 2013, 2014, 2015,2016 }, (i) =>
-            {
-                //for (var i = 2013; i <= 2015; i++)
-            {
-                var currentStaar4 = dstaar4.Replace("15R as", i.ToString().Substring(2) + "R as");
-                var currentStaar5 = dstaar5.Replace("15R as", i.ToString().Substring(2) + "R as");
-                if (i == 2013)
-                {
-                    currentStaar5 = currentStaar5.Replace("4213R as", "1213R as");
-                    currentStaar4 = currentStaar4.Replace("1S13R as", "1513R as");
-                }
-                using (var connection = new SqlConnection(GetConnection(i)))
-                {
-                    connection.Open();
-                    var query = string.Format("select {0}, {1} from DSTAAR4$ as d4 join DSTAAR5$ as d5 on d4.DISTRICT = d5.DISTRICT where d4.DISTRICT = @district", currentStaar4, currentStaar5);
-                    var command = new SqlCommand(query, connection);
-                    command.Parameters.AddWithValue("district", district);
-                    var reader = command.ExecuteReader();
-                    var currentRecords = reader.GetAllRecords();
-                    if (currentRecords.Any())
-                    {
-                        currentRecords[0].Add("YEAR", i);
-                        districtRecords.Add(currentRecords[0]);
-                    }                    
-                    connection.Close();
-                }
-                }
-            });
+            Parallel.ForEach(new int[4] { 2013, 2014, 2015, 2016 }, (i) =>
+             {
+                 var currentStaar4 = dstaar4.Replace("15R as", i.ToString().Substring(2) + "R as");
+                 var currentStaar5 = dstaar5.Replace("15R as", i.ToString().Substring(2) + "R as");
+                 if (i == 2013)
+                 {
+                     currentStaar5 = currentStaar5.Replace("4213R as", "1213R as");
+                     currentStaar4 = currentStaar4.Replace("1S13R as", "1513R as");
+                 }
+                 using (var connection = new SqlConnection(GetConnection(i)))
+                 {
+                     connection.Open();
+                     var query = string.Format("select {0}, {1} from DSTAAR4$ as d4 join DSTAAR5$ as d5 on d4.DISTRICT = d5.DISTRICT where d4.DISTRICT = @district", currentStaar4, currentStaar5);
+                     var command = new SqlCommand(query, connection);
+                     command.Parameters.AddWithValue("district", district);
+                     var reader = command.ExecuteReader();
+                     var currentRecords = reader.GetAllRecords();
+                     if (currentRecords.Any())
+                     {
+                         currentRecords[0].Add("YEAR", i);
+                         districtRecords.Add(currentRecords[0]);
+                     }
+                     connection.Close();
+                 }
+             });
             return districtRecords;
         }
 
