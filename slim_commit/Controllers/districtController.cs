@@ -160,7 +160,7 @@ namespace slim_commit.Controllers
 
                 var alias = year == 2016 ? " as satis_ph1_nm" : "";
 
-                string query = string.Format(@"SELECT [District],[Subject],[Grade],d,{0} {1}, satis_rec_nm FROM (select  [district],[grade],[subject], 
+                string query = string.Format(@"SELECT District,Subject,Grade,d,{0} {1}, satis_rec_nm FROM (select  [district],[grade],[subject], 
 cast([all] as float) as [all],[category] from [dbo].[{2}_staar_district-state_wide_merged] 
 where (DISTRICT = @district  OR DISTRICT = '''1') ) up 
 PIVOT (sum([all]) FOR [category] IN (d,satis_rec_nm, {0})) AS Cat ORDER BY [district],[grade],[subject]", statis_ph1_nm, alias, year);
@@ -296,31 +296,35 @@ PIVOT (sum([all]) FOR [category] IN (d,satis_rec_nm, {0})) AS Cat ORDER BY [dist
 
         public List<Dictionary<string, object>> GetStaarSubjectNew(int year, string district)
         {
-            List<Dictionary<string, object>> districtRecords = new List<Dictionary<string, object>>();
-
-            string currentConnection = ConfigurationManager.ConnectionStrings["staar_" + year].ConnectionString;
-            using (SqlConnection connection = new SqlConnection(currentConnection))
+            var districtRecords = new List<Dictionary<string, object>>();
+             
+            for (int i = 2013; i <= 2016; i++)
             {
-                connection.Open();
-                var statis_ph1_nm = year == 2016 ? "satis_lvl2_nm" : "satis_ph1_nm";
-                var alias = year == 2016 ? " as satis_ph1_nm" : "";
-                var year2digit = "";
+                string currentConnection = ConfigurationManager.ConnectionStrings["staar_" + i.ToString()].ConnectionString;
+                 
+                var statis_ph1_nm = i == 2016 ? "satis_lvl2_nm" : "satis_ph1_nm";
+                var alias = i == 2016 ? " as satis_ph1_nm" : "";
+                var year2digit = ""; 
+                year2digit = i.ToString().Substring(2);
 
-                for (int i = 2013; i <= 2016; i++)
-                {
-                    year2digit = i.ToString().Substring(2);
-                    string query = string.Format(@"SELECT '{0}' as Year, District,Subject,Grade, d,satis_rec_nm, {1} {2} FROM 
+                string query = string.Format(@"SELECT '{0}' as Year, District,Subject,Grade, d,satis_rec_nm, {1} {2} FROM 
 (select  [district],[grade],[subject], cast([all] as float) as [all],[category] from [dbo].[{3}_staar_district-state_wide_merged] where (DISTRICT = @district  OR DISTRICT = '''1') ) up 
-PIVOT (sum([all]) FOR [category] IN (d,satis_rec_nm, {1})) AS Cat ORDER BY [district],[grade],[subject]", year2digit, statis_ph1_nm, alias, year);
-                    SqlCommand command = new SqlCommand(query, connection);
+PIVOT (sum([all]) FOR [category] IN (d,satis_rec_nm, {1})) AS Cat ORDER BY [district],[grade],[subject]", year2digit, statis_ph1_nm, alias, i);
+
+                using (SqlConnection connection = new SqlConnection(currentConnection))
+                {
+                    connection.Open();
+
+                    var command = new SqlCommand(query, connection);
                     command.Parameters.AddWithValue("district", district);
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        List<Dictionary<string, object>> currentRecords = reader.GetAllRecords();
+                        var currentRecords = reader.GetAllRecords();
                         districtRecords.AddRange(currentRecords);
                     }
+                    connection.Close();
                 }
-                connection.Close();
+                
             }
             return districtRecords;
         }
@@ -403,7 +407,7 @@ PIVOT (sum([all]) FOR [category] IN (d,satis_rec_nm, {1})) AS Cat ORDER BY [dist
 
                 var query = new StringBuilder();
 
-                var statis_ph1_nm = year == 2016 ? "satis_lvl2_nm" : "satis_ph1_nm"; 
+                var statis_ph1_nm = year == 2016 ? "satis_lvl2_nm" : "satis_ph1_nm";
                 var alias = year == 2016 ? " as satis_ph1_nm" : "";
 
                 for (int a = 0; a <= 5; a++)
@@ -411,7 +415,7 @@ PIVOT (sum([all]) FOR [category] IN (d,satis_rec_nm, {1})) AS Cat ORDER BY [dist
                     query.Append(string.Format(@"SELECT '{0}' as demo ,d,rs,satis_rec_nm, {1} {2} 
 FROM(select  cast([{0}] as float) as [{0}],[category] from[dbo].[{3}_staar_district-state_wide_merged]
 where(DISTRICT = {4}  OR DISTRICT = '''1') AND(@grade = '' OR grade = @grade) AND(@subject = '' OR subject = @subject)) up
-PIVOT(sum([{0}]) FOR[category] IN(d, rs, satis_rec_nm, {1})) AS demo{5} ", demo[a], statis_ph1_nm, alias , year, state ? "'''1'" : "@district", a));
+PIVOT(sum([{0}]) FOR[category] IN(d, rs, satis_rec_nm, {1})) AS demo{5} ", demo[a], statis_ph1_nm, alias, year, state ? "'''1'" : "@district", a));
 
                     if (a != 5)
                     {
@@ -495,11 +499,11 @@ PIVOT(sum([{0}]) FOR[category] IN(d, rs, satis_rec_nm, {1})) AS demo{5} ", demo[
                 new KeyValueItem { Key = "w2", Value ="Writing 2" }
             };
 
-            foreach(var item in districtRecords)
+            foreach (var item in districtRecords)
             {
                 var subject = item["Subject"];
                 var title = list.FirstOrDefault(x => x.Key == subject.ToString());
-                if(title != null) item["SubjectTitle"] = title.Value; 
+                if (title != null) item["SubjectTitle"] = title.Value;
             }
 
             return districtRecords;

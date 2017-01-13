@@ -340,7 +340,7 @@ namespace slim_commit.Controllers
                 var statis_ph1_nm = year == 2016 ? "satis_lvl2_nm" : "satis_ph1_nm"; 
                 var alias = year == 2016 ? " as satis_ph1_nm" : "";
 
-                string query = string.Format(@"SELECT [grade],[subject],d,satis_rec_nm, {0} {1} FROM 
+                string query = string.Format(@"SELECT Grade, Subject,d,satis_rec_nm, {0} {1} FROM 
 (select  [district],[grade],[subject], cast([all] as float) as [all],[category] from [dbo].[{2}_staar_campus_wide_merged]  where CAMPUS = @campus) up 
 PIVOT (sum([all]) FOR [category] IN (d,satis_rec_nm, {0})) AS Cat ORDER BY [district],[grade],[subject]", statis_ph1_nm, alias, year);
 

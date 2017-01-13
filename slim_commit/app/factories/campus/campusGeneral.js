@@ -188,6 +188,7 @@
 
         this.CreateStaarSubject = function (campusID) {
             return campusData.getStaarSubject(campusID).then(function (data) {
+                debugger;
                 $scope.staarSubject = data;
                 createStaarSubject();
             });

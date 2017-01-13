@@ -204,7 +204,7 @@
         /* Chart Functions */
 
         function createACTSATAverage() {
-            
+            debugger;
             var sum = $scope.district.collegeAdmissions['DA0CTYRYR'] + $scope.district.collegeAdmissions['DB0CTYRYR'] +
                 $scope.district.collegeAdmissions['DH0CTYRYR'] + $scope.district.collegeAdmissions['DW0CTYRYR'];
 
@@ -227,7 +227,7 @@
                 legend: { position: 'bottom', visible: true },
                 seriesDefaults: {
                     type: 'column',
-                    labels: { visible: true, template: '#=  !value || value < 0 ? \'N/A\' : value.toFixed(0) + \'%\' #' }
+                    labels: { visible: true, template: '#=  !value ? \'N/A\' : value.toFixed(0) + \'%\' #' }
                 },
                 plotArea: {
                     margin: { top: 20 }
@@ -246,7 +246,7 @@
                 categoryAxis: {
                     field: 'DISTNAME', labels: { visible: $scope.actSatChartState }
                 },
-                tooltip: { visible: true, template: '#= series.name #: #= !value || value < 0 ? \'N/A\' : value.toFixed(0) + \'%\' #', color: 'white' }
+                tooltip: { visible: true, template: '#= series.name #: #= !value  ? \'N/A\' : value.toFixed(0) + \'%\' #', color: 'white' }
             });
         };
 
