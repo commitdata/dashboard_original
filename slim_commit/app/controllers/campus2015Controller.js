@@ -115,6 +115,7 @@
         }
     };
     $scope.gradeChange = function () {
+        debugger;
         if (!$scope.selectStaarGrades) return;
         if ($scope.selectStaarGrades != "none") { 
             $scope.filteredSubjects = _.where($scope.subject, { "Grade": $scope.selectStaarGrades });
@@ -311,7 +312,7 @@
 
 
     $scope.$on("$viewContentLoaded", function () {
-        $scope.selectedYear = $routeParams.year || '2015'; //2016
+        $scope.selectedYear = $routeParams.year || '2016';
         campusData.setCurrentYear($scope.selectedYear);
         campusGeneral.Init($scope, chartMapper);
         campusStudent.Init($scope, chartMapper);

@@ -64,7 +64,7 @@
     };
 
     $scope.$on("$viewContentLoaded", function () {
-        $scope.selectedYear = $routeParams.year || '2015'; //2016
+        $scope.selectedYear = $routeParams.year || '2016';  
         district2015Data.setCurrentYear($scope.selectedYear);
         districtGeneral.Init($scope, chartMapper);
         districtStudent.Init($scope, chartMapper);
@@ -95,11 +95,18 @@
     };
 
     $scope.gradeChange = function () {
+        debugger;
         console.log($scope.selectStaarGrades);
         if (!$scope.selectStaarGrades) return;
         if ($scope.selectStaarGrades != "none") {
             $scope.filteredSubjects = _.where($scope.subject, { "Grade": $scope.selectStaarGrades });
-            $scope.staarAllGradesSubType = $scope.filteredSubjects[0].Subject;
+            if ($scope.filteredSubjects.length > 0) {
+                $scope.staarAllGradesSubType = $scope.filteredSubjects[0].Subject;
+            }
+            else{
+                $scope.filteredSubjects = {};
+                $scope.staarAllGradesSubType = null;
+            }
         }
         else {
             $scope.filteredSubjects = {};

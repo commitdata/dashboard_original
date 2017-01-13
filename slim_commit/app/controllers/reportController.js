@@ -2,7 +2,7 @@
 
     $scope.loadExcel = function () {
         $scope.spinner = true;
-        $http({ method: "GET", url: "/api/Report/GetExcelSheet", params: { year: 2015 } }).then(function (response) {
+        $http({ method: "GET", url: "/api/Report/GetExcelSheet", params: { year: 2016 } }).then(function (response) {
 
             window.location.assign("/api/Report/DownloadShapeFile?fileName=" + response.data);
             $scope.spinner = false;
@@ -50,7 +50,8 @@
         { Text: "2012", Value: "12" },
         { Text: "2013", Value: "13" },
         { Text: "2014", Value: "14" },
-        { Text: "2015", Value: "15" }
+        { Text: "2015", Value: "15" },
+        { Text: "2016", Value: "16" }
     ];
 
     $scope.subjectGrades = [

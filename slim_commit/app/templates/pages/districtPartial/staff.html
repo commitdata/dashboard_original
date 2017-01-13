@@ -6,7 +6,7 @@
                 <span class="ti-ruler-pencil"></span>
             </span>
             <div class="box-info">
-                <p class="size-h2">{{district.staffInformation["DPSTKIDR"].toFixed(0)}}<span class="size-h4"> to 1</span></p>
+                <p class="size-h2">{{district.staffInformation["DPSTKIDR"] }}<span class="size-h4"> to 1</span></p>
                 <p class="text-muted"><span>Student-Teacher Ratio</span></p>
             </div>
         </div>
@@ -17,7 +17,7 @@
                 <i class="ti-money"></i>
             </span>
             <div class="box-info">
-                <p class="size-h2">{{district.staffInformation["DPSTTOSA"].toFixed(0) | currency:"$":0}}<span class="size-h4"></span></p>
+                <p class="size-h2">${{district.staffInformation["DPSTTOSA"] }}<span class="size-h4"></span></p>
                 <p class="text-muted"><span>Average Teacher Salary</span></p>
             </div>
         </div>
@@ -28,7 +28,7 @@
                 <i class="ti-timer"></i>
             </span>
             <div class="box-info">
-                <p class="size-h2">{{district.staffInformation["DPSTEXPA"].toFixed(0)}}<span class="size-h4"> years</span></p>
+                <p class="size-h2">{{district.staffInformation["DPSTEXPA"] }}<span class="size-h4"> years</span></p>
                 <p class="text-muted"><span>Average Teacher Experience</span></p>
             </div>
         </div>

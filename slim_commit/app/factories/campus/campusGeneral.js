@@ -202,7 +202,7 @@
             var campusSeries = [], districtSeries = [], stateSeries = [];
             var cKey = "C" + $scope.starrAllDemoType + $scope.starrAllSubType + $scope.starrAllRecType + "YRYR";
             var dKey = "D" + $scope.starrAllDemoType + $scope.starrAllSubType + $scope.starrAllRecType + "YRYR";
-            for (i = 2013; i <= 2015; i++) { // 2016 
+            for (i = 2013; i <= 2016; i++) {  
                 var campusItem = _.findWhere($scope.staarAll.campus, { YEAR: i });
                 var districtItem = _.findWhere($scope.staarAll.district, { YEAR: i });
                 var stateItem = _.findWhere($scope.staarAll.state, { YEAR: i });
@@ -226,12 +226,12 @@
                     data: stateSeries,
                     color: '#c3151c'
                 }];
-                categories = [2013, 2014, 2015];
+                categories = [2013, 2014, 2015, 2016];
             }
             else {
                 categories = ['Campus', 'District', 'State'];
                 mapped = [];
-                for (var i = 0; i < 3; i++) {
+                for (var i = 0; i <= 3; i++) {
                     mapped.push([campusSeries[i], districtSeries[i], stateSeries[i]]);
                 }
                 series = [{
@@ -246,6 +246,10 @@
                     name: "2015",
                     data: mapped[2],
                     color: '#c3151c'
+                }, {
+                    name: "2016",
+                    data: mapped[3],
+                    color: '#fbb613'
                 }];
             }
 

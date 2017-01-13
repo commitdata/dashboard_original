@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Web.Http;
 using slim_commit.Extensions;
 using slim_commit.Models;
+using System.Text;
 
 namespace slim_commit.Controllers
 {
@@ -146,6 +147,35 @@ namespace slim_commit.Controllers
             return districtRecords;
         }
 
+        public List<Dictionary<string, object>> GetStaarAllSubjectGradesNew(int year, string district)
+        {
+            List<Dictionary<string, object>> districtRecords = new List<Dictionary<string, object>>();
+
+            string currentConnection = ConfigurationManager.ConnectionStrings["staar_" + year].ConnectionString;
+            using (SqlConnection connection = new SqlConnection(currentConnection))
+            {
+                connection.Open();
+
+                var statis_ph1_nm = year == 2016 ? "satis_lvl2_nm" : "satis_ph1_nm";
+
+                var alias = year == 2016 ? " as satis_ph1_nm" : "";
+
+                string query = string.Format(@"SELECT [District],[Subject],[Grade],d,{0} {1}, satis_rec_nm FROM (select  [district],[grade],[subject], 
+cast([all] as float) as [all],[category] from [dbo].[{2}_staar_district-state_wide_merged] 
+where (DISTRICT = @district  OR DISTRICT = '''1') ) up 
+PIVOT (sum([all]) FOR [category] IN (d,satis_rec_nm, {0})) AS Cat ORDER BY [district],[grade],[subject]", statis_ph1_nm, alias, year);
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("district", district);
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    districtRecords = reader.GetAllRecords();
+                }
+                connection.Close();
+            }
+            return districtRecords;
+        }
+
         public List<Dictionary<string, object>> GetStudentAll(int year, string district)
         {
             List<Dictionary<string, object>> districtRecord;
@@ -228,7 +258,7 @@ namespace slim_commit.Controllers
                 connection.Open();
                 string query = "DAGC4X14R as DAGC4XYRYR, DBGC4X14R as DBGC4XYRYR, DHGC4X14R as DHGC4XYRYR, DWGC4X14R as DWGC4XYRYR, DLGC4X14R as DLGC4XYRYR, DEGC4X14R as DEGC4XYRYR";
                 query = query.Replace("14R as", yearCode + "R as");
-                if(year == 2016) query = query.Replace("4X1", "41");
+                if (year == 2016) query = query.Replace("4X1", "41");
                 SqlCommand command = new SqlCommand(string.Format("select DISTRICT, {0} from DCOMP4$ where district = @district OR district = @state", query), connection);
                 command.Parameters.AddWithValue("district", district);
                 command.Parameters.AddWithValue("state", state);
@@ -247,12 +277,43 @@ namespace slim_commit.Controllers
             using (SqlConnection connection = new SqlConnection(currentConnection))
             {
                 connection.Open();
-                for (int i = 2013; i <= 2015; i++) //2016
+                for (int i = 2013; i <= 2016; i++)
                 {
                     string query = string.Format("SELECT Year,District,Subject,Grade, sum(cast(d as float)) as d, sum(cast(satis_ph1_nm as float)) as satis_ph1_nm, sum(cast(satis_rec_nm as float)) as satis_rec_nm FROM staar_district where (DISTRICT = @district OR DISTRICT ='''1') AND year = @year group by Subject,Grade,District,Year");
                     SqlCommand command = new SqlCommand(query, connection);
                     command.Parameters.AddWithValue("district", district);
                     command.Parameters.AddWithValue("year", i.ToString().Substring(2));
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        List<Dictionary<string, object>> currentRecords = reader.GetAllRecords();
+                        districtRecords.AddRange(currentRecords);
+                    }
+                }
+                connection.Close();
+            }
+            return districtRecords;
+        }
+
+        public List<Dictionary<string, object>> GetStaarSubjectNew(int year, string district)
+        {
+            List<Dictionary<string, object>> districtRecords = new List<Dictionary<string, object>>();
+
+            string currentConnection = ConfigurationManager.ConnectionStrings["staar_" + year].ConnectionString;
+            using (SqlConnection connection = new SqlConnection(currentConnection))
+            {
+                connection.Open();
+                var statis_ph1_nm = year == 2016 ? "satis_lvl2_nm" : "satis_ph1_nm";
+                var alias = year == 2016 ? " as satis_ph1_nm" : "";
+                var year2digit = "";
+
+                for (int i = 2013; i <= 2016; i++)
+                {
+                    year2digit = i.ToString().Substring(2);
+                    string query = string.Format(@"SELECT '{0}' as Year, District,Subject,Grade, d,satis_rec_nm, {1} {2} FROM 
+(select  [district],[grade],[subject], cast([all] as float) as [all],[category] from [dbo].[{3}_staar_district-state_wide_merged] where (DISTRICT = @district  OR DISTRICT = '''1') ) up 
+PIVOT (sum([all]) FOR [category] IN (d,satis_rec_nm, {1})) AS Cat ORDER BY [district],[grade],[subject]", year2digit, statis_ph1_nm, alias, year);
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("district", district);
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
                         List<Dictionary<string, object>> currentRecords = reader.GetAllRecords();
@@ -328,6 +389,55 @@ namespace slim_commit.Controllers
             return districtRecords;
         }
 
+        public List<Dictionary<string, object>> GetStaarGradesNew(int year, string district, string grade = "", string subject = "", bool state = false)
+        {
+
+            string yearCode = (year).ToString().Substring(2);
+            List<Dictionary<string, object>> districtRecords = new List<Dictionary<string, object>>();
+            string currentConnection = ConfigurationManager.ConnectionStrings["staar_" + year].ConnectionString;
+            using (SqlConnection connection = new SqlConnection(currentConnection))
+            {
+                connection.Open();
+
+                var demo = new string[] { "ecoy", "econ", "ethw", "ethb", "ethh", "lepc" };
+
+                var query = new StringBuilder();
+
+                var statis_ph1_nm = year == 2016 ? "satis_lvl2_nm" : "satis_ph1_nm"; 
+                var alias = year == 2016 ? " as satis_ph1_nm" : "";
+
+                for (int a = 0; a <= 5; a++)
+                {
+                    query.Append(string.Format(@"SELECT '{0}' as demo ,d,rs,satis_rec_nm, {1} {2} 
+FROM(select  cast([{0}] as float) as [{0}],[category] from[dbo].[{3}_staar_district-state_wide_merged]
+where(DISTRICT = {4}  OR DISTRICT = '''1') AND(@grade = '' OR grade = @grade) AND(@subject = '' OR subject = @subject)) up
+PIVOT(sum([{0}]) FOR[category] IN(d, rs, satis_rec_nm, {1})) AS demo{5} ", demo[a], statis_ph1_nm, alias , year, state ? "'''1'" : "@district", a));
+
+                    if (a != 5)
+                    {
+                        query.Append(@"
+                                    Union
+                                    ");
+                    }
+                }
+
+                SqlCommand command = new SqlCommand(query.ToString(), connection);
+
+                if (!state)
+                {
+                    command.Parameters.Add("district", System.Data.SqlDbType.VarChar);
+                    command.Parameters["district"].Value = district;
+                }
+
+                command.Parameters.AddWithValue("grade", grade);
+                command.Parameters.AddWithValue("subject", subject);
+                SqlDataReader reader = command.ExecuteReader();
+                districtRecords = reader.GetAllRecords();
+                connection.Close();
+            }
+            return districtRecords;
+        }
+
         public List<Dictionary<string, object>> GetGradesSubject(int year, string grade)
         {
             string yearCode = (year).ToString().Substring(2);
@@ -344,6 +454,54 @@ namespace slim_commit.Controllers
                 districtRecords = reader.GetAllRecords();
                 connection.Close();
             }
+            return districtRecords;
+        }
+
+
+        public List<Dictionary<string, object>> GetGradesSubjectNew(int year, string grade)
+        {
+            var yearCode = (year).ToString().Substring(2);
+            var districtRecords = new List<Dictionary<string, object>>();
+            string currentConnection = ConfigurationManager.ConnectionStrings["staar_" + year].ConnectionString;
+            using (var connection = new SqlConnection(currentConnection))
+            {
+                connection.Open();
+
+                string query = string.Format("SELECT DISTINCT Subject, Grade, '' AS SubjectTitle  FROM [{0}_staar_campus_wide_merged]", year);
+                //if (!string.IsNullOrEmpty(grade)) query += " WHERE Grade = @grade";
+
+                var command = new SqlCommand(query, connection);
+                //if (!string.IsNullOrEmpty(grade)) command.Parameters.AddWithValue("grade", grade);
+                var reader = command.ExecuteReader();
+                districtRecords = reader.GetAllRecords();
+                connection.Close();
+            }
+
+            var list = new List<KeyValueItem>()
+            {
+                new KeyValueItem { Key = "a1", Value = "Algebra 1" },
+                new KeyValueItem { Key = "bi", Value ="Biology" },
+                new KeyValueItem { Key = "e1", Value ="English 1" },
+                new KeyValueItem { Key = "e2", Value ="English 2" },
+                new KeyValueItem { Key = "h",  Value ="History" },
+                new KeyValueItem { Key = "m",  Value ="Math" },
+                new KeyValueItem { Key = "r",  Value ="Reading" },
+                new KeyValueItem { Key = "r1", Value ="Reading 1" },
+                new KeyValueItem { Key = "r2", Value ="Reading 2" },
+                new KeyValueItem { Key = "s",  Value ="Science" },
+                new KeyValueItem { Key = "us", Value ="US History" },
+                new KeyValueItem { Key =  "w", Value ="Writing" },
+                new KeyValueItem { Key = "w1", Value ="Writing 1" },
+                new KeyValueItem { Key = "w2", Value ="Writing 2" }
+            };
+
+            foreach(var item in districtRecords)
+            {
+                var subject = item["Subject"];
+                var title = list.FirstOrDefault(x => x.Key == subject.ToString());
+                if(title != null) item["SubjectTitle"] = title.Value; 
+            }
+
             return districtRecords;
         }
 

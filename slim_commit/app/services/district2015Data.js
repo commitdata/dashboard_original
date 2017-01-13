@@ -6,7 +6,7 @@
             }
         });
     };
-    var year = 2015; //2016
+    var year = 2016;
     return {
         setCurrentYear: function (currentYear) {
             year = currentYear;
@@ -23,6 +23,7 @@
         },
         getCollegeAdmissions: function (district) {
             return $http.get("/api/district/GetCollegeAdmissions?year=" + year + "&district=" + district).then(function (response) {
+                debugger;
                 parseData(response.data[0]);
                 parseData(response.data[1]);
                 response.data[1].DISTNAME = "State";
@@ -51,16 +52,17 @@
             {
                 params = params + "&state=" + state;
             }
-            return $http.get("/api/district/GetStaarGrades" + params).then(function (response) {
+            return $http.get("/api/district/GetStaarGradesNew" + params).then(function (response) { //new api
+                debugger;
                 var finalData = [];
                 var ph = {};
                 var rec = {};
                 _.each(response.data, function (obj) {
-                    _.each(obj, function (value, key) {
-                        if (["demo", "Subject", "Grade"].indexOf(key) < 0) {
-                            obj[key] = parseFloat(value) || null;
-                        }
-                    });
+                    //_.each(obj, function (value, key) {
+                    //    if (["demo", "Subject", "Grade"].indexOf(key) < 0) {
+                    //        obj[key] = parseFloat(value) || null;
+                    //    }
+                    //});
                     obj["d"] = obj["d"] || (obj["satis_ph1_nm"] + obj["satis_rec_nm"]);
                     obj["ph1"] = ((obj["satis_ph1_nm"] * 100) / obj["d"]).toFixed();
                     obj["rec"] = ((obj["satis_rec_nm"] * 100) / obj["d"]).toFixed();
@@ -78,18 +80,19 @@
             var subjects = [];
             if (!grade) grade = "3";
 
-            return $http.get("/api/district/GetGradesSubject?year=" + year +"&grade=" + grade).then(function (response) {
+            return $http.get("/api/district/GetGradesSubjectNew?year=" + year + "&grade=" + grade).then(function (response) { //new api
                 return response.data;
             });
         },
         getStaarAllSubjectGrades: function (district) {
-            return $http.get("/api/district/GetStaarAllSubjectGrades?year=" + year + "&district=" + district).then(function (response) {
+            return $http.get("/api/district/GetStaarAllSubjectGradesNew?year=" + year + "&district=" + district).then(function (response) { //new api
+                debugger;
                 _.each(response.data, function (obj) {
-                    _.each(obj, function (value, key) {
-                        if (["District", "Subject", "Grade"].indexOf(key) < 0) {
-                            obj[key] = parseFloat(value) || null;
-                        }
-                    });
+                    //_.each(obj, function (value, key) {
+                    //    if (["District", "Subject", "Grade"].indexOf(key) < 0) {
+                    //        obj[key] = parseFloat(value) || null;
+                    //    }
+                    //});
                     obj["d"] = obj["d"] || (obj["satis_ph1_nm"] + obj["satis_rec_nm"]);
                     obj["ph1"] = (obj["satis_ph1_nm"] * 100) / obj["d"];
                     obj["rec"] = (obj["satis_rec_nm"] * 100) / obj["d"];
@@ -122,13 +125,13 @@
             });
         },
         getStaarSubject: function (district) {
-            return $http.get("/api/district/GetStaarSubject?year=" + year + "&district=" + district).then(function (response) {
+            return $http.get("/api/district/GetStaarSubjectNew?year=" + year + "&district=" + district).then(function (response) { //new api
                 _.each(response.data, function (obj) {
-                    _.each(obj, function (value, key) {
+                    /*_.each(obj, function (value, key) {
                         if (["District", "Year", "Subject", "Grade"].indexOf(key) < 0) {
                             obj[key] = parseFloat(value) || null;
                         }
-                    });
+                    });*/
                     obj["d"] = obj["d"] || (obj["satis_ph1_nm"] + obj["satis_rec_nm"]);
                     obj["ph1"] = (obj["satis_ph1_nm"] * 100) / obj["d"];
                     obj["rec"] = (obj["satis_rec_nm"] * 100) / obj["d"];

@@ -165,6 +165,7 @@
 
         this.CreateStaarAllSubjectGrades = function (districtID) {
             return district2015Data.getStaarAllSubjectGrades(districtID).then(function (data) {
+             
                 _.each(data, function (i) {
                     if (i[0].District == "'1") {
                         $scope.stateStaarAllSubjectGrades = i;
@@ -203,17 +204,17 @@
         /* Chart Functions */
 
         function createACTSATAverage() {
-
+            
             var sum = $scope.district.collegeAdmissions['DA0CTYRYR'] + $scope.district.collegeAdmissions['DB0CTYRYR'] +
                 $scope.district.collegeAdmissions['DH0CTYRYR'] + $scope.district.collegeAdmissions['DW0CTYRYR'];
 
-            if (sum < 4) {
+            /*if (sum < 4) {
                 $("#admissionContainer").hide();
                 return;
             }
             else {
                 $("#admissionContainer").show();
-            }
+            }*/
 
             var source = [$scope.district.collegeAdmissions];
             if ($scope.actSatChartState) {
@@ -550,7 +551,7 @@
         };
 
         function createStaarSubject() {
-
+            
             var Subjects = [
                     { Code: "r", Name: "Reading", Color: "#c3151c", Grades: ["3", "4", "5", "6", "7", "8"] },
                     { Code: "m", Name: "Math", Color: "#003662", Grades: ["3", "4", "5", "6", "7", "8"] },
@@ -567,21 +568,26 @@
             var year1 = _.where($scope.staarSubject, { 'Year': '13' });
             var year2 = _.where($scope.staarSubject, { 'Year': '14' });
             var year3 = _.where($scope.staarSubject, { 'Year': '15' });
+            var year4 = _.where($scope.staarSubject, { 'Year': '16' });
 
             var categories = [];
             var data1 = [];
             var data2 = [];
             var data3 = [];
+            var data4 = [];
 
-            _.each(Subjects, function (subject) {
-                _.each(subject.Grades, function (grade) {
+            _.each(Subjects, function (subject) { 
+                _.each(subject.Grades, function (grade) { 
                     var item1 = _.find(year1, function (i) { return i.Subject == subject.Code && i.Grade == grade; });
                     var item2 = _.find(year2, function (i) { return i.Subject == subject.Code && i.Grade == grade; });
                     var item3 = _.find(year3, function (i) { return i.Subject == subject.Code && i.Grade == grade; });
-                    if ((item1 && item1.rec) || (item2 && item2.rec) || (item3 && item3.rec)) {
+                    var item4 = _.find(year4, function (i) { return i.Subject == subject.Code && i.Grade == grade; });
+
+                    if ((item1 && item1.rec) || (item2 && item2.rec) || (item3 && item3.rec) || (item4 && item4.rec)) {
                         data1.push(item1 ? item1.rec : null);
                         data2.push(item2 ? item2.rec : null);
                         data3.push(item3 ? item3.rec : null);
+                        data4.push(item4 ? item4.rec : null);
                         categories.push(subject.Name + " - " + grade);
                     }
                 });
@@ -609,6 +615,11 @@
                         name: "2014",
                         data: data3,
                         color: 'green'
+                    },
+                    {
+                        name: "2015",
+                        data: data4,
+                        color: '#0086a1'
                     }
                 ],
                 valueAxis: {

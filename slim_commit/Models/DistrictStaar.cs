@@ -36,4 +36,15 @@ namespace slim_commit.Models
             this.satis_ph1_nm = dataRecord["satis_ph1_nm"].ToString();
         }
     }
+
+    public class KeyValueItem
+    {
+        public string Key { get; set; }
+        public string Value { get; set; }
+         
+        public KeyValueItem()
+        {
+
+        }
+    }
 }

@@ -8,7 +8,7 @@
             }
         });
     };
-    var year = 2015; //2016
+    var year = 2016;
     return {
         setCurrentYear: function (currentYear) {
             year = currentYear;
@@ -72,13 +72,13 @@
             });
         },
         getStaarSubject: function (campus) {
-            return $http.get("/api/campus/GetStaarSubject?year=" + year + "&campus=" + campus).then(function (response) {
+            return $http.get("/api/campus/GetStaarSubjectNew?year=" + year + "&campus=" + campus).then(function (response) {
                 _.each(response.data, function (obj) { 
-                    _.each(obj, function (value, key) { 
-                        if (["CAMPUS", "Subject", "Grade"].indexOf(key) < 0) {
-                            obj[key] = parseFloat(value) || null;
-                        }
-                    });
+                    //_.each(obj, function (value, key) { 
+                    //    if (["CAMPUS", "Subject", "Grade"].indexOf(key) < 0) {
+                    //        obj[key] = parseFloat(value) || null;
+                    //    }
+                    //});
                     obj["d"] = obj["d"] || (obj["satis_ph1_nm"] + obj["satis_rec_nm"]);
                     obj["ph1"] = (obj["satis_ph1_nm"] * 100) / obj["d"];
                     obj["rec"] = (obj["satis_rec_nm"] * 100) / obj["d"];
@@ -96,7 +96,7 @@
             if (subject) {
                 params = params + "&subject=" + subject;
             }
-            return $http.get("/api/campus/GetStaarGrades" + params).then(function (response) {
+            return $http.get("/api/campus/GetStaarGradesNew" + params).then(function (response) {
                 var finalData = [];
                 var ph = {};
                 var rec = {};
@@ -123,20 +123,20 @@
             var subjects = [];
             if (!grade) grade = "3";
 
-            return $http.get("/api/campus/GetGradesSubject?year=" + year + "&grade=" + grade).then(function (response) {
+            return $http.get("/api/campus/GetGradesSubjectNew?year=" + year + "&grade=" + grade).then(function (response) {
                 return response.data;
             });
         },
 
 
         getNewStaarSubject: function (campus) {
-            return $http.get("/api/campus/GetNewStaarSubject?year=" + year + "&campus=" + campus).then(function (response) {
+            return $http.get("/api/campus/GetNewStaarSubjectNew?year=" + year + "&campus=" + campus).then(function (response) {
                 _.each(response.data, function (obj) {
-                    _.each(obj, function (value, key) {
-                        if (["CAMPUS", "Subject", "Grade"].indexOf(key) < 0) {
-                            obj[key] = parseFloat(value) || null;
-                        }
-                    });
+                    //_.each(obj, function (value, key) {
+                    //    if (["CAMPUS", "Subject", "Grade"].indexOf(key) < 0) {
+                    //        obj[key] = parseFloat(value) || null;
+                    //    }
+                    //});
                     obj["d"] = obj["d"] || (obj["satis_ph1_nm"] + obj["satis_rec_nm"]);
                     obj["ph1"] = (obj["satis_ph1_nm"] * 100) / obj["d"];
                     obj["rec"] = (obj["satis_rec_nm"] * 100) / obj["d"];
