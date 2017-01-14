@@ -156,7 +156,7 @@
         };
 
         this.CreateStaffExperience = function (campusID) {
-            return campusData.getStaffExperience(campusID).then(function (data) {
+            return campusData.getStaffExperience(campusID).then(function (data) { 
                 $scope.campus.teacherExperience = data[0];
                 createTeacherExperience();
             });
@@ -187,8 +187,7 @@
         };
 
         this.CreateStaarSubject = function (campusID) {
-            return campusData.getStaarSubject(campusID).then(function (data) {
-                debugger;
+            return campusData.getStaarSubject(campusID).then(function (data) { 
                 $scope.staarSubject = data;
                 createStaarSubject();
             });
@@ -293,7 +292,7 @@
             $("#teacherExperience").kendoChart({
                 dataSource: { data: [$scope.campus.teacherExperience] },
                 legend: { position: 'bottom', visible: true },
-                seriesDefaults: { type: 'column', stack: true },
+                seriesDefaults: { type: 'column' },
                 plotArea: {
                     margin: { top: 20 }
                 },
@@ -309,12 +308,12 @@
                     max: 100,
                     line: { visible: false },
                     minorGridLines: { visible: true },
-                    labels: { template: "#= value.toFixed(0) # %" }
+                    labels: { template: "#= value  # %" }
                 },
                 categoryAxis: {
                     majorGridLines: { visible: false }
                 },
-                tooltip: { visible: true, template: '#= series.name #: #=  (!value || value < 0) ? \'N/A\' : value.toFixed(0) + \'%\' #', color: 'white' }
+                tooltip: { visible: true, template: '#= series.name #: #=  (!value) ? \'N/A\' : value  + \'%\' #', color: 'white' }
             });
         };
 
