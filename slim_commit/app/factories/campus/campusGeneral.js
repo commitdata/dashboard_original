@@ -156,7 +156,16 @@
         };
 
         this.CreateStaffExperience = function (campusID) {
-            return campusData.getStaffExperience(campusID).then(function (data) { 
+            return campusData.getStaffExperience(campusID).then(function (data) {
+                debugger;
+                _.each(data, function (obj) {
+                    _.each(obj, function (value, key) {
+                        if (["CAMPUS"].indexOf(key) < 0) {
+                            obj[key] = parseFloat(value) || null;
+                        }
+                    });
+                });
+
                 $scope.campus.teacherExperience = data[0];
                 createTeacherExperience();
             });
@@ -292,7 +301,7 @@
             $("#teacherExperience").kendoChart({
                 dataSource: { data: [$scope.campus.teacherExperience] },
                 legend: { position: 'bottom', visible: true },
-                seriesDefaults: { type: 'column' },
+                seriesDefaults: { type: 'column', stack : true },
                 plotArea: {
                     margin: { top: 20 }
                 },

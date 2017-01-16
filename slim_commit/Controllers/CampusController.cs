@@ -117,6 +117,7 @@ namespace slim_commit.Controllers
                 command.Parameters.AddWithValue("campus", campus);
                 SqlDataReader reader = command.ExecuteReader();
                 campusRecord = reader.GetAllRecords();
+                 
                 connection.Close();
             }
             return campusRecord;

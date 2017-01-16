@@ -58,11 +58,11 @@
                 var ph = {};
                 var rec = {};
                 _.each(response.data, function (obj) {
-                    //_.each(obj, function (value, key) {
-                    //    if (["demo", "Subject", "Grade"].indexOf(key) < 0) {
-                    //        obj[key] = parseFloat(value) || null;
-                    //    }
-                    //});
+                    _.each(obj, function (value, key) {
+                        if (["demo"].indexOf(key) < 0) {
+                            obj[key] = parseFloat(value) || null;
+                        }
+                    });
                     obj["d"] = obj["d"] || (obj["satis_ph1_nm"] + obj["satis_rec_nm"]);
                     obj["ph1"] = ((obj["satis_ph1_nm"] * 100) / obj["d"]).toFixed();
                     obj["rec"] = ((obj["satis_rec_nm"] * 100) / obj["d"]).toFixed();
@@ -88,11 +88,11 @@
             return $http.get("/api/district/GetStaarAllSubjectGradesNew?year=" + year + "&district=" + district).then(function (response) { //new api
                 debugger;
                 _.each(response.data, function (obj) {
-                    //_.each(obj, function (value, key) {
-                    //    if (["District", "Subject", "Grade"].indexOf(key) < 0) {
-                    //        obj[key] = parseFloat(value) || null;
-                    //    }
-                    //});
+                    _.each(obj, function (value, key) {
+                        if (["District", "Subject", "Grade"].indexOf(key) < 0) {
+                            obj[key] = parseFloat(value) || null;
+                        }
+                    });
                     obj["d"] = obj["d"] || (obj["satis_ph1_nm"] + obj["satis_rec_nm"]);
                     obj["ph1"] = (obj["satis_ph1_nm"] * 100) / obj["d"];
                     obj["rec"] = (obj["satis_rec_nm"] * 100) / obj["d"];
@@ -127,11 +127,11 @@
         getStaarSubject: function (district) {
             return $http.get("/api/district/GetStaarSubjectNew?year=" + year + "&district=" + district).then(function (response) { //new api
                 _.each(response.data, function (obj) {
-                    /*_.each(obj, function (value, key) {
+                    _.each(obj, function (value, key) {
                         if (["District", "Year", "Subject", "Grade"].indexOf(key) < 0) {
                             obj[key] = parseFloat(value) || null;
                         }
-                    });*/
+                    });
                     obj["d"] = obj["d"] || (obj["satis_ph1_nm"] + obj["satis_rec_nm"]);
                     obj["ph1"] = (obj["satis_ph1_nm"] * 100) / obj["d"];
                     obj["rec"] = (obj["satis_rec_nm"] * 100) / obj["d"];
