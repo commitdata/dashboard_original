@@ -89,7 +89,7 @@
         };
 
         this.CreateSatActTime = function (district) {
-            return district2015Data.getSatActTime(district).then(function (data) {
+            /*return district2015Data.getSatActTime(district).then(function (data) {
                 _.each(data, function (i) {
                     if (i[0].DISTRICT == "'1") {
                         $scope.stateSatActTime = i;
@@ -101,7 +101,7 @@
                 createSatTime();
                 createActTime();
                 createSatActTime();
-            });
+            });*/
         };
 
         /* Chart Functions */
