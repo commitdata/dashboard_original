@@ -2856,6 +2856,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="travis_county_poverty.csv" />
     <Content Include="Views\Shared\_GoogleAnalytics.cshtml" />
+    <Content Include="Views\Shared\_HotjarAnalytics.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
