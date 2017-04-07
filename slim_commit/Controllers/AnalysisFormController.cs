@@ -30,9 +30,8 @@ namespace slim_commit.Controllers
                     // insert query with parameters 
                     var command = new SqlCommand(@"INSERT INTO [dbo].[AnalysisRequestForm] ([FirstName], [LastName] ,[AnalysisTitle] ,[Audiences],
                                 [DateAnalysisGiven] ,[AnalysisDescription] ,[GeographicArea] ,[AnalysisReportFormat] ,
-                                [EndProductEnvision] ,[UploadFiles]) VALUES  (@FirstName, @LastName, @AnalysisTitle, @Audiences, 
-                                @DateAnalysisGiven, @AnalysisDescription, @GeographicArea, @AnalysisReportFormat, @EndProductEnvision,
-                                @UploadFiles)", connection);
+                                [EndProductEnvision]) VALUES  (@FirstName, @LastName, @AnalysisTitle, @Audiences, 
+                                @DateAnalysisGiven, @AnalysisDescription, @GeographicArea, @AnalysisReportFormat, @EndProductEnvision)", connection);
 
                     // add parameters 
                     command.AddArrayParameters(model.FirstName, "FirstName"); 
@@ -44,8 +43,7 @@ namespace slim_commit.Controllers
                     command.AddArrayParameters(model.GeographicArea, "GeographicArea");
                     command.AddArrayParameters(model.AnalysisReportFormat, "AnalysisReportFormat");
                     command.AddArrayParameters(model.EndProductEnvision, "EndProductEnvision");
-                    command.AddArrayParameters(model.UploadFiles, "UploadFiles");
-
+                    
                     // execute query
                     var result = command.ExecuteNonQuery();
 

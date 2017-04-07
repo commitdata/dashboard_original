@@ -481,6 +481,29 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
+        <member name="T:slim_commit.Controllers.AnalysisFormController">
+            <summary>
+            Analysis Form Api
+            </summary>
+        </member>
+        <member name="M:slim_commit.Controllers.AnalysisFormController.SaveAnalysis(slim_commit.Models.AnalysisFormModel)">
+            <summary>
+            Save Analysis Form Api
+            </summary>
+            <param name="model">AnalysisFormModel object</param>
+            <returns>BaseResponse object</returns>
+        </member>
+        <member name="T:slim_commit.Controllers.FileUploadController">
+            <summary>
+            File Upload Api Controller
+            </summary>
+        </member>
+        <member name="M:slim_commit.Controllers.FileUploadController.Post">
+            <summary>
+            Post method to handle uploaded files
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:slim_commit.Controllers.ReporterController">
             <summary>
             Reporter Controller
@@ -587,6 +610,76 @@
         <member name="M:slim_commit.Helpers.CommitCorsPolicyAttribute.#ctor">
             <summary>
             Constructor
+            </summary>
+        </member>
+        <member name="T:slim_commit.Models.AnalysisFormModel">
+            <summary>
+            Analysis form model
+            </summary>
+        </member>
+        <member name="P:slim_commit.Models.AnalysisFormModel.FirstName">
+            <summary>
+            Requester First Name
+            </summary>
+        </member>
+        <member name="P:slim_commit.Models.AnalysisFormModel.LastName">
+            <summary>
+            Requester Last Name
+            </summary>
+        </member>
+        <member name="P:slim_commit.Models.AnalysisFormModel.AnalysisTitle">
+            <summary>
+            Analysis Title
+            </summary>
+        </member>
+        <member name="P:slim_commit.Models.AnalysisFormModel.Audiences">
+            <summary>
+            Audiences
+            </summary>
+        </member>
+        <member name="P:slim_commit.Models.AnalysisFormModel.DateAnalysisGiven">
+            <summary>
+            Date analysis to be given
+            </summary>
+        </member>
+        <member name="P:slim_commit.Models.AnalysisFormModel.AnalysisDescription">
+            <summary>
+            Analysis description
+            </summary>
+        </member>
+        <member name="P:slim_commit.Models.AnalysisFormModel.GeographicArea">
+            <summary>
+            Geographic area this analysis to include
+            </summary>
+        </member>
+        <member name="P:slim_commit.Models.AnalysisFormModel.AnalysisReportFormat">
+            <summary>
+            Analysis report format 
+            </summary>
+        </member>
+        <member name="P:slim_commit.Models.AnalysisFormModel.EndProductEnvision">
+            <summary>
+            End product envision
+            </summary>
+        </member>
+        <member name="P:slim_commit.Models.AnalysisFormModel.UploadFiles">
+            <summary>
+            Uploaded files
+            </summary>
+        </member>
+        <member name="T:slim_commit.Models.BaseResponse">
+            <summary>
+            Base response model
+            </summary>
+        </member>
+        <member name="P:slim_commit.Models.BaseResponse.Success">
+            <summary>
+            IsSuccess
+            </summary>
+        </member>
+        <member name="P:slim_commit.Models.BaseResponse.Message">
+            <summary>
+            Error message any
             </summary>
         </member>
         <member name="T:slim_commit.Models.C2C">
