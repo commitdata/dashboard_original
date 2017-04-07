@@ -2786,6 +2786,7 @@
     <Compile Include="Cache\CommitCache.cs" />
     <Compile Include="Controllers\actExpController.cs" />
     <Compile Include="Controllers\aeisCurrentController.cs" />
+    <Compile Include="Controllers\AnalysisFormController.cs" />
     <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="Controllers\CampusController.cs" />
     <Compile Include="Controllers\campusLongController.cs" />
@@ -2797,6 +2798,7 @@
     <Compile Include="Controllers\districtLongStaarController.cs" />
     <Compile Include="Controllers\districtSingleController.cs" />
     <Compile Include="Controllers\downloadController.cs" />
+    <Compile Include="Controllers\FileUploadController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\districtLongController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
@@ -2814,7 +2816,9 @@
     <Compile Include="Helpers\ExcelExportHelper.cs" />
     <Compile Include="Models\ActExpQuery.cs" />
     <Compile Include="Models\AeisQuery.cs" />
+    <Compile Include="Models\AnalysisFormModel.cs" />
     <Compile Include="Models\AnalyticsData.cs" />
+    <Compile Include="Models\BaseResponse.cs" />
     <Compile Include="Models\C2C.cs" />
     <Compile Include="Models\CampStaar.cs" />
     <Compile Include="Models\Campus.cs" />
@@ -2865,7 +2869,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\AnalysisFormFiles\" />
     <Folder Include="DownloadFile\" />
+    <Folder Include="Views\AnalysisForm\" />
     <Folder Include="Views\download\" />
   </ItemGroup>
   <PropertyGroup>
