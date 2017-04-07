@@ -33,17 +33,17 @@ namespace slim_commit.Controllers
                                 [EndProductEnvision]) VALUES  (@FirstName, @LastName, @AnalysisTitle, @Audiences, 
                                 @DateAnalysisGiven, @AnalysisDescription, @GeographicArea, @AnalysisReportFormat, @EndProductEnvision)", connection);
 
-                    // add parameters 
-                    command.AddArrayParameters(model.FirstName, "FirstName"); 
-                    command.AddArrayParameters(model.LastName, "LastName");
-                    command.AddArrayParameters(model.AnalysisTitle, "AnalysisTitle");
-                    command.AddArrayParameters(model.Audiences, "Audiences");
-                    command.AddArrayParameters(model.DateAnalysisGiven, "DateAnalysisGiven");
-                    command.AddArrayParameters(model.AnalysisDescription, "AnalysisDescription");
-                    command.AddArrayParameters(model.GeographicArea, "GeographicArea");
-                    command.AddArrayParameters(model.AnalysisReportFormat, "AnalysisReportFormat");
-                    command.AddArrayParameters(model.EndProductEnvision, "EndProductEnvision");
-                    
+                    // add parameters  
+                    command.Parameters.Add(new SqlParameter("@FirstName", model.FirstName));
+                    command.Parameters.Add(new SqlParameter("@LastName", model.LastName));
+                    command.Parameters.Add(new SqlParameter("@AnalysisTitle", model.AnalysisTitle));
+                    command.Parameters.Add(new SqlParameter("@Audiences", model.Audiences));
+                    command.Parameters.Add(new SqlParameter("@DateAnalysisGiven", model.DateAnalysisGiven));
+                    command.Parameters.Add(new SqlParameter("@AnalysisDescription", model.AnalysisDescription));
+                    command.Parameters.Add(new SqlParameter("@GeographicArea", model.GeographicArea));
+                    command.Parameters.Add(new SqlParameter("@AnalysisReportFormat", model.AnalysisReportFormat));
+                    command.Parameters.Add(new SqlParameter("@EndProductEnvision", model.EndProductEnvision));
+    
                     // execute query
                     var result = command.ExecuteNonQuery();
 
