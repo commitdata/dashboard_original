@@ -1,7 +1,8 @@
 ﻿using slim_commit.Models;
-using System; 
+using System;
 using System.Configuration;
-using System.Data.SqlClient; 
+using System.Data.SqlClient;
+using System.Globalization;
 using System.Web.Http;
 
 namespace slim_commit.Controllers
@@ -33,12 +34,17 @@ namespace slim_commit.Controllers
                                 [EndProductEnvision]) VALUES  (@FirstName, @LastName, @AnalysisTitle, @Audiences, 
                                 @DateAnalysisGiven, @AnalysisDescription, @GeographicArea, @AnalysisReportFormat, @EndProductEnvision)", connection);
 
+
+                    DateTime date = DateTime.Now;
+                    CultureInfo provider = CultureInfo.InvariantCulture;
+                    date = DateTime.ParseExact(model.DateAnalysisGiven, "MM/dd/yyyy", provider); 
+
                     // add parameters  
                     command.Parameters.Add(new SqlParameter("@FirstName", model.FirstName));
                     command.Parameters.Add(new SqlParameter("@LastName", model.LastName));
                     command.Parameters.Add(new SqlParameter("@AnalysisTitle", model.AnalysisTitle));
                     command.Parameters.Add(new SqlParameter("@Audiences", model.Audiences));
-                    command.Parameters.Add(new SqlParameter("@DateAnalysisGiven", model.DateAnalysisGiven));
+                    command.Parameters.Add(new SqlParameter("@DateAnalysisGiven", date));
                     command.Parameters.Add(new SqlParameter("@AnalysisDescription", model.AnalysisDescription));
                     command.Parameters.Add(new SqlParameter("@GeographicArea", model.GeographicArea));
                     command.Parameters.Add(new SqlParameter("@AnalysisReportFormat", model.AnalysisReportFormat));
