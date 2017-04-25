@@ -30,8 +30,12 @@ namespace slim_commit.Controllers
             using (var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                var command = new SqlCommand("select * from [dbo].[cstud] where [year] = '2016' and Attr IN (@attrs)", connection);
+
+                var command = new SqlCommand("select * from [dbo].[cstud] where [year] IN (@years) and Campus IN (@campuses) and Attr IN (@attrs)", connection);
+                command.AddArrayParameters(filter.Years, "years");
+                command.AddArrayParameters(filter.Campuses, "campuses");
                 command.AddArrayParameters(filter.TaprList, "attrs");
+
                 var reader = command.ExecuteReader();
                 while (reader.Read())
                 {

@@ -836,6 +836,56 @@
             </summary>
             <param name="dataRecord"></param>
         </member>
+        <member name="T:slim_commit.Models.Reporter2TaprRequestModel">
+            <summary>
+            ReporterTool Tapr Request model
+            </summary>
+        </member>
+        <member name="P:slim_commit.Models.Reporter2TaprRequestModel.TaprList">
+            <summary>
+            array of tapr variables
+            </summary>
+        </member>
+        <member name="P:slim_commit.Models.Reporter2TaprRequestModel.Campuses">
+            <summary>
+            array of campuses
+            </summary>
+        </member>
+        <member name="P:slim_commit.Models.Reporter2TaprRequestModel.Years">
+            <summary>
+            array of years
+            </summary>
+        </member>
+        <member name="T:slim_commit.Models.Reporter2TaprModel">
+            <summary>
+            Reporter2 tapr response model
+            </summary>
+        </member>
+        <member name="P:slim_commit.Models.Reporter2TaprModel.Id">
+            <summary>
+            id
+            </summary>
+        </member>
+        <member name="P:slim_commit.Models.Reporter2TaprModel.Campus">
+            <summary>
+            campus code
+            </summary>
+        </member>
+        <member name="P:slim_commit.Models.Reporter2TaprModel.Attr">
+            <summary>
+            variable
+            </summary>
+        </member>
+        <member name="P:slim_commit.Models.Reporter2TaprModel.Year">
+            <summary>
+            Year
+            </summary>
+        </member>
+        <member name="P:slim_commit.Models.Reporter2TaprModel.Val">
+            <summary>
+            Val
+            </summary>
+        </member>
         <member name="M:slim_commit.Models.Reporter2TaprModel.#ctor(System.Data.IDataRecord)">
             <summary>
             Constructor implementation
