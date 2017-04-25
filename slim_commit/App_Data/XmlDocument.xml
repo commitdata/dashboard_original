@@ -504,6 +504,28 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:slim_commit.Controllers.Reporter2Controller">
+            <summary>
+            Reporter Controller
+            </summary>
+        </member>
+        <member name="F:slim_commit.Controllers.Reporter2Controller._connectionString">
+            <summary>
+            Connection string
+            </summary>
+        </member>
+        <member name="M:slim_commit.Controllers.Reporter2Controller.GetTaprData(slim_commit.Models.Reporter2TaprRequestModel)">
+            <summary>
+            Get Campuses
+            </summary> 
+            <returns></returns>
+        </member>
+        <member name="M:slim_commit.Controllers.Reporter2Controller.GetGradeTypes">
+            <summary>
+            Get GradeTypes
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:slim_commit.Controllers.ReporterController">
             <summary>
             Reporter Controller
@@ -811,6 +833,12 @@
         <member name="M:slim_commit.Models.ReporterC2C.#ctor(System.Data.IDataRecord)">
             <summary>
             constructor
+            </summary>
+            <param name="dataRecord"></param>
+        </member>
+        <member name="M:slim_commit.Models.Reporter2TaprModel.#ctor(System.Data.IDataRecord)">
+            <summary>
+            Constructor implementation
             </summary>
             <param name="dataRecord"></param>
         </member>

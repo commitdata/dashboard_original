@@ -2802,6 +2802,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\districtLongController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
+    <Compile Include="Controllers\Reporter2Controller.cs" />
     <Compile Include="Controllers\ReporterController.cs" />
     <Compile Include="Controllers\sqlController.cs" />
     <Compile Include="Controllers\StaarController.cs" />
@@ -2828,6 +2829,7 @@
     <Compile Include="Models\District.cs" />
     <Compile Include="Models\DistrictStaar.cs" />
     <Compile Include="Models\InvitationModel.cs" />
+    <Compile Include="Models\Reporter2Model.cs" />
     <Compile Include="Models\ReporterModel.cs" />
     <Compile Include="Models\StaarQuery.cs">
       <SubType>Code</SubType>
