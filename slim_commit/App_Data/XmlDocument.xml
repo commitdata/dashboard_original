@@ -514,6 +514,11 @@
             Connection string
             </summary>
         </member>
+        <member name="F:slim_commit.Controllers.Reporter2Controller._connectionString2">
+            <summary>
+            Connection string Staar All
+            </summary>
+        </member>
         <member name="M:slim_commit.Controllers.Reporter2Controller.GetTaprData(slim_commit.Models.Reporter2TaprRequestModel)">
             <summary>
             Get Campuses
@@ -856,6 +861,21 @@
             array of years
             </summary>
         </member>
+        <member name="P:slim_commit.Models.Reporter2TaprRequestModel.GradeSubjects">
+            <summary>
+            grade subjects
+            </summary>
+        </member>
+        <member name="P:slim_commit.Models.Reporter2TaprRequestModel.Categories">
+            <summary>
+            categories
+            </summary>
+        </member>
+        <member name="P:slim_commit.Models.Reporter2TaprRequestModel.Demos">
+            <summary>
+            demos
+            </summary>
+        </member>
         <member name="T:slim_commit.Models.Reporter2TaprModel">
             <summary>
             Reporter2 tapr response model
@@ -891,6 +911,137 @@
             Constructor implementation
             </summary>
             <param name="dataRecord"></param>
+        </member>
+        <member name="T:slim_commit.Models.StaarCampusWideMerged">
+            <summary>
+            Staar Response Model
+            </summary>
+        </member>
+        <member name="P:slim_commit.Models.StaarCampusWideMerged.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:slim_commit.Models.StaarCampusWideMerged.Campus">
+            <summary>
+            Campus
+            </summary>
+        </member>
+        <member name="P:slim_commit.Models.StaarCampusWideMerged.Year">
+            <summary>
+            Year
+            </summary>
+        </member>
+        <member name="P:slim_commit.Models.StaarCampusWideMerged.Region">
+            <summary>
+            Region
+            </summary>
+        </member>
+        <member name="P:slim_commit.Models.StaarCampusWideMerged.District">
+            <summary>
+            District
+            </summary>
+        </member>
+        <member name="P:slim_commit.Models.StaarCampusWideMerged.Dname">
+            <summary>
+            Dname
+            </summary>
+        </member>
+        <member name="P:slim_commit.Models.StaarCampusWideMerged.Cname">
+            <summary>
+            Cname
+            </summary>
+        </member>
+        <member name="P:slim_commit.Models.StaarCampusWideMerged.Subject">
+            <summary>
+            Subject
+            </summary>
+        </member>
+        <member name="P:slim_commit.Models.StaarCampusWideMerged.Grade">
+            <summary>
+            Grade
+            </summary>
+        </member>
+        <member name="P:slim_commit.Models.StaarCampusWideMerged.Language">
+            <summary>
+            Language
+            </summary>
+        </member>
+        <member name="P:slim_commit.Models.StaarCampusWideMerged.Category">
+            <summary>
+            Category
+            </summary>
+        </member>
+        <member name="P:slim_commit.Models.StaarCampusWideMerged.All">
+            <summary>
+            All
+            </summary>
+        </member>
+        <member name="P:slim_commit.Models.StaarCampusWideMerged.Sexm">
+            <summary>
+            Sexm
+            </summary>
+        </member>
+        <member name="P:slim_commit.Models.StaarCampusWideMerged.Sexf">
+            <summary>
+            Sexf
+            </summary>
+        </member>
+        <member name="P:slim_commit.Models.StaarCampusWideMerged.Ethh">
+            <summary>
+            Hispanic
+            </summary>
+        </member>
+        <member name="P:slim_commit.Models.StaarCampusWideMerged.Ethb">
+            <summary>
+            African American
+            </summary>
+        </member>
+        <member name="P:slim_commit.Models.StaarCampusWideMerged.Ecoy">
+            <summary>
+            Non  Economically Disadvanaged
+            </summary>
+        </member>
+        <member name="P:slim_commit.Models.StaarCampusWideMerged.Econ">
+            <summary>
+            Economically Disadvanaged
+            </summary>
+        </member>
+        <member name="P:slim_commit.Models.StaarCampusWideMerged.Lepc">
+            <summary>
+            Limited English Proficiency
+            </summary>
+        </member>
+        <member name="P:slim_commit.Models.StaarCampusWideMerged.Atry">
+            <summary>
+            Atry
+            </summary>
+        </member>
+        <member name="M:slim_commit.Models.StaarCampusWideMerged.#ctor(System.Data.IDataRecord)">
+            <summary>
+            Constructor implementation
+            </summary>
+            <param name="dataRecord"></param>
+        </member>
+        <member name="T:slim_commit.Models.Reporter2ResponseModel">
+            <summary>
+            Reporter2 Response Model
+            </summary>
+        </member>
+        <member name="P:slim_commit.Models.Reporter2ResponseModel.Success">
+            <summary>
+            Is Success
+            </summary>
+        </member>
+        <member name="P:slim_commit.Models.Reporter2ResponseModel.Message">
+            <summary>
+            Error Message
+            </summary>
+        </member>
+        <member name="P:slim_commit.Models.Reporter2ResponseModel.FileName">
+            <summary>
+            File name
+            </summary>
         </member>
         <member name="T:slim_commit.Models.ReporterModel">
             <summary>

@@ -69,5 +69,13 @@ namespace slim_commit.Controllers
             T obj = (T)ser.ReadObject(stream);
             return obj;
         }
+
+        public FileResult downloadExcel(string id)
+        { 
+            var path = Server.MapPath("~/App_Data/Temp");
+            var fileName = string.Format("{0}.xlsx", id);
+            var filePath = Path.Combine(path, fileName);
+            return File(filePath, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", string.Format("{0}.xlsx", id));
+        }
     }
 }

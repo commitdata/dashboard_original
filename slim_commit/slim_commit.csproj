@@ -55,6 +55,10 @@
     <Reference Include="DocumentFormat.OpenXml">
       <HintPath>..\packages\DocumentFormat.OpenXml.2.5\lib\DocumentFormat.OpenXml.dll</HintPath>
     </Reference>
+    <Reference Include="EPPlus, Version=4.1.0.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.4.1.0\lib\net40\EPPlus.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Flurl, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Flurl.1.0.7\lib\portable-net40+sl50+win+wpa81+wp80+MonoAndroid10+MonoTouch10\Flurl.dll</HintPath>
       <Private>True</Private>
@@ -2592,6 +2596,7 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <Content Include="App_Data\Template.xlsx" />
     <None Include="Properties\PublishProfiles\datacommit.pubxml" />
     <Content Include="Scripts\angular-cache.min.map" />
     <Content Include="scorecard_assets\page10.svg" />
@@ -2872,6 +2877,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\AnalysisFormFiles\" />
+    <Folder Include="App_Data\Temp\" />
     <Folder Include="DownloadFile\" />
     <Folder Include="Views\AnalysisForm\" />
     <Folder Include="Views\download\" />
