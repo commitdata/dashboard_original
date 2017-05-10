@@ -122,7 +122,12 @@ namespace slim_commit.Controllers
 
                 response.FileName = System.Guid.NewGuid().ToString();
                 var excelFile = string.Format("{0}.xlsx", response.FileName);
-                 
+
+                var tempDir = HostingEnvironment.MapPath("~/App_Data/Temp");
+
+                if (!Directory.Exists(tempDir))
+                    Directory.CreateDirectory(tempDir); 
+
                 var destinationFile = string.Format("{0}/{1}", HostingEnvironment.MapPath("~/App_Data/Temp"), excelFile);
 
                 File.Copy(templateFilePath, destinationFile);
