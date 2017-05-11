@@ -92,9 +92,9 @@ namespace slim_commit.Controllers
                         connection.Open();
 
                         var command = new SqlCommand(@"select Id, Campus, [Year], Region, District, Dname, Cname, [Subject], 
-                        Grade, [Language], Category, Econ, Ecoy, Sexm, Sexf, Ethh, Ethb, Lepc, Atry from [dbo].[staar_campus_wide_merged] 
+                        Grade, [Language], Category, [All], Econ, Ecoy, Sexm, Sexf, Ethh, Ethb, Lepc, Atry from [dbo].[staar_campus_wide_merged] 
                         where [year] IN (@years) and Campus IN (@campuses) and Grade IN (@grades) 
-                        and Subject IN (@subjects) and Category IN (@categories)", connection);
+                        and [Subject] IN (@subjects) and Category IN (@categories)", connection);
 
                         command.AddArrayParameters(years, "years");
                         command.AddArrayParameters(filter.Campuses, "campuses");
@@ -178,14 +178,15 @@ namespace slim_commit.Controllers
                 ws1.Cells[row, 9].Value = "Grade";
                 ws1.Cells[row, 10].Value = "Language";
                 ws1.Cells[row, 11].Value = "Category";
-                ws1.Cells[row, 12].Value = "Econ";
-                ws1.Cells[row, 13].Value = "Ecoy";
-                ws1.Cells[row, 14].Value = "Sexm";
-                ws1.Cells[row, 15].Value = "Sexf";
-                ws1.Cells[row, 16].Value = "Ethh";
-                ws1.Cells[row, 17].Value = "Ethb";
-                ws1.Cells[row, 18].Value = "Lepc";
-                ws1.Cells[row, 19].Value = "Atry";
+                ws1.Cells[row, 12].Value = "All";
+                ws1.Cells[row, 13].Value = "Econ";
+                ws1.Cells[row, 14].Value = "Ecoy";
+                ws1.Cells[row, 15].Value = "Sexm";
+                ws1.Cells[row, 16].Value = "Sexf";
+                ws1.Cells[row, 17].Value = "Ethh";
+                ws1.Cells[row, 18].Value = "Ethb";
+                ws1.Cells[row, 19].Value = "Lepc";
+                ws1.Cells[row, 20].Value = "Atry";
 
                 row++;
 
@@ -202,14 +203,15 @@ namespace slim_commit.Controllers
                     ws1.Cells[row, 9].Value = item.Grade;
                     ws1.Cells[row, 10].Value = item.Language;
                     ws1.Cells[row, 11].Value = item.Category;
-                    ws1.Cells[row, 12].Value = item.Econ;
-                    ws1.Cells[row, 13].Value = item.Ecoy;
-                    ws1.Cells[row, 14].Value = item.Sexm;
-                    ws1.Cells[row, 15].Value = item.Sexf;
-                    ws1.Cells[row, 16].Value = item.Ethh;
-                    ws1.Cells[row, 17].Value = item.Ethb;
-                    ws1.Cells[row, 18].Value = item.Lepc;
-                    ws1.Cells[row, 19].Value = item.Atry;
+                    ws1.Cells[row, 12].Value = item.All;
+                    ws1.Cells[row, 13].Value = item.Econ;
+                    ws1.Cells[row, 14].Value = item.Ecoy;
+                    ws1.Cells[row, 15].Value = item.Sexm;
+                    ws1.Cells[row, 16].Value = item.Sexf;
+                    ws1.Cells[row, 17].Value = item.Ethh;
+                    ws1.Cells[row, 18].Value = item.Ethb;
+                    ws1.Cells[row, 19].Value = item.Lepc;
+                    ws1.Cells[row, 20].Value = item.Atry;
 
                     row++;
                 }
